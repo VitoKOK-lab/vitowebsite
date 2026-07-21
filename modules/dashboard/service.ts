@@ -81,7 +81,8 @@ export function leaderboard(industry: IndustryKey): LeaderRow[] {
     closed: e.closed,
     onTime: e.onTime,
     winRate: e.winRate,
-    score: e.closed + e.onTime + e.winRate,
+    // 結案數為主要貢獻指標,準時率/成交率為加權(讓排行直覺:做最多的排前面)
+    score: e.closed * 3 + e.onTime + e.winRate,
   }));
   return rows.sort((a, b) => b.score - a.score);
 }

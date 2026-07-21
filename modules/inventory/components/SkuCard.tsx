@@ -76,8 +76,8 @@ export function SkuCard({ sku, role }: { sku: SkuView; role: Role }) {
         )}
       </div>
 
-      {/* reorder suggestion */}
-      {sku.suggestedReorder > 0 && (
+      {/* reorder suggestion — 僅在缺貨/低於安全時顯示,避免與「正常」矛盾 */}
+      {sku.suggestedReorder > 0 && sku.status !== "normal" && (
         <div className="mt-3 flex items-center gap-1.5 rounded-lg bg-brand-50/70 px-2.5 py-1.5 text-[12px] text-brand-700">
           <TrendingUp className="h-3.5 w-3.5" />
           AI 建議補貨 <span className="font-bold tabular-nums">{sku.suggestedReorder}</span>{" "}

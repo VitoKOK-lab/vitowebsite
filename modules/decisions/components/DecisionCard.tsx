@@ -96,7 +96,7 @@ export function DecisionCard({
         {/* suggestion */}
         <div className="mt-3 rounded-xl bg-brand-50/60 p-3">
           <div className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">
-            AI 建議
+            建議做法
           </div>
           <p className="mt-1 whitespace-pre-line text-[14px] font-medium leading-relaxed text-slate-800">
             {decision.displaySuggestion}

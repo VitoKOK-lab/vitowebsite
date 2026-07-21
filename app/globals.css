@@ -20,6 +20,11 @@ body {
   color: rgb(var(--text));
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* 柔和漸層畫布:手機幾乎純淨,投影/桌面時兩側不空盪 */
+  background-image:
+    radial-gradient(60rem 40rem at 50% -10rem, rgba(37, 99, 235, 0.07), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.6), transparent 30%);
+  background-attachment: fixed;
 }
 
 * {

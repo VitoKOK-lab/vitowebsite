@@ -29,3 +29,6 @@ next-env.d.ts
 
 # local demo persistence
 /.data
+
+# scratch QA scripts
+/_*.mjs
