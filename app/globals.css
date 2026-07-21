@@ -18,6 +18,8 @@ body {
 body {
   background-color: rgb(var(--bg));
   color: rgb(var(--text));
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   /* 柔和漸層畫布:手機幾乎純淨,投影/桌面時兩側不空盪 */
@@ -38,6 +40,26 @@ body {
 *::-webkit-scrollbar-thumb {
   background: rgb(203 213 225);
   border-radius: 9999px;
+}
+
+@layer base {
+  /* 可點擊元素一律 pointer 游標(桌面/投影體驗) */
+  button,
+  a,
+  [role="button"],
+  label[for],
+  summary {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  /* 鍵盤導覽可見焦點環(不影響滑鼠點擊) */
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(255 255 255), 0 0 0 4px rgb(37 99 235 / 0.55);
+    border-radius: 0.5rem;
+  }
 }
 
 @layer utilities {

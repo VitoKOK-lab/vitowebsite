@@ -24,11 +24,12 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          "var(--font-inter)",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
-          "Noto Sans TC",
           "PingFang TC",
+          "Noto Sans TC",
           "Microsoft JhengHei",
           "sans-serif",
         ],
