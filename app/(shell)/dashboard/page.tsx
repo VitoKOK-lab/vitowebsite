@@ -1,16 +1,42 @@
 import { getSession } from "@/lib/auth/session";
-import { SectionTitle } from "@/lib/ui/card";
+import { ROLES } from "@/lib/types";
+import { getIndustryConfig } from "@/lib/industry/adapter";
+import {
+  ownerMetrics,
+  leaderboard,
+  alerts,
+  tasksFor,
+} from "@/modules/dashboard/service";
+import { growthStats } from "@/modules/decisions/service";
+import { OwnerDashboard } from "@/modules/dashboard/components/OwnerDashboard";
+import { StaffTasks } from "@/modules/dashboard/components/StaffTasks";
 
 export const dynamic = "force-dynamic";
 
 export default function DashboardPage() {
-  const { role } = getSession();
+  const { role, industry } = getSession();
+  const cfg = getIndustryConfig(industry);
+  const roleLabel = ROLES.find((r) => r.key === role)?.label ?? "老闆";
+
+  // 員工 / 客戶 → 今日任務清單
+  if (role === "staff" || role === "customer") {
+    return <StaffTasks tasks={tasksFor(industry)} name={roleLabel} />;
+  }
+
+  // 老闆 / 主管 → 營運總覽
+  const metrics = ownerMetrics(industry);
+  const leaders = leaderboard(industry);
+  const alertRows = alerts(industry);
+  const growth = growthStats(industry);
+
   return (
-    <div className="space-y-4">
-      <SectionTitle>{role === "staff" ? "今日任務" : "儀表板"}</SectionTitle>
-      <div className="rounded-2xl border border-dashed border-slate-200 p-8 text-center text-sm text-slate-400">
-        建置中…
-      </div>
-    </div>
+    <OwnerDashboard
+      metrics={metrics}
+      leaders={leaders}
+      alertRows={alertRows}
+      growth={growth}
+      industryName={cfg.displayName}
+      roleLabel={roleLabel}
+    />
   );
 }
