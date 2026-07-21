@@ -48,3 +48,15 @@ body {
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
+
+/* 尊重使用者的減少動態偏好(無障礙) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
