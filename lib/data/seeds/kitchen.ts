@@ -159,6 +159,22 @@ export function buildKitchen(): IndustryData {
       ],
     },
     {
+      id: "k-d5", category: "備料不足", title: "雞胸肉低於安全庫存,建議今日追加採購 60 kg",
+      situation: "雞胸肉現有 8 kg,安全庫存 15 kg,近 8 週平均日用量 8 kg,前置期 1 天,明日備料需求集中。",
+      suggestion: "向「永昌肉品」追加採購 60 kg,補足至安全庫存 + 一日用量。",
+      reasoning: "以日均 8 kg × 前置期 + 安全庫存,扣現有 8 kg → 建議補 60 kg,確保明日不缺料。",
+      impact: [
+        { label: "現有", value: "8 kg", tone: "rose" },
+        { label: "安全庫存", value: "15 kg", tone: "slate" },
+        { label: "建議採購", value: "60 kg", tone: "brand" },
+      ],
+      learningTag: "reorder",
+      adjustOptions: [
+        { label: "只補到安全庫存", learned: "您偏好精簡採購、降低即期報廢風險" },
+        { label: "多補一日緩衝", learned: "您偏好多留一日備料緩衝" },
+      ],
+    },
+    {
       id: "k-d3", category: "成本", title: "蔬菜漲價 18%,建議本週替換耐儲菜色",
       situation: "颱風致高麗菜、青花菜批發價週漲 18%,便當成本每份 +2.5 元。",
       suggestion: "本週三道菜改用馬鈴薯、紅蘿蔔替換,維持成本並確保供應穩定。",

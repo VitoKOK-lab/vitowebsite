@@ -198,6 +198,22 @@ export function buildFactory(): IndustryData {
       ],
     },
     {
+      id: "f-d5", category: "補貨", title: "電池模組 48V20Ah 低於安全庫存,建議下單 40 顆",
+      situation: "電池模組現有 12 顆,安全庫存 15 顆,近 8 週平均日用量 3 顆,前置期 14 天。",
+      suggestion: "向「宏達電能」下單 40 顆,可覆蓋前置期需求並回補安全水位。",
+      reasoning: "以移動平均 3 顆/日 × 前置期 14 天 = 42 顆,加安全庫存 15 顆,扣現有 12 顆 → 建議補 40 顆。",
+      impact: [
+        { label: "現有庫存", value: "12 顆", tone: "amber" },
+        { label: "建議下單", value: "40 顆", tone: "brand" },
+        { label: "可避免缺料", value: "18 天", tone: "emerald" },
+      ],
+      learningTag: "reorder",
+      adjustOptions: [
+        { label: "改補 30 顆", learned: "您偏好保留較少安全庫存(約 13 天)" },
+        { label: "改補 60 顆", learned: "您偏好保留 15% 以上安全庫存緩衝" },
+      ],
+    },
+    {
       id: "f-d4", category: "品檢", title: "組裝組不良率升至 3.2%,建議複檢批次",
       situation: "本週組裝組不良率由 1.5% 升至 3.2%,集中在 LED 頭燈總成的接點鬆脫。",
       suggestion: "抽檢近 3 批 LED 頭燈總成,並暫停該供應商本批入庫待複驗。",

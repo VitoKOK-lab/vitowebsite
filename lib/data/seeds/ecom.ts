@@ -195,6 +195,22 @@ export function buildEcom(): IndustryData {
       ],
     },
     {
+      id: "e-d5", category: "補貨", title: "藍牙耳機 Air 庫存偏低,建議補貨 80 件",
+      situation: "AeroPods 藍牙耳機 Air 目前庫存 15 件,近 7 日日均銷 9 件,前置期 7 天,即將跌破安全庫存。",
+      suggestion: "向「深圳華越」補 80 件,可覆蓋約 9 天銷量並回補安全水位。",
+      reasoning: "以日均 9 件 × 前置期 7 天 = 63 件,加安全庫存緩衝,扣現有 → 建議補 80 件。",
+      impact: [
+        { label: "目前庫存", value: "15 件", tone: "amber" },
+        { label: "建議補貨", value: "80 件", tone: "brand" },
+        { label: "可撐天數", value: "9 天", tone: "emerald" },
+      ],
+      learningTag: "reorder",
+      adjustOptions: [
+        { label: "改補 50 件", learned: "您偏好控制補貨成本、可接受短期缺貨" },
+        { label: "改補 120 件", learned: "您偏好保留 15% 以上安全庫存緩衝" },
+      ],
+    },
+    {
       id: "e-d4", category: "平台費", title: "平台費調升 0.5%,建議檢討 6 項低毛利品",
       situation: "平台成交費 8/1 起升至 6%,6 項 SKU 毛利將低於 15%。",
       suggestion: "對這 6 項調升售價 3% 或改為加購綁售,毛利低於門檻者評估下架。",

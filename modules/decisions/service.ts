@@ -1,7 +1,7 @@
 import type { IndustryKey } from "@/lib/types";
 import type { AiDecision, AiLearningLog } from "@/lib/data/models";
 import { db } from "@/lib/data/store";
-import { getAIProvider, type LearningNote } from "@/lib/ai/provider";
+import type { LearningNote } from "@/lib/ai/provider";
 import { iso } from "@/lib/data/seeds/helpers";
 
 export type DecisionAction = "adopt" | "adjust" | "reject";
@@ -32,20 +32,16 @@ export interface DecisionView extends AiDecision {
 /** 取得決策佇列(套用學習微調) */
 export function listDecisions(industry: IndustryKey): DecisionView[] {
   const notes = activeLearnings(industry);
-  const provider = getAIProvider();
   return db(industry)
     .decisions.map((d) => {
       const note = d.learningTag
         ? notes.find((n) => n.tag === d.learningTag)
         : undefined;
-      const displaySuggestion =
-        note && d.status === "pending"
-          ? provider.applyLearning(d.suggestion, notes, d.learningTag)
-          : d.suggestion;
+      // 偏好以卡片頂端的綠色提示 pill 呈現即可,不再重複附加到建議內文
       return {
         ...d,
-        learnedHint: note?.text,
-        displaySuggestion,
+        learnedHint: d.status === "pending" ? note?.text : undefined,
+        displaySuggestion: d.suggestion,
       };
     })
     .sort((a, b) => {
