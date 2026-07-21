@@ -65,7 +65,7 @@ export function DecisionList({ decisions }: { decisions: DecisionView[] }) {
             </p>
           </motion.div>
         ) : (
-          <div className="space-y-3">
+          <div className="grid gap-3 lg:grid-cols-2 lg:items-start">
             {visible.map((d) => (
               <motion.div
                 key={d.id}

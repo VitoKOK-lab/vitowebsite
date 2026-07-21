@@ -28,7 +28,7 @@ export default function InventoryPage() {
   ];
 
   return (
-    <div className="space-y-4">
+    <div className="mx-auto max-w-5xl space-y-4">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-[13px] font-medium text-slate-400">{cfg.displayName}</p>
@@ -68,21 +68,25 @@ export default function InventoryPage() {
       </div>
 
       {attention.length > 0 && (
-        <div className="space-y-3">
-          <SectionTitle>需關注 · {attention.length}</SectionTitle>
-          {attention.map((s) => (
-            <SkuCard key={s.id} sku={s} role={role} />
-          ))}
+        <div>
+          <SectionTitle className="mb-3">需關注 · {attention.length}</SectionTitle>
+          <div className="grid gap-3 lg:grid-cols-2">
+            {attention.map((s) => (
+              <SkuCard key={s.id} sku={s} role={role} />
+            ))}
+          </div>
         </div>
       )}
 
-      <div className="space-y-3 pt-1">
-        <SectionTitle>庫存充足 · {normal.length}</SectionTitle>
-        {normal.slice(0, 8).map((s) => (
-          <SkuCard key={s.id} sku={s} role={role} />
-        ))}
+      <div className="pt-1">
+        <SectionTitle className="mb-3">庫存充足 · {normal.length}</SectionTitle>
+        <div className="grid gap-3 lg:grid-cols-2">
+          {normal.slice(0, 8).map((s) => (
+            <SkuCard key={s.id} sku={s} role={role} />
+          ))}
+        </div>
         {normal.length > 8 && (
-          <div className="flex items-center justify-center gap-1 rounded-xl border border-dashed border-slate-200 py-3 text-[13px] text-slate-400">
+          <div className="mt-3 flex items-center justify-center gap-1 rounded-xl border border-dashed border-slate-200 py-3 text-[13px] text-slate-400">
             還有 {normal.length - 8} 項 <ChevronRight className="h-3.5 w-3.5" />
           </div>
         )}

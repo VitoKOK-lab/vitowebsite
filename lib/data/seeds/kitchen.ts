@@ -198,6 +198,30 @@ export function buildKitchen(): IndustryData {
       ],
       learningTag: "quality",
     },
+    {
+      id: "k-d6", category: "排班", title: "週末備料人力不足,建議今日確認調班",
+      situation: "本週六 4 家門市備料需求較平日高 40%,備料組僅排 2 人,估計人力缺口約 6 工時。",
+      suggestion: "商請楊美玲、郭建宏週六支援上午班,或將部分前處理提前至週五完成。",
+      reasoning: "提前備料 + 彈性支援可補足缺口,避免週六出餐延遲影響門市營業。",
+      impact: [
+        { label: "需求增幅", value: "+40%", tone: "amber" },
+        { label: "人力缺口", value: "6 工時", tone: "rose" },
+        { label: "門市", value: "4 家", tone: "brand" },
+      ],
+      learningTag: "schedule",
+    },
+    {
+      id: "k-d7", category: "品質", title: "內湖門市退貨率升高,建議檢討配送溫控",
+      situation: "內湖門市近一週餐點退貨率由 1% 升至 4%,反映集中在午後配送的冷藏品變質。",
+      suggestion: "檢查該路線保溫箱溫度紀錄,午後配送改用加冰保溫並縮短停留時間。",
+      reasoning: "退貨集中單一門市 + 時段,判斷為配送溫控問題;調整成本低、見效快。",
+      impact: [
+        { label: "退貨率", value: "4%", tone: "rose" },
+        { label: "涉及門市", value: "內湖", tone: "amber" },
+        { label: "問題時段", value: "午後", tone: "slate" },
+      ],
+      learningTag: "quality",
+    },
   ];
 
   const tasks: IndustryData["tasks"] = [

@@ -24,7 +24,7 @@ export default function CsPage() {
       text: m.text,
     }));
     return (
-      <div className="space-y-3">
+      <div className="mx-auto max-w-2xl space-y-3">
         <h1 className="flex items-center gap-2 text-xl font-bold tracking-tight text-slate-900">
           <MessagesSquare className="h-5 w-5 text-brand-500" /> 線上客服
         </h1>
@@ -42,7 +42,7 @@ export default function CsPage() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="mx-auto max-w-2xl space-y-4">
       <div>
         <p className="text-[13px] font-medium text-slate-400">{cfg.displayName}</p>
         <h1 className="flex items-center gap-2 text-xl font-bold tracking-tight text-slate-900">

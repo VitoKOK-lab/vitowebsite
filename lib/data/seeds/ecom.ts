@@ -222,6 +222,30 @@ export function buildEcom(): IndustryData {
       ],
       learningTag: "pricing_raise",
     },
+    {
+      id: "e-d6", category: "物流", title: "某物流商延誤率升至 7%,建議部分轉單",
+      situation: "近 2 週 A 物流商配送延誤率由 3% 升至 7%,集中在中南部;A 物流佔出貨量 60%。",
+      suggestion: "將中南部訂單改由 B 物流商配送(延誤率 2%),北部維持 A 物流以控成本。",
+      reasoning: "分區指派可將整體延誤率壓回 3% 以下,運費僅增加約 1.5%,客訴風險大幅下降。",
+      impact: [
+        { label: "延誤率", value: "7%", tone: "rose" },
+        { label: "轉單區域", value: "中南部", tone: "brand" },
+        { label: "運費影響", value: "+1.5%", tone: "amber" },
+      ],
+      learningTag: "logistics",
+    },
+    {
+      id: "e-d7", category: "廣告", title: "耳機廣告組 ROAS 低於門檻,建議關閉止血",
+      situation: "AeroPods 廣告組近 7 日 ROAS 為 1.4(門檻 2.0),已投入 3.2 萬、轉換衰退。",
+      suggestion: "暫停此廣告組,將預算移轉至 ROAS 3.8 的行動電源廣告組。",
+      reasoning: "低於門檻的廣告持續投放將侵蝕毛利;預算轉移至高效組別可提升整體 ROAS。",
+      impact: [
+        { label: "目前 ROAS", value: "1.4", tone: "rose" },
+        { label: "門檻", value: "2.0", tone: "slate" },
+        { label: "移轉後 ROAS", value: "3.8", tone: "emerald" },
+      ],
+      learningTag: "ads",
+    },
   ];
 
   const tasks: IndustryData["tasks"] = [

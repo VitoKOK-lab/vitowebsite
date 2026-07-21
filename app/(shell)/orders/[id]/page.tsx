@@ -30,7 +30,7 @@ export default function OrderDetailPage({
   const showMoney = canSeeGlobalData(role);
 
   return (
-    <div className="space-y-4">
+    <div className="mx-auto max-w-2xl space-y-4">
       <Link
         href="/orders"
         className="inline-flex items-center gap-1 text-[13px] font-medium text-slate-400 hover:text-slate-600"

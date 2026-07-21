@@ -4,6 +4,7 @@ import { visibleModules } from "@/lib/auth/visibility";
 import { navItemFor } from "@/lib/nav";
 import { DemoBar } from "@/lib/auth/DemoBar";
 import { BottomNav } from "@/lib/ui/bottom-nav";
+import { Sidebar } from "@/lib/ui/sidebar";
 
 export default function ShellLayout({
   children,
@@ -18,8 +19,15 @@ export default function ShellLayout({
   return (
     <div className="min-h-screen">
       <DemoBar role={role} industry={industry} />
-      <main className="mx-auto max-w-2xl px-3 pb-24 pt-4">{children}</main>
-      <BottomNav items={navItems} />
+      <div className="mx-auto flex w-full max-w-6xl">
+        <Sidebar items={navItems} />
+        <main className="min-w-0 flex-1 px-3 pb-24 pt-4 lg:px-6 lg:pb-10">
+          {children}
+        </main>
+      </div>
+      <div className="lg:hidden">
+        <BottomNav items={navItems} />
+      </div>
     </div>
   );
 }

@@ -225,6 +225,30 @@ export function buildFactory(): IndustryData {
       ],
       learningTag: "quality",
     },
+    {
+      id: "f-d6", category: "排程", title: "下週產能吃緊,建議調整工單優先序",
+      situation: "下週共 6 張工單交期集中,加工站產能估計超載 18%,其中 2 張為 A 級客戶。",
+      suggestion: "將 A 級客戶(捷安、綠動能)工單優先排入,C 級客戶交期順延 2 天並主動告知。",
+      reasoning: "以交期權重 × 客戶等級排序,可確保關鍵客戶準時,整體違約風險最低。",
+      impact: [
+        { label: "超載", value: "18%", tone: "rose" },
+        { label: "優先工單", value: "2 張", tone: "brand" },
+        { label: "順延", value: "2 天", tone: "amber" },
+      ],
+      learningTag: "schedule",
+    },
+    {
+      id: "f-d7", category: "應收", title: "捷安車業貨款逾期 15 天,建議發對帳提醒",
+      situation: "捷安車業 QT-2607-018 貨款 186 萬已逾付款期 15 天,該客戶為 A 級長期往來。",
+      suggestion: "發送溫和對帳提醒(附對帳單 PDF),暫不影響後續接單,7 天後未回再由業務跟進。",
+      reasoning: "A 級客戶多為作業疏漏,溫和提醒可維護關係同時控管現金流。",
+      impact: [
+        { label: "逾期金額", value: "186 萬", tone: "rose" },
+        { label: "逾期天數", value: "15 天", tone: "amber" },
+        { label: "客戶等級", value: "A 級", tone: "brand" },
+      ],
+      learningTag: "receivable",
+    },
   ];
 
   const tasks: IndustryData["tasks"] = [

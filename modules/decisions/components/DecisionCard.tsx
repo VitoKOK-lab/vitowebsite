@@ -27,6 +27,12 @@ const categoryTone: Record<string, string> = {
   備料不足: "amber",
   成本: "amber",
   耗損: "violet",
+  排程: "brand",
+  應收: "rose",
+  物流: "amber",
+  廣告: "violet",
+  排班: "brand",
+  品質: "violet",
 };
 
 export interface ActPayload {

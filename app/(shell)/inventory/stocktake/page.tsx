@@ -20,7 +20,7 @@ export default function StocktakePage() {
   }));
 
   return (
-    <div className="space-y-4">
+    <div className="mx-auto max-w-2xl space-y-4">
       <Link
         href="/inventory"
         className="inline-flex items-center gap-1 text-[13px] font-medium text-slate-400 hover:text-slate-600"

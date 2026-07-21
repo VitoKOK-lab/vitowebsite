@@ -22,9 +22,13 @@ export default function DecisionsPage() {
   const daily = buildDailyPush(industry);
 
   return (
-    <div className="space-y-4">
-      <DecisionsHero done={done} pending={pending} roleLabel={roleLabel} />
-      <LinePreview daily={daily} />
+    <div className="mx-auto max-w-5xl space-y-4">
+      <div className="grid gap-4 lg:grid-cols-3 lg:items-start">
+        <div className="lg:col-span-2">
+          <DecisionsHero done={done} pending={pending} roleLabel={roleLabel} />
+        </div>
+        <LinePreview daily={daily} />
+      </div>
       <div className="pt-1">
         <SectionTitle className="mb-2">
           待決策佇列{pending > 0 && ` · ${pending}`}

@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  TrendingUp,
   Package,
   AlertTriangle,
   Sparkles,
@@ -15,7 +14,7 @@ import {
   Timer,
   CircleDollarSign,
 } from "lucide-react";
-import { cn, twd, num } from "@/lib/utils";
+import { cn, num } from "@/lib/utils";
 import { CountUp } from "@/lib/ui/count-up";
 import { Avatar } from "@/lib/ui/avatar";
 import { Sparkline } from "./Sparkline";
@@ -45,172 +44,174 @@ export function OwnerDashboard({
   industryName: string;
   roleLabel: string;
 }) {
-  let i = 0;
   return (
-    <div className="space-y-4">
+    <div className="mx-auto max-w-5xl space-y-4">
       {/* 標題 */}
-      <motion.div custom={i++} variants={fade} initial="hidden" animate="show">
+      <motion.div custom={0} variants={fade} initial="hidden" animate="show">
         <p className="text-[13px] font-medium text-slate-400">{industryName} · 7 月 21 日</p>
-        <h1 className="text-xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-xl font-bold tracking-tight text-slate-900 lg:text-2xl">
           {roleLabel}的營運總覽
         </h1>
       </motion.div>
 
-      {/* 營收 Hero */}
-      <motion.div
-        custom={i++}
-        variants={fade}
-        initial="hidden"
-        animate="show"
-        className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-card"
-      >
-        <div className="flex items-start justify-between">
-          <div>
-            <div className="flex items-center gap-1.5 text-[12px] font-medium text-slate-400">
-              <CircleDollarSign className="h-3.5 w-3.5" /> 今日營收
-            </div>
-            <div className="mt-1 text-[32px] font-bold leading-none tracking-tight text-slate-900 tabular-nums">
-              <CountUp value={metrics.revenueToday} prefix="$" />
-            </div>
-            <div className="mt-2 flex items-center gap-1.5">
-              <span
-                className={cn(
-                  "inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-[12px] font-semibold",
-                  metrics.revenueTrend >= 0
-                    ? "bg-emerald-50 text-emerald-600"
-                    : "bg-rose-50 text-rose-600"
-                )}
-              >
-                <ArrowUpRight className="h-3 w-3" />
-                {metrics.revenueTrend}%
-              </span>
-              <span className="text-[12px] text-slate-400">較昨日</span>
-            </div>
-          </div>
-          <div className="w-28 text-brand-500">
-            <Sparkline data={metrics.spark} className="h-10 w-full" />
-          </div>
-        </div>
-      </motion.div>
-
-      {/* KPI grid */}
-      <div className="grid grid-cols-2 gap-3">
-        <Kpi
-          custom={i++}
-          label="待交訂單"
-          value={metrics.pendingOrders}
-          icon={<Package className="h-4 w-4" />}
-          tone="brand"
-          hint={metrics.delayedOrders > 0 ? `${metrics.delayedOrders} 件延遲` : "全部準時"}
-          hintTone={metrics.delayedOrders > 0 ? "rose" : "emerald"}
-        />
-        <Kpi
-          custom={i++}
-          label="異常警示"
-          value={alertRows.length}
-          icon={<AlertTriangle className="h-4 w-4" />}
-          tone="amber"
-          hint="需關注"
-          hintTone="amber"
-        />
-      </div>
-
-      {/* AI 成長卡(highlight) */}
-      <motion.div
-        custom={i++}
-        variants={fade}
-        initial="hidden"
-        animate="show"
-      >
-        <Link
-          href="/decisions"
-          className="block overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-700 p-5 text-white shadow-pop"
-        >
-          <div className="absolute -right-6 -top-8 h-32 w-32 rounded-full bg-white/10" />
-          <div className="relative flex items-center gap-1.5 text-[13px] font-semibold text-brand-100">
-            <Sparkles className="h-4 w-4" /> AI 同事本月成長
-          </div>
-          <div className="relative mt-3 grid grid-cols-3 gap-2">
-            <GrowthStat label="建議採納率" value={growth.adoptRate} suffix="%" />
-            <GrowthStat label="省下工時" value={growth.hoursSaved} suffix="hr" />
-            <GrowthStat label="貢獻營收" value={Math.round(growth.revenueImpact / 10000)} suffix="萬" />
-          </div>
-          <div className="relative mt-3 flex items-center justify-between text-[12px] text-brand-100">
-            <span>已學習 {growth.learnedCount} 次偏好</span>
-            <span className="flex items-center gap-0.5 font-medium">
-              待你決策 <ChevronRight className="h-3.5 w-3.5" />
-            </span>
-          </div>
-        </Link>
-      </motion.div>
-
-      {/* 貢獻排行 */}
-      <motion.div
-        custom={i++}
-        variants={fade}
-        initial="hidden"
-        animate="show"
-        className="rounded-3xl border border-slate-200 bg-white p-4 shadow-card"
-      >
-        <div className="mb-3 flex items-center gap-1.5 px-1">
-          <Trophy className="h-4 w-4 text-amber-500" />
-          <h2 className="text-[14px] font-semibold text-slate-800">員工貢獻排行</h2>
-        </div>
-        <div className="space-y-1">
-          {leaders.map((l, idx) => (
-            <LeaderItem key={l.id} row={l} rank={idx + 1} maxScore={leaders[0].score} />
-          ))}
-        </div>
-      </motion.div>
-
-      {/* 異常警示 */}
-      {alertRows.length > 0 && (
-        <motion.div
-          custom={i++}
-          variants={fade}
-          initial="hidden"
-          animate="show"
-          className="rounded-3xl border border-slate-200 bg-white p-4 shadow-card"
-        >
-          <div className="mb-3 flex items-center gap-1.5 px-1">
-            <AlertTriangle className="h-4 w-4 text-amber-500" />
-            <h2 className="text-[14px] font-semibold text-slate-800">異常警示</h2>
-          </div>
-          <div className="space-y-2">
-            {alertRows.map((a) => (
-              <Link
-                key={a.id}
-                href="/decisions"
-                className="flex items-center gap-3 rounded-xl bg-slate-50 px-3 py-2.5 transition-colors hover:bg-slate-100"
-              >
-                <span
-                  className={cn(
-                    "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg",
-                    a.kind === "delay" && "bg-rose-100 text-rose-600",
-                    a.kind === "low_stock" && "bg-amber-100 text-amber-600",
-                    a.kind === "expiry" && "bg-violet-100 text-violet-600"
-                  )}
-                >
-                  {a.kind === "delay" ? (
-                    <Timer className="h-4 w-4" />
-                  ) : a.kind === "expiry" ? (
-                    <Clock className="h-4 w-4" />
-                  ) : (
-                    <Package className="h-4 w-4" />
-                  )}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <div className="truncate text-[13px] font-medium text-slate-800">
-                    {a.title}
-                  </div>
-                  <div className="truncate text-[11px] text-slate-400">{a.detail}</div>
+      <div className="grid gap-4 lg:grid-cols-2 lg:items-start">
+        {/* 左欄 */}
+        <div className="space-y-4">
+          {/* 營收 Hero */}
+          <motion.div
+            custom={1}
+            variants={fade}
+            initial="hidden"
+            animate="show"
+            className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-card"
+          >
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="flex items-center gap-1.5 text-[12px] font-medium text-slate-400">
+                  <CircleDollarSign className="h-3.5 w-3.5" /> 今日營收
                 </div>
-                <ChevronRight className="h-4 w-4 shrink-0 text-slate-300" />
-              </Link>
-            ))}
+                <div className="mt-1 text-[32px] font-bold leading-none tracking-tight text-slate-900 tabular-nums">
+                  <CountUp value={metrics.revenueToday} prefix="$" />
+                </div>
+                <div className="mt-2 flex items-center gap-1.5">
+                  <span
+                    className={cn(
+                      "inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-[12px] font-semibold",
+                      metrics.revenueTrend >= 0
+                        ? "bg-emerald-50 text-emerald-600"
+                        : "bg-rose-50 text-rose-600"
+                    )}
+                  >
+                    <ArrowUpRight className="h-3 w-3" />
+                    {metrics.revenueTrend}%
+                  </span>
+                  <span className="text-[12px] text-slate-400">較昨日</span>
+                </div>
+              </div>
+              <div className="w-28 text-brand-500">
+                <Sparkline data={metrics.spark} className="h-10 w-full" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* KPI grid */}
+          <div className="grid grid-cols-2 gap-3">
+            <Kpi
+              custom={2}
+              label="待交訂單"
+              value={metrics.pendingOrders}
+              icon={<Package className="h-4 w-4" />}
+              tone="brand"
+              hint={metrics.delayedOrders > 0 ? `${metrics.delayedOrders} 件延遲` : "全部準時"}
+              hintTone={metrics.delayedOrders > 0 ? "rose" : "emerald"}
+            />
+            <Kpi
+              custom={3}
+              label="異常警示"
+              value={alertRows.length}
+              icon={<AlertTriangle className="h-4 w-4" />}
+              tone="amber"
+              hint="需關注"
+              hintTone="amber"
+            />
           </div>
-        </motion.div>
-      )}
+
+          {/* AI 成長卡 */}
+          <motion.div custom={4} variants={fade} initial="hidden" animate="show">
+            <Link
+              href="/decisions"
+              className="block overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-700 p-5 text-white shadow-pop"
+            >
+              <div className="absolute -right-6 -top-8 h-32 w-32 rounded-full bg-white/10" />
+              <div className="relative flex items-center gap-1.5 text-[13px] font-semibold text-brand-100">
+                <Sparkles className="h-4 w-4" /> AI 同事本月成長
+              </div>
+              <div className="relative mt-3 grid grid-cols-3 gap-2">
+                <GrowthStat label="建議採納率" value={growth.adoptRate} suffix="%" />
+                <GrowthStat label="省下工時" value={growth.hoursSaved} suffix="hr" />
+                <GrowthStat label="貢獻營收" value={Math.round(growth.revenueImpact / 10000)} suffix="萬" />
+              </div>
+              <div className="relative mt-3 flex items-center justify-between text-[12px] text-brand-100">
+                <span>已學習 {growth.learnedCount} 次偏好</span>
+                <span className="flex items-center gap-0.5 font-medium">
+                  待你決策 <ChevronRight className="h-3.5 w-3.5" />
+                </span>
+              </div>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* 右欄 */}
+        <div className="space-y-4">
+          {/* 貢獻排行 */}
+          <motion.div
+            custom={5}
+            variants={fade}
+            initial="hidden"
+            animate="show"
+            className="rounded-3xl border border-slate-200 bg-white p-4 shadow-card"
+          >
+            <div className="mb-3 flex items-center gap-1.5 px-1">
+              <Trophy className="h-4 w-4 text-amber-500" />
+              <h2 className="text-[14px] font-semibold text-slate-800">員工貢獻排行</h2>
+            </div>
+            <div className="space-y-1">
+              {leaders.map((l, idx) => (
+                <LeaderItem key={l.id} row={l} rank={idx + 1} maxScore={leaders[0].score} />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* 異常警示 */}
+          {alertRows.length > 0 && (
+            <motion.div
+              custom={6}
+              variants={fade}
+              initial="hidden"
+              animate="show"
+              className="rounded-3xl border border-slate-200 bg-white p-4 shadow-card"
+            >
+              <div className="mb-3 flex items-center gap-1.5 px-1">
+                <AlertTriangle className="h-4 w-4 text-amber-500" />
+                <h2 className="text-[14px] font-semibold text-slate-800">異常警示</h2>
+              </div>
+              <div className="space-y-2">
+                {alertRows.map((a) => (
+                  <Link
+                    key={a.id}
+                    href="/decisions"
+                    className="flex items-center gap-3 rounded-xl bg-slate-50 px-3 py-2.5 transition-colors hover:bg-slate-100"
+                  >
+                    <span
+                      className={cn(
+                        "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg",
+                        a.kind === "delay" && "bg-rose-100 text-rose-600",
+                        a.kind === "low_stock" && "bg-amber-100 text-amber-600",
+                        a.kind === "expiry" && "bg-violet-100 text-violet-600"
+                      )}
+                    >
+                      {a.kind === "delay" ? (
+                        <Timer className="h-4 w-4" />
+                      ) : a.kind === "expiry" ? (
+                        <Clock className="h-4 w-4" />
+                      ) : (
+                        <Package className="h-4 w-4" />
+                      )}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate text-[13px] font-medium text-slate-800">
+                        {a.title}
+                      </div>
+                      <div className="truncate text-[11px] text-slate-400">{a.detail}</div>
+                    </div>
+                    <ChevronRight className="h-4 w-4 shrink-0 text-slate-300" />
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export default function QuotePage() {
   const unitLabel = cfg.terms.item === "食材" ? "份" : "件";
 
   return (
-    <div className="space-y-4">
+    <div className="mx-auto max-w-2xl space-y-4">
       <div>
         <p className="text-[13px] font-medium text-slate-400">{cfg.displayName}</p>
         <h1 className="flex items-center gap-2 text-xl font-bold tracking-tight text-slate-900">

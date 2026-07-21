@@ -34,7 +34,7 @@ export function StaffTasks({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="mx-auto max-w-2xl space-y-4">
       <div>
         <p className="text-[13px] font-medium text-slate-400">7 月 21 日</p>
         <h1 className="text-xl font-bold tracking-tight text-slate-900">

@@ -15,7 +15,7 @@ export default function OrdersPage() {
   const doneList = orders.filter((o) => o.done);
 
   return (
-    <div className="space-y-4">
+    <div className="mx-auto max-w-5xl space-y-4">
       <div>
         <p className="text-[13px] font-medium text-slate-400">{cfg.displayName}</p>
         <h1 className="flex items-center gap-2 text-xl font-bold tracking-tight text-slate-900">
@@ -31,20 +31,24 @@ export default function OrdersPage() {
       )}
 
       {active.length > 0 && (
-        <div className="space-y-3">
-          <SectionTitle>進行中 · {active.length}</SectionTitle>
-          {active.map((o) => (
-            <OrderCard key={o.id} order={o} cfg={cfg} role={role} />
-          ))}
+        <div>
+          <SectionTitle className="mb-3">進行中 · {active.length}</SectionTitle>
+          <div className="grid gap-3 lg:grid-cols-2">
+            {active.map((o) => (
+              <OrderCard key={o.id} order={o} cfg={cfg} role={role} />
+            ))}
+          </div>
         </div>
       )}
 
       {doneList.length > 0 && (
-        <div className="space-y-3 pt-1">
-          <SectionTitle>已完成 · {doneList.length}</SectionTitle>
-          {doneList.map((o) => (
-            <OrderCard key={o.id} order={o} cfg={cfg} role={role} />
-          ))}
+        <div className="pt-1">
+          <SectionTitle className="mb-3">已完成 · {doneList.length}</SectionTitle>
+          <div className="grid gap-3 lg:grid-cols-2">
+            {doneList.map((o) => (
+              <OrderCard key={o.id} order={o} cfg={cfg} role={role} />
+            ))}
+          </div>
         </div>
       )}
     </div>
