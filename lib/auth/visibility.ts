@@ -52,15 +52,6 @@ export function canSeeClass(role: Role, cls: ConfClass): boolean {
   return CLASS_ACCESS[cls].includes(role);
 }
 
-/** 金額/機密欄位遮蔽:不可見時回傳遮罩字串 */
-export function maskValue(
-  role: Role,
-  cls: ConfClass,
-  display: string
-): string {
-  return canSeeClass(role, cls) ? display : "＊＊＊";
-}
-
 /** owner/manager 可見全局數據;staff/customer 不可 */
 export function canSeeGlobalData(role: Role): boolean {
   return role === "owner" || role === "manager";

@@ -1,4 +1,4 @@
-import type { AIProvider, CsAnswerContext, LearningNote } from "./provider";
+import type { AIProvider, CsAnswerContext } from "./provider";
 
 // 情境化罐頭 AI:對自由輸入也優雅回應(demo 不追求真答對,只要體驗好)
 
@@ -48,12 +48,5 @@ export const mockProvider: AIProvider = {
       text: `了解,關於「${q}」我幫您記錄下來了。這是為 ${ctx.customerName} 準備的服務,我可以協助查詢訂單進度、報價與常見問題,請問想從哪個開始呢?`,
       escalate: false,
     };
-  },
-
-  applyLearning(baseSuggestion: string, notes: LearningNote[], tag?: string) {
-    const relevant = notes.filter((n) => !tag || n.tag === tag);
-    if (relevant.length === 0) return baseSuggestion;
-    const latest = relevant[relevant.length - 1];
-    return `${baseSuggestion}\n\n（已依您先前的偏好調整:${latest.text}）`;
   },
 };

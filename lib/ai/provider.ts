@@ -16,8 +16,6 @@ export interface LearningNote {
 export interface AIProvider {
   /** AI 客服回覆(範圍限該客戶自己的資料) */
   answerCs(ctx: CsAnswerContext): { text: string; escalate: boolean };
-  /** 依歷史學習微調某決策的建議措辭 */
-  applyLearning(baseSuggestion: string, notes: LearningNote[], tag?: string): string;
 }
 
 // provider 選擇(未來 AI_PROVIDER=claude 時換 claude-provider)

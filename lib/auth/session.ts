@@ -1,6 +1,5 @@
 import { cookies } from "next/headers";
 import type { IndustryKey, Role } from "@/lib/types";
-import { getIndustryConfig } from "@/lib/industry/adapter";
 import { ROLE_COOKIE, INDUSTRY_COOKIE } from "./cookies";
 
 export { ROLE_COOKIE, INDUSTRY_COOKIE };
@@ -23,8 +22,4 @@ export function getSession(): Session {
     industry:
       industry && VALID_INDUSTRIES.includes(industry) ? industry : "factory",
   };
-}
-
-export function getSessionIndustryConfig() {
-  return getIndustryConfig(getSession().industry);
 }

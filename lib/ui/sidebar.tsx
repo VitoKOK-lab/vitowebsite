@@ -3,16 +3,10 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import * as Icons from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { NavItem } from "@/lib/nav";
-
-function Icon({ name, className }: { name: string; className?: string }) {
-  const C = (Icons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[
-    name
-  ];
-  return C ? <C className={className} /> : null;
-}
+import { LucideIcon } from "./lucide-icon";
 
 /** 桌面/投影用側邊導覽(≥lg 顯示,取代底部導覽) */
 export function Sidebar({ items }: { items: NavItem[] }) {
@@ -24,7 +18,7 @@ export function Sidebar({ items }: { items: NavItem[] }) {
     <aside className="sticky top-[49px] hidden h-[calc(100dvh-49px)] w-56 shrink-0 flex-col border-r border-slate-200 px-3 py-4 lg:flex">
       <div className="mb-3 flex items-center gap-2 px-2">
         <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-600 text-white">
-          <Icons.Sparkles className="h-4 w-4" />
+          <Sparkles className="h-4 w-4" />
         </span>
         <span className="text-[15px] font-bold tracking-tight text-slate-800">
           AI 同事
@@ -44,7 +38,7 @@ export function Sidebar({ items }: { items: NavItem[] }) {
                   : "text-slate-500 hover:bg-slate-100 hover:text-slate-700"
               )}
             >
-              <Icon name={item.icon} className="h-4.5 w-4.5" />
+              <LucideIcon name={item.icon} className="h-4.5 w-4.5" />
               <span>{item.label}</span>
               {active && (
                 <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-500" />

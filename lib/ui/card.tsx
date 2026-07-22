@@ -16,28 +16,6 @@ export function Card({
   );
 }
 
-export function CardBody({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("p-4 sm:p-5", className)} {...props} />;
-}
-
-export function CardHeader({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div
-      className={cn(
-        "flex items-center justify-between px-4 pt-4 sm:px-5",
-        className
-      )}
-      {...props}
-    />
-  );
-}
-
 export function SectionTitle({
   className,
   ...props

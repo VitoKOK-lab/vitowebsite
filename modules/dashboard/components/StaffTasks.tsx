@@ -3,8 +3,9 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, Package, ClipboardList, CheckCircle2, Sparkles } from "lucide-react";
+import { Check, Package, ClipboardList, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Toast, useToast } from "@/lib/ui/toast";
 import type { Task } from "@/lib/data/models";
 
 export function StaffTasks({
@@ -18,17 +19,14 @@ export function StaffTasks({
   const [done, setDone] = React.useState<Set<string>>(
     new Set(tasks.filter((t) => t.done).map((t) => t.id))
   );
-  const [toast, setToast] = React.useState<string | null>(null);
-  const timer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { toast, show } = useToast(2600);
 
   const pending = tasks.filter((t) => !done.has(t.id));
   const completed = tasks.filter((t) => done.has(t.id));
 
   async function complete(id: string) {
     setDone((prev) => new Set(prev).add(id));
-    setToast("已完成 · 貢獻 +1 🎉");
-    if (timer.current) clearTimeout(timer.current);
-    timer.current = setTimeout(() => setToast(null), 2600);
+    show("已完成 · 貢獻 +1 🎉", "success");
     await fetch(`/api/tasks/${id}/complete`, { method: "POST" }).catch(() => {});
     setTimeout(() => router.refresh(), 500);
   }
@@ -141,20 +139,7 @@ export function StaffTasks({
         </div>
       )}
 
-      <AnimatePresence>
-        {toast && (
-          <motion.div
-            initial={{ opacity: 0, y: 24, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 12 }}
-            className="fixed inset-x-0 bottom-24 z-40 mx-auto flex max-w-md items-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-white shadow-pop"
-            style={{ width: "calc(100% - 2rem)" }}
-          >
-            <Sparkles className="h-5 w-5 text-emerald-400" />
-            <span className="text-[13px] font-medium">{toast}</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Toast toast={toast} />
     </div>
   );
 }

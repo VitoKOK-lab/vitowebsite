@@ -4,6 +4,7 @@ import * as React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, Check, Sparkles, ClipboardCheck, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { varianceReason } from "../variance";
 
 export interface StockItem {
   id: string;
@@ -12,17 +13,6 @@ export interface StockItem {
   category: string;
   onHand: number;
   perishable: boolean;
-}
-
-function reason(diff: number, it: StockItem): string {
-  if (diff === 0) return "帳實相符,無差異 👍";
-  if (diff < 0) {
-    if (it.perishable) return "可能原因:近期報廢未入帳,或耗損高於預期。建議檢查報廢紀錄。";
-    if (it.category === "電池" || it.category === "電控")
-      return "可能原因:樣品出借或工單領料未即時扣帳。建議比對領料單。";
-    return "可能原因:未入帳的出貨、樣品出借或短溢收。建議追查近 7 日異動。";
-  }
-  return "實盤多於帳面,可能原因:退貨未入帳或前次盤點少計。建議複核入庫。";
 }
 
 export function Stocktake({ items }: { items: StockItem[] }) {
@@ -131,7 +121,7 @@ export function Stocktake({ items }: { items: StockItem[] }) {
                 {diff !== 0 && (
                   <div className="mt-2 flex items-start gap-1.5 rounded-lg bg-amber-50 px-2.5 py-1.5 text-[12px] text-amber-700">
                     <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-                    <span>{reason(diff, it)}</span>
+                    <span>{varianceReason(diff, it)}</span>
                   </div>
                 )}
               </div>

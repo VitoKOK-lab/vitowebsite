@@ -19,7 +19,7 @@ export default function DecisionsPage() {
   const decisions = listDecisions(industry);
   const pending = pendingCount(industry);
   const done = doneCount(industry);
-  const daily = buildDailyPush(industry);
+  const daily = buildDailyPush(industry, { pending, done });
 
   return (
     <div className="mx-auto max-w-5xl space-y-4">

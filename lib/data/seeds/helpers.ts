@@ -1,10 +1,10 @@
 import type { IndustryKey } from "@/lib/types";
 import type { AiDecision } from "../models";
+import { DEMO_MIDNIGHT_MS } from "@/lib/demo-clock";
 
 /** deterministic 日期(不用 Math.random/Date.now,保 demo 穩定) */
 export function iso(daysFromBase: number, hour = 9): string {
-  const base = new Date("2026-07-21T00:00:00+08:00").getTime();
-  const d = new Date(base + daysFromBase * 86400000);
+  const d = new Date(DEMO_MIDNIGHT_MS + daysFromBase * 86400000);
   d.setHours(hour, (Math.abs(daysFromBase) * 7) % 60, 0, 0);
   return d.toISOString();
 }

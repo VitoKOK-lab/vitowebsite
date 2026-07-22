@@ -4,36 +4,29 @@ import * as React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Calculator, Send, Mail, Check, Minus, Plus, X } from "lucide-react";
 import { cn, twd } from "@/lib/utils";
-
-interface CalcResult {
-  qty: number;
-  unitCost: number;
-  totalCost: number;
-  marginPct: number;
-  suggestedPrice: number;
-  breakdown: { label: string; amount: number; note?: string }[];
-}
+import { calcQuote, type QuoteResult } from "../calc";
+import type { IndustryKey } from "@/lib/types";
 
 export function QuoteCalculator({
   industry,
   itemLabel,
   unitLabel,
 }: {
-  industry: string;
+  industry: IndustryKey;
   itemLabel: string;
   unitLabel: string;
 }) {
   const [name, setName] = React.useState("");
   const [qty, setQty] = React.useState(50);
   const [margin, setMargin] = React.useState(25);
-  const [result, setResult] = React.useState<CalcResult | null>(null);
+  const [result, setResult] = React.useState<QuoteResult | null>(null);
   const [sent, setSent] = React.useState(false);
   const [computing, setComputing] = React.useState(false);
 
   function compute() {
     setComputing(true);
     // 模擬「3 秒出報價」的即時感(實際即時)
-    const r = clientCalc(industry, qty, margin);
+    const r = calcQuote(industry, qty, margin);
     setTimeout(() => {
       setResult(r);
       setComputing(false);
@@ -207,44 +200,4 @@ function Stepper({
       </button>
     </div>
   );
-}
-
-// client 端計價(與 server calcQuote 對齊,demo 用)
-function clientCalc(industry: string, qty: number, marginPct: number): CalcResult {
-  const table: Record<string, { label: string; value: number; unit: string }[]> = {
-    factory: [
-      { label: "材料單價", value: 320, unit: "元/kg" },
-      { label: "工時費率", value: 480, unit: "元/hr" },
-      { label: "表面處理", value: 150, unit: "元/件" },
-    ],
-    ecom: [
-      { label: "進貨成本", value: 680, unit: "元/件" },
-      { label: "平台抽成", value: 8, unit: "%" },
-      { label: "物流成本", value: 60, unit: "元/件" },
-    ],
-    kitchen: [
-      { label: "食材成本", value: 95, unit: "元/kg" },
-      { label: "人力成本", value: 22, unit: "元/份" },
-      { label: "耗損率", value: 6, unit: "%" },
-    ],
-  };
-  const vars = table[industry] ?? table.factory;
-  const breakdown: CalcResult["breakdown"] = [];
-  let baseCost = 0;
-  for (const v of vars) {
-    if (v.unit.includes("%")) continue;
-    baseCost += v.value;
-    breakdown.push({ label: v.label, amount: v.value, note: v.unit });
-  }
-  for (const v of vars) {
-    if (!v.unit.includes("%")) continue;
-    const add = Math.round((baseCost * v.value) / 100);
-    breakdown.push({ label: `${v.label}(${v.value}%)`, amount: add, note: "加成" });
-    baseCost += add;
-  }
-  const unitCost = baseCost;
-  const totalCost = unitCost * qty;
-  const m = Math.min(80, Math.max(1, marginPct));
-  const suggestedPrice = Math.round(totalCost / (1 - m / 100));
-  return { qty, unitCost, totalCost, marginPct: m, suggestedPrice, breakdown };
 }

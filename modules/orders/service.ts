@@ -28,12 +28,6 @@ export function getOrder(industry: IndustryKey, id: string): WorkOrder | undefin
   return db(industry).workOrders.find((o) => o.id === id);
 }
 
-export function getOrderByNo(industry: IndustryKey, orderNo: string): WorkOrder | undefined {
-  return db(industry).workOrders.find(
-    (o) => o.orderNo.toLowerCase() === orderNo.toLowerCase()
-  );
-}
-
 /** 推進到下一站(手機一鍵) */
 export function advanceStage(
   industry: IndustryKey,

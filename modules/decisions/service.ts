@@ -63,13 +63,6 @@ export function doneCount(industry: IndustryKey): number {
   return 12 + decided;
 }
 
-export function getDecision(
-  industry: IndustryKey,
-  id: string
-): AiDecision | undefined {
-  return db(industry).decisions.find((d) => d.id === id);
-}
-
 export interface ActResult {
   ok: boolean;
   learnedText?: string;

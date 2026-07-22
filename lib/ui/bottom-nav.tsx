@@ -3,16 +3,10 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import * as Icons from "lucide-react";
+import { LayoutGrid } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { NavItem } from "@/lib/nav";
-
-function Icon({ name, className }: { name: string; className?: string }) {
-  const C = (Icons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[
-    name
-  ];
-  return C ? <C className={className} /> : null;
-}
+import { LucideIcon } from "./lucide-icon";
 
 export function BottomNav({ items }: { items: NavItem[] }) {
   const pathname = usePathname();
@@ -38,7 +32,7 @@ export function BottomNav({ items }: { items: NavItem[] }) {
                   : "text-slate-400 hover:text-slate-600"
               )}
             >
-              <Icon name={item.icon} className="h-5 w-5" />
+              <LucideIcon name={item.icon} className="h-5 w-5" />
               <span className="truncate max-w-[4.5rem]">{item.label}</span>
             </Link>
           ))}
@@ -52,7 +46,7 @@ export function BottomNav({ items }: { items: NavItem[] }) {
                   : "text-slate-400 hover:text-slate-600"
               )}
             >
-              <Icons.LayoutGrid className="h-5 w-5" />
+              <LayoutGrid className="h-5 w-5" />
               <span>更多</span>
             </button>
           )}
@@ -82,7 +76,7 @@ export function BottomNav({ items }: { items: NavItem[] }) {
                       : "border-slate-100 bg-slate-50 text-slate-600 hover:bg-slate-100"
                   )}
                 >
-                  <Icon name={item.icon} className="h-5 w-5" />
+                  <LucideIcon name={item.icon} className="h-5 w-5" />
                   <span className="truncate">{item.label}</span>
                 </Link>
               ))}
