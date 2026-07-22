@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import Link from "next/link";
 import {
   Check,
   X,
@@ -10,6 +11,11 @@ import {
   Sparkles,
   Lightbulb,
   ArrowRight,
+  Radar,
+  Boxes,
+  Factory,
+  ShieldCheck,
+  Wallet,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/lib/ui/badge";
@@ -35,6 +41,30 @@ const categoryTone: Record<string, string> = {
   品質: "violet",
 };
 
+// 每個決策「來自哪個系統」— 強化「AI 自動從各處抓資料處理」的敘事
+const categorySource: Record<
+  string,
+  { label: string; href?: string; icon: React.ComponentType<{ className?: string }> }
+> = {
+  調價: { label: "產業雷達", href: "/radar", icon: Radar },
+  成本: { label: "產業雷達", href: "/radar", icon: Radar },
+  平台費: { label: "產業雷達", href: "/radar", icon: Radar },
+  補貨: { label: "庫存預警", href: "/inventory", icon: Boxes },
+  備料不足: { label: "庫存預警", href: "/inventory", icon: Boxes },
+  滯銷: { label: "庫存預警", href: "/inventory", icon: Boxes },
+  效期警示: { label: "效期監控", href: "/inventory", icon: Boxes },
+  工單延遲: { label: "生產排程", href: "/orders", icon: Factory },
+  排程: { label: "生產排程", href: "/orders", icon: Factory },
+  排班: { label: "排班系統", icon: Factory },
+  品檢: { label: "品管系統", icon: ShieldCheck },
+  品質: { label: "品管系統", icon: ShieldCheck },
+  耗損: { label: "品管系統", icon: ShieldCheck },
+  應收: { label: "財務系統", icon: Wallet },
+  選品: { label: "選品雷達", href: "/picking", icon: Radar },
+  廣告: { label: "廣告成效", icon: Radar },
+  物流: { label: "物流監控", href: "/orders", icon: Factory },
+};
+
 export interface ActPayload {
   action: "adopt" | "adjust" | "reject";
   optionLabel?: string;
@@ -53,6 +83,12 @@ export function DecisionCard({
   const [freeText, setFreeText] = React.useState("");
   const [busy, setBusy] = React.useState<null | string>(null);
 
+  // 滑動手勢:右滑採納、左滑駁回
+  const x = useMotionValue(0);
+  const rotate = useTransform(x, [-240, 240], [-5, 5]);
+  const adoptOpacity = useTransform(x, [40, 130], [0, 1]);
+  const rejectOpacity = useTransform(x, [-130, -40], [1, 0]);
+
   const tone = (categoryTone[decision.category] ?? "slate") as
     | "brand"
     | "amber"
@@ -60,6 +96,7 @@ export function DecisionCard({
     | "violet"
     | "emerald"
     | "slate";
+  const source = categorySource[decision.category];
 
   async function act(payload: ActPayload) {
     setBusy(payload.action);
@@ -68,13 +105,53 @@ export function DecisionCard({
 
   return (
     <motion.div
-      layout
-      className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card"
+      style={{ x, rotate }}
+      drag={adjustOpen || busy ? false : "x"}
+      dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0.55}
+      dragSnapToOrigin
+      onDragEnd={(_e, info) => {
+        if (info.offset.x > 130) act({ action: "adopt" });
+        else if (info.offset.x < -130) act({ action: "reject" });
+      }}
+      whileDrag={{ cursor: "grabbing" }}
+      className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card"
     >
-      <div className="p-4 sm:p-5">
+      {/* 滑動提示層 */}
+      <motion.div
+        style={{ opacity: adoptOpacity }}
+        className="pointer-events-none absolute inset-0 z-10 flex items-center justify-start bg-emerald-500/10 pl-6"
+      >
+        <span className="flex items-center gap-1 rounded-full bg-emerald-500 px-3 py-1 text-[13px] font-bold text-white shadow-sm">
+          <Check className="h-4 w-4" /> 採納
+        </span>
+      </motion.div>
+      <motion.div
+        style={{ opacity: rejectOpacity }}
+        className="pointer-events-none absolute inset-0 z-10 flex items-center justify-end bg-rose-500/10 pr-6"
+      >
+        <span className="flex items-center gap-1 rounded-full bg-rose-500 px-3 py-1 text-[13px] font-bold text-white shadow-sm">
+          <X className="h-4 w-4" /> 駁回
+        </span>
+      </motion.div>
+
+      <div className="relative p-4 sm:p-5">
         {/* header */}
         <div className="flex items-center gap-2">
           <Badge tone={tone}>{decision.category}</Badge>
+          {source &&
+            (source.href ? (
+              <Link
+                href={source.href}
+                className="flex items-center gap-1 text-[11px] text-slate-400 hover:text-brand-500"
+              >
+                <source.icon className="h-3 w-3" /> 來自{source.label}
+              </Link>
+            ) : (
+              <span className="flex items-center gap-1 text-[11px] text-slate-400">
+                <source.icon className="h-3 w-3" /> 來自{source.label}
+              </span>
+            ))}
           <span className="ml-auto flex items-center gap-1 text-[11px] font-medium text-slate-400">
             <Sparkles className="h-3 w-3 text-brand-400" />
             AI 建議
@@ -189,7 +266,7 @@ export function DecisionCard({
       </div>
 
       {/* actions */}
-      <div className="flex items-stretch border-t border-slate-100">
+      <div className="relative flex items-stretch border-t border-slate-100">
         <button
           disabled={!!busy}
           onClick={() => act({ action: "adopt" })}

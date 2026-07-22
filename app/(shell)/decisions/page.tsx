@@ -30,9 +30,16 @@ export default function DecisionsPage() {
         <LinePreview daily={daily} />
       </div>
       <div className="pt-1">
-        <SectionTitle className="mb-2">
-          待決策佇列{pending > 0 && ` · ${pending}`}
-        </SectionTitle>
+        <div className="mb-2 flex items-center justify-between px-1">
+          <SectionTitle>
+            待決策佇列{pending > 0 && ` · ${pending}`}
+          </SectionTitle>
+          {pending > 0 && (
+            <span className="text-[11px] text-slate-400">
+              ← 左滑駁回 · 右滑採納 →
+            </span>
+          )}
+        </div>
         <DecisionList decisions={decisions} />
       </div>
     </div>

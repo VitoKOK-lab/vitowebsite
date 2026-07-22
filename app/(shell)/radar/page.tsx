@@ -1,4 +1,5 @@
-import { Radar, Newspaper, Target, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { Radar, Newspaper, Target, Sparkles, ChevronRight } from "lucide-react";
 import { getSession } from "@/lib/auth/session";
 import { getIndustryConfig } from "@/lib/industry/adapter";
 import { db } from "@/lib/data/store";
@@ -68,9 +69,13 @@ export default function RadarPage() {
                 </div>
               </div>
               {r.importance === "high" && (
-                <div className="border-t border-slate-100 bg-brand-50/50 px-4 py-2.5 text-center text-[12px] font-medium text-brand-600">
+                <Link
+                  href="/decisions"
+                  className="flex items-center justify-center gap-1 border-t border-slate-100 bg-brand-50/50 px-4 py-2.5 text-center text-[12px] font-medium text-brand-600 transition-colors hover:bg-brand-50"
+                >
                   ⚡ 已為此則生成決策卡,前往決策佇列處理
-                </div>
+                  <ChevronRight className="h-3.5 w-3.5" />
+                </Link>
               )}
             </div>
           );
