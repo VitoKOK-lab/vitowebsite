@@ -5,7 +5,15 @@ import { formatDate } from "@/lib/utils";
 import { PackageSearch, ShieldCheck } from "lucide-react";
 import type { IndustryKey } from "@/lib/types";
 
-export const dynamic = "force-dynamic";
+// 靜態輸出:預先產生每個訂單編號的查詢頁
+export function generateStaticParams() {
+  const data = allData();
+  const params: { orderNo: string }[] = [];
+  (Object.keys(data) as IndustryKey[]).forEach((k) =>
+    data[k].workOrders.forEach((o) => params.push({ orderNo: o.orderNo }))
+  );
+  return params;
+}
 
 function findByNo(orderNo: string) {
   const data = allData();

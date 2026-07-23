@@ -1,11 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Package, ClipboardList, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Toast, useToast } from "@/lib/ui/toast";
+import { useSession } from "@/lib/auth/SessionProvider";
+import { completeTask } from "../service";
 import type { Task } from "@/lib/data/models";
 
 export function StaffTasks({
@@ -15,7 +16,7 @@ export function StaffTasks({
   tasks: Task[];
   name: string;
 }) {
-  const router = useRouter();
+  const { industry, bump } = useSession();
   const [done, setDone] = React.useState<Set<string>>(
     new Set(tasks.filter((t) => t.done).map((t) => t.id))
   );
@@ -24,11 +25,11 @@ export function StaffTasks({
   const pending = tasks.filter((t) => !done.has(t.id));
   const completed = tasks.filter((t) => done.has(t.id));
 
-  async function complete(id: string) {
+  function complete(id: string) {
     setDone((prev) => new Set(prev).add(id));
     show("已完成 · 貢獻 +1 🎉", "success");
-    await fetch(`/api/tasks/${id}/complete`, { method: "POST" }).catch(() => {});
-    setTimeout(() => router.refresh(), 500);
+    completeTask(industry, id);
+    setTimeout(() => bump(), 500);
   }
 
   return (

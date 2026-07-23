@@ -1,16 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import { Boxes, ClipboardList, ChevronRight } from "lucide-react";
-import { getSession } from "@/lib/auth/session";
+import { useSession } from "@/lib/auth/SessionProvider";
 import { getIndustryConfig } from "@/lib/industry/adapter";
 import { listSkus, inventorySummary } from "@/modules/inventory/service";
 import { SkuCard } from "@/modules/inventory/components/SkuCard";
 import { SectionTitle } from "@/lib/ui/card";
 import { cn } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
 
 export default function InventoryPage() {
-  const { role, industry } = getSession();
+  const { role, industry } = useSession();
   const cfg = getIndustryConfig(industry);
   const list = listSkus(industry);
   const summary = inventorySummary(industry);

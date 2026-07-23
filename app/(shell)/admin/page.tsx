@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import {
   Settings2,
@@ -9,7 +11,7 @@ import {
   MessageCircle,
   GraduationCap,
 } from "lucide-react";
-import { getSession } from "@/lib/auth/session";
+import { useSession } from "@/lib/auth/SessionProvider";
 import { getIndustryConfig } from "@/lib/industry/adapter";
 import { db } from "@/lib/data/store";
 import { growthStats } from "@/modules/decisions/service";
@@ -19,7 +21,6 @@ import { Badge } from "@/lib/ui/badge";
 import { twd } from "@/lib/utils";
 import type { ModuleKey } from "@/lib/types";
 
-export const dynamic = "force-dynamic";
 
 const MODULE_LABELS: Record<ModuleKey, string> = {
   decisions: "AI 決策佇列",
@@ -54,7 +55,7 @@ function Section({
 }
 
 export default function AdminPage() {
-  const { industry } = getSession();
+  const { industry } = useSession();
   const cfg = getIndustryConfig(industry);
   const growth = growthStats(industry);
   const learningLog = db(industry).learningLog;

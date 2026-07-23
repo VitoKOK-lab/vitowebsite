@@ -1,30 +1,44 @@
-# 部署到 Vercel(取得公開網址)
+# 部署(GitHub Pages,免 Vercel)
 
-本專案是零設定 Next.js app:**不需要任何環境變數、不需要任何外部服務**,
-匯入後直接 Deploy 就會成功。
+本專案已設定為 **靜態輸出**(`next export`),可直接放 GitHub Pages,
+整包在瀏覽器裡跑——不需伺服器、不需任何環境變數、不需外部服務。
+角色/產業切換、滑動採納、學習迴圈全部照常運作(資料本來就是 mock)。
 
-## 最短路徑(約 2 分鐘)
+## 自動部署(已設好 GitHub Actions)
 
-1. 打開 **https://vercel.com/new**
-2. 用 GitHub 登入 → 匯入(Import)`VitoKOK-lab/vitowebsite`
-   - 本 repo 的預設分支就是 `claude/system-design-confirmation-342l3q`,
-     Vercel 會自動抓它,**不用選分支、不用改設定**。
-3. Framework 會被自動偵測為 **Next.js**;Build/Install 指令留預設即可。
-4. 按 **Deploy**。
-5. 完成後 Vercel 給你一個 `https://<專案名>.vercel.app` 公開網址,
-   手機打開就能 demo。
+`.github/workflows/deploy.yml` 會在每次 push 這條分支時:
+建置靜態站 → 部署到 GitHub Pages。
 
-## 一鍵匯入連結
+### 一次性設定(只要做一次)
 
-> https://vercel.com/new/clone?repository-url=https://github.com/VitoKOK-lab/vitowebsite
+1. 到 GitHub repo → **Settings → Pages**
+2. **Build and deployment → Source** 選 **GitHub Actions**
+3. 完成。之後每次 push 會自動部署。
 
-## 本機執行(不部署也能看)
+### 你的公開網址
 
-```bash
-npm install && npm run dev
-# http://localhost:3000
+```
+https://vitokok-lab.github.io/vitowebsite/
 ```
 
-## 未來接真服務時才需要的環境變數
+(第一次 Action 跑完後就會生效;到 repo 的 **Actions** 分頁可看部署進度。)
 
-見 `.env.example`(現在全部是 mock,可全部留空)。
+## 本機執行
+
+```bash
+npm install
+npm run dev        # http://localhost:3000
+```
+
+## 本機預覽「靜態版」(和線上一模一樣)
+
+```bash
+npm run build      # 產生 out/
+npx serve out      # 或 python3 -m http.server -d out 8080
+```
+
+## 測試
+
+```bash
+npm test           # 25 個單元測試(關鍵邏輯 + 學習迴圈)
+```

@@ -1,35 +1,36 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
 import { ArrowRight, Camera, CheckCircle2, PartyPopper } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useSession } from "@/lib/auth/SessionProvider";
+import { ROLES, type IndustryKey } from "@/lib/types";
+import { advanceStage } from "@/modules/orders/service";
 
 export function AdvanceButton({
   orderId,
+  industry,
   nextLabel,
   isLast,
 }: {
   orderId: string;
+  industry: IndustryKey;
   nextLabel: string | null;
   isLast: boolean;
 }) {
-  const router = useRouter();
+  const { role, bump } = useSession();
   const [busy, setBusy] = React.useState(false);
   const [photo, setPhoto] = React.useState(false);
 
-  async function advance() {
+  function advance() {
     setBusy(true);
-    await fetch(`/api/orders/${orderId}/advance`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ withPhoto: photo }),
-    }).catch(() => {});
+    const by = ROLES.find((r) => r.key === role)?.label ?? "現場人員";
+    advanceStage(industry, orderId, by, photo);
     setTimeout(() => {
-      router.refresh();
+      bump();
       setBusy(false);
       setPhoto(false);
-    }, 400);
+    }, 300);
   }
 
   if (nextLabel === null) {

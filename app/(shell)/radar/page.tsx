@@ -1,11 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { Radar, Newspaper, Target, Sparkles, ChevronRight } from "lucide-react";
-import { getSession } from "@/lib/auth/session";
+import { useSession } from "@/lib/auth/SessionProvider";
 import { getIndustryConfig } from "@/lib/industry/adapter";
 import { db } from "@/lib/data/store";
 import { Badge } from "@/lib/ui/badge";
 
-export const dynamic = "force-dynamic";
 
 const importanceMeta = {
   high: { label: "高影響", tone: "rose" as const },
@@ -14,7 +15,7 @@ const importanceMeta = {
 };
 
 export default function RadarPage() {
-  const { industry } = getSession();
+  const { industry } = useSession();
   const cfg = getIndustryConfig(industry);
   const items = db(industry).radar;
 

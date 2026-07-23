@@ -1,5 +1,7 @@
+"use client";
+
 import { FileText, Eye, CheckCircle2 } from "lucide-react";
-import { getSession } from "@/lib/auth/session";
+import { useSession } from "@/lib/auth/SessionProvider";
 import { getIndustryConfig } from "@/lib/industry/adapter";
 import { listQuotes, STATUS_META } from "@/modules/quote/service";
 import { QuoteCalculator } from "@/modules/quote/components/QuoteCalculator";
@@ -7,10 +9,9 @@ import { Badge } from "@/lib/ui/badge";
 import { SectionTitle } from "@/lib/ui/card";
 import { twd, formatDate } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
 
 export default function QuotePage() {
-  const { industry } = getSession();
+  const { industry } = useSession();
   const cfg = getIndustryConfig(industry);
   const quotes = listQuotes(industry);
   const unitLabel = cfg.terms.item === "食材" ? "份" : "件";

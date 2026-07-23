@@ -1,10 +1,22 @@
-import { redirect } from "next/navigation";
-import { getSession } from "@/lib/auth/session";
+"use client";
+
+import * as React from "react";
+import { useRouter } from "next/navigation";
+import { useSession } from "@/lib/auth/SessionProvider";
 
 export default function Home() {
-  const { role } = getSession();
-  // 員工/客戶進今日任務或客服,其餘進決策佇列(脊椎)
-  if (role === "staff") redirect("/dashboard");
-  if (role === "customer") redirect("/cs");
-  redirect("/decisions");
+  const router = useRouter();
+  const { role } = useSession();
+
+  React.useEffect(() => {
+    const target =
+      role === "staff" ? "/dashboard" : role === "customer" ? "/cs" : "/decisions";
+    router.replace(target);
+  }, [role, router]);
+
+  return (
+    <div className="flex min-h-screen items-center justify-center text-sm text-slate-400">
+      載入中…
+    </div>
+  );
 }

@@ -1,4 +1,6 @@
-import { getSession } from "@/lib/auth/session";
+"use client";
+
+import { useSession } from "@/lib/auth/SessionProvider";
 import { getIndustryConfig } from "@/lib/industry/adapter";
 import { visibleModules } from "@/lib/auth/visibility";
 import { navItemFor } from "@/lib/nav";
@@ -11,14 +13,14 @@ export default function ShellLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { role, industry } = getSession();
+  const { role, industry } = useSession();
   const cfg = getIndustryConfig(industry);
   const mods = visibleModules(role, cfg);
   const navItems = mods.map((m) => navItemFor(m, cfg, role));
 
   return (
     <div className="min-h-screen">
-      <DemoBar role={role} industry={industry} />
+      <DemoBar />
       <div className="mx-auto flex w-full max-w-6xl">
         <Sidebar items={navItems} />
         <main className="min-w-0 flex-1 px-3 pb-24 pt-4 lg:px-6 lg:pb-10">

@@ -1,15 +1,17 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { PartyPopper } from "lucide-react";
 import { DecisionCard, type ActPayload } from "./DecisionCard";
 import { Toast, useToast } from "@/lib/ui/toast";
+import { useSession } from "@/lib/auth/SessionProvider";
+import { ROLES } from "@/lib/types";
+import { actOnDecision } from "../service";
 import type { DecisionView } from "../service";
 
 export function DecisionList({ decisions }: { decisions: DecisionView[] }) {
-  const router = useRouter();
+  const { industry, role, bump } = useSession();
   const pending = decisions.filter((d) => d.status === "pending");
   const [gone, setGone] = React.useState<Set<string>>(new Set());
   const { toast, show } = useToast(3200);
@@ -17,13 +19,12 @@ export function DecisionList({ decisions }: { decisions: DecisionView[] }) {
   const visible = pending.filter((d) => !gone.has(d.id));
 
   async function handleAct(id: string, payload: ActPayload) {
-    const res = await fetch(`/api/decisions/${id}/act`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    })
-      .then((r) => r.json())
-      .catch(() => ({ ok: false }));
+    const decidedBy = ROLES.find((r) => r.key === role)?.label ?? "老闆";
+    const res = actOnDecision(industry, id, payload.action, {
+      optionLabel: payload.optionLabel,
+      freeText: payload.freeText,
+      decidedBy,
+    });
 
     setGone((prev) => new Set(prev).add(id));
 
@@ -35,7 +36,7 @@ export function DecisionList({ decisions }: { decisions: DecisionView[] }) {
       show(res.learnedText, "learned");
     }
 
-    setTimeout(() => router.refresh(), 700);
+    setTimeout(() => bump(), 700);
   }
 
   return (

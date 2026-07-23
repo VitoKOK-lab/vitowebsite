@@ -1,14 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getSession } from "@/lib/auth/session";
+import { useSession } from "@/lib/auth/SessionProvider";
 import { getIndustryConfig } from "@/lib/industry/adapter";
 import { listSkus } from "@/modules/inventory/service";
 import { Stocktake, type StockItem } from "@/modules/inventory/components/Stocktake";
 
-export const dynamic = "force-dynamic";
 
 export default function StocktakePage() {
-  const { industry } = getSession();
+  const { industry } = useSession();
   const cfg = getIndustryConfig(industry);
   const items: StockItem[] = listSkus(industry).map((s) => ({
     id: s.id,

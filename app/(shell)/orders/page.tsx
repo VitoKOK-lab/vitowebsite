@@ -1,14 +1,14 @@
-import { getSession } from "@/lib/auth/session";
+"use client";
+
+import { useSession } from "@/lib/auth/SessionProvider";
 import { getIndustryConfig } from "@/lib/industry/adapter";
 import { listOrders } from "@/modules/orders/service";
 import { OrderCard } from "@/modules/orders/components/OrderCard";
 import { SectionTitle } from "@/lib/ui/card";
 import { PackageSearch } from "lucide-react";
 
-export const dynamic = "force-dynamic";
-
 export default function OrdersPage() {
-  const { role, industry } = getSession();
+  const { role, industry } = useSession();
   const cfg = getIndustryConfig(industry);
   const orders = listOrders(industry, role);
   const active = orders.filter((o) => !o.done);

@@ -1,25 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
 import { ChevronDown, RotateCcw, UserRound, Building2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ROLES, type IndustryKey, type Role } from "@/lib/types";
 import { INDUSTRY_LIST } from "@/lib/industry/adapter";
-import { ROLE_COOKIE, INDUSTRY_COOKIE } from "@/lib/auth/cookies";
+import { useSession } from "@/lib/auth/SessionProvider";
+import { resetStore } from "@/lib/data/store";
 
-function setCookie(name: string, value: string) {
-  document.cookie = `${name}=${value}; path=/; max-age=31536000; SameSite=Lax`;
-}
-
-export function DemoBar({
-  role,
-  industry,
-}: {
-  role: Role;
-  industry: IndustryKey;
-}) {
-  const router = useRouter();
+export function DemoBar() {
+  const { role, industry, setRole, setIndustry, bump } = useSession();
   const [open, setOpen] = React.useState<null | "role" | "industry">(null);
   const [resetting, setResetting] = React.useState(false);
 
@@ -27,19 +17,17 @@ export function DemoBar({
   const currentIndustry = INDUSTRY_LIST.find((i) => i.key === industry)!;
 
   function pickRole(r: Role) {
-    setCookie(ROLE_COOKIE, r);
+    setRole(r);
     setOpen(null);
-    router.refresh();
   }
   function pickIndustry(i: IndustryKey) {
-    setCookie(INDUSTRY_COOKIE, i);
+    setIndustry(i);
     setOpen(null);
-    router.refresh();
   }
-  async function reset() {
+  function reset() {
     setResetting(true);
-    await fetch("/api/demo/reset", { method: "POST" });
-    router.refresh();
+    resetStore();
+    bump();
     setTimeout(() => setResetting(false), 600);
   }
 

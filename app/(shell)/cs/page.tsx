@@ -1,5 +1,7 @@
+"use client";
+
 import { MessagesSquare, Bot, Headphones, CheckCircle2 } from "lucide-react";
-import { getSession } from "@/lib/auth/session";
+import { useSession } from "@/lib/auth/SessionProvider";
 import { getIndustryConfig } from "@/lib/industry/adapter";
 import { listConversations, customerConversation } from "@/modules/cs/service";
 import { currentCustomerId } from "@/modules/orders/service";
@@ -7,10 +9,9 @@ import { db } from "@/lib/data/store";
 import { ChatThread } from "@/modules/cs/components/ChatThread";
 import { Badge } from "@/lib/ui/badge";
 
-export const dynamic = "force-dynamic";
 
 export default function CsPage() {
-  const { role, industry } = getSession();
+  const { role, industry } = useSession();
   const cfg = getIndustryConfig(industry);
 
   // 客戶 → 對話介面

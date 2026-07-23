@@ -1,13 +1,14 @@
+"use client";
+
 import { Lightbulb } from "lucide-react";
-import { getSession } from "@/lib/auth/session";
+import { useSession } from "@/lib/auth/SessionProvider";
 import { getIndustryConfig } from "@/lib/industry/adapter";
 import { db } from "@/lib/data/store";
 import { CandidateCard } from "@/modules/picking/components/CandidateCard";
 
-export const dynamic = "force-dynamic";
 
 export default function PickingPage() {
-  const { industry } = getSession();
+  const { industry } = useSession();
   const cfg = getIndustryConfig(industry);
   const candidates = db(industry).candidates;
 

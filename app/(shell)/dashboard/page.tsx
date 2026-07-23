@@ -1,4 +1,6 @@
-import { getSession } from "@/lib/auth/session";
+"use client";
+
+import { useSession } from "@/lib/auth/SessionProvider";
 import { ROLES } from "@/lib/types";
 import { getIndustryConfig } from "@/lib/industry/adapter";
 import {
@@ -11,10 +13,8 @@ import { growthStats } from "@/modules/decisions/service";
 import { OwnerDashboard } from "@/modules/dashboard/components/OwnerDashboard";
 import { StaffTasks } from "@/modules/dashboard/components/StaffTasks";
 
-export const dynamic = "force-dynamic";
-
 export default function DashboardPage() {
-  const { role, industry } = getSession();
+  const { role, industry } = useSession();
   const cfg = getIndustryConfig(industry);
   const roleLabel = ROLES.find((r) => r.key === role)?.label ?? "老闆";
 

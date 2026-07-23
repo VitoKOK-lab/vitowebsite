@@ -4,6 +4,9 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { Send, Bot, UserRound, Headphones } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useSession } from "@/lib/auth/SessionProvider";
+import { answerCustomer } from "@/modules/cs/service";
+import { currentCustomerId } from "@/modules/orders/service";
 
 interface Msg {
   from: "customer" | "ai" | "human";
@@ -17,6 +20,7 @@ export function ChatThread({
   initial: Msg[];
   customerName: string;
 }) {
+  const { industry } = useSession();
   const [messages, setMessages] = React.useState<Msg[]>(initial);
   const [input, setInput] = React.useState("");
   const [typing, setTyping] = React.useState(false);
@@ -33,13 +37,8 @@ export function ChatThread({
     setMessages((m) => [...m, { from: "customer", text: q }]);
     setInput("");
     setTyping(true);
-    const res = await fetch("/api/cs/message", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: q }),
-    })
-      .then((r) => r.json())
-      .catch(() => ({ text: "抱歉,系統忙碌中,請稍後再試。", escalate: false }));
+    const cid = currentCustomerId(industry);
+    const res = answerCustomer(industry, cid, q);
     setTimeout(() => {
       setMessages((m) => [...m, { from: res.escalate ? "human" : "ai", text: res.text }]);
       if (res.escalate) setEscalated(true);

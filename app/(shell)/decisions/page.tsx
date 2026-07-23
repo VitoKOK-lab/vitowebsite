@@ -1,4 +1,6 @@
-import { getSession } from "@/lib/auth/session";
+"use client";
+
+import { useSession } from "@/lib/auth/SessionProvider";
 import { ROLES } from "@/lib/types";
 import {
   listDecisions,
@@ -11,10 +13,8 @@ import { DecisionList } from "@/modules/decisions/components/DecisionList";
 import { LinePreview } from "@/lib/ui/line-preview";
 import { SectionTitle } from "@/lib/ui/card";
 
-export const dynamic = "force-dynamic";
-
 export default function DecisionsPage() {
-  const { role, industry } = getSession();
+  const { role, industry } = useSession();
   const roleLabel = ROLES.find((r) => r.key === role)?.label ?? "老闆";
   const decisions = listDecisions(industry);
   const pending = pendingCount(industry);
