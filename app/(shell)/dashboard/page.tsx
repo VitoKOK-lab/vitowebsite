@@ -9,7 +9,7 @@ import {
   alerts,
   tasksFor,
 } from "@/modules/dashboard/service";
-import { growthStats } from "@/modules/decisions/service";
+import { growthStats, categoryBreakdown } from "@/modules/decisions/service";
 import { OwnerDashboard } from "@/modules/dashboard/components/OwnerDashboard";
 import { StaffTasks } from "@/modules/dashboard/components/StaffTasks";
 
@@ -28,6 +28,7 @@ export default function DashboardPage() {
   const leaders = leaderboard(industry);
   const alertRows = alerts(industry);
   const growth = growthStats(industry);
+  const catData = categoryBreakdown(industry);
 
   return (
     <OwnerDashboard
@@ -35,8 +36,10 @@ export default function DashboardPage() {
       leaders={leaders}
       alertRows={alertRows}
       growth={growth}
+      industry={industry}
       industryName={cfg.displayName}
       roleLabel={roleLabel}
+      catData={catData}
     />
   );
 }

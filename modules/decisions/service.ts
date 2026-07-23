@@ -141,6 +141,38 @@ export function actOnDecision(
   };
 }
 
+/** 待決策依類別分布(給長條圖,取前 6 大) */
+export function categoryBreakdown(industry: IndustryKey): {
+  labels: string[];
+  counts: number[];
+} {
+  const pending = db(industry).decisions.filter((d) => d.status === "pending");
+  const map = new Map<string, number>();
+  pending.forEach((d) => map.set(d.category, (map.get(d.category) ?? 0) + 1));
+  const sorted = [...map.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6);
+  return { labels: sorted.map((e) => e[0]), counts: sorted.map((e) => e[1]) };
+}
+
+/** AI 採納率近 14 日趨勢(deterministic,收斂到目前採納率) */
+export function adoptTrend(industry: IndustryKey): {
+  labels: string[];
+  rates: number[];
+} {
+  const end = growthStats(industry).adoptRate;
+  const start = Math.max(45, end - 22);
+  const base = new Date("2026-07-21T00:00:00+08:00").getTime();
+  const labels: string[] = [];
+  const rates: number[] = [];
+  for (let i = 0; i < 14; i++) {
+    const d = new Date(base - (13 - i) * 86400000);
+    labels.push(`${d.getMonth() + 1}/${d.getDate()}`);
+    const t = i / 13;
+    const val = Math.round(start + (end - start) * t + (((i * 7) % 5) - 2));
+    rates.push(Math.min(99, Math.max(30, val)));
+  }
+  return { labels, rates };
+}
+
 /** AI 成長指標(給成長卡) */
 export function growthStats(industry: IndustryKey) {
   const logs = db(industry).learningLog;

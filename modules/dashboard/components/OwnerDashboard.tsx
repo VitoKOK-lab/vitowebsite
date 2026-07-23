@@ -18,6 +18,10 @@ import { cn, num } from "@/lib/utils";
 import { CountUp } from "@/lib/ui/count-up";
 import { Avatar } from "@/lib/ui/avatar";
 import { Sparkline } from "./Sparkline";
+import { LineChart, BarChart } from "@/lib/ui/charts";
+import { accentFor } from "@/lib/ui/chart-theme";
+import { BarChart3, LineChart as LineIcon } from "lucide-react";
+import type { IndustryKey } from "@/lib/types";
 import type { OwnerMetrics, LeaderRow, AlertRow } from "../service";
 
 const fade = {
@@ -34,16 +38,27 @@ export function OwnerDashboard({
   leaders,
   alertRows,
   growth,
+  industry,
   industryName,
   roleLabel,
+  catData,
 }: {
   metrics: OwnerMetrics;
   leaders: LeaderRow[];
   alertRows: AlertRow[];
   growth: { adoptRate: number; hoursSaved: number; revenueImpact: number; learnedCount: number };
+  industry: IndustryKey;
   industryName: string;
   roleLabel: string;
+  catData: { labels: string[]; counts: number[] };
 }) {
+  const accent = accentFor(industry);
+  // 近 7 日日期標籤(結束於 7/21)
+  const base = new Date("2026-07-21T00:00:00+08:00").getTime();
+  const revLabels = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(base - (6 - i) * 86400000);
+    return `${d.getMonth() + 1}/${d.getDate()}`;
+  });
   return (
     <div className="mx-auto max-w-5xl space-y-4">
       {/* 標題 */}
@@ -139,6 +154,29 @@ export function OwnerDashboard({
               </div>
             </Link>
           </motion.div>
+
+          {/* 近 7 日營收趨勢 */}
+          <motion.div
+            custom={5}
+            variants={fade}
+            initial="hidden"
+            animate="show"
+            className="rounded-3xl border border-slate-200 bg-white p-4 shadow-card"
+          >
+            <div className="mb-2 flex items-center gap-1.5 px-1">
+              <LineIcon className="h-4 w-4 text-brand-500" />
+              <h2 className="text-[14px] font-semibold text-slate-800">
+                近 7 日營收趨勢
+              </h2>
+            </div>
+            <LineChart
+              labels={revLabels}
+              data={metrics.spark}
+              accent={accent}
+              currency
+              height={160}
+            />
+          </motion.div>
         </div>
 
         {/* 右欄 */}
@@ -161,6 +199,31 @@ export function OwnerDashboard({
               ))}
             </div>
           </motion.div>
+
+          {/* 待決策類別分布 */}
+          {catData.counts.length > 0 && (
+            <motion.div
+              custom={6}
+              variants={fade}
+              initial="hidden"
+              animate="show"
+              className="rounded-3xl border border-slate-200 bg-white p-4 shadow-card"
+            >
+              <div className="mb-2 flex items-center gap-1.5 px-1">
+                <BarChart3 className="h-4 w-4 text-brand-500" />
+                <h2 className="text-[14px] font-semibold text-slate-800">
+                  待決策類別分布
+                </h2>
+              </div>
+              <BarChart
+                labels={catData.labels}
+                data={catData.counts}
+                accent={accent}
+                suffix=" 件"
+                height={Math.max(140, catData.labels.length * 30)}
+              />
+            </motion.div>
+          )}
 
           {/* 異常警示 */}
           {alertRows.length > 0 && (

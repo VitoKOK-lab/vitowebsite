@@ -7,6 +7,8 @@ import { getIndustryConfig } from "@/lib/industry/adapter";
 import { listSkus, inventorySummary } from "@/modules/inventory/service";
 import { SkuCard } from "@/modules/inventory/components/SkuCard";
 import { SectionTitle } from "@/lib/ui/card";
+import { DoughnutChart } from "@/lib/ui/charts";
+import { STATUS } from "@/lib/ui/chart-theme";
 import { cn } from "@/lib/utils";
 
 
@@ -66,6 +68,32 @@ export default function InventoryPage() {
             <div className="text-[10px] text-slate-400">{c.label}</div>
           </div>
         ))}
+      </div>
+
+      {/* 庫存健康分布 */}
+      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-card">
+        <SectionTitle className="mb-2">庫存健康分布</SectionTitle>
+        <DoughnutChart
+          labels={[
+            "正常",
+            "低於安全",
+            "缺貨",
+            ...(summary.hasExpiry ? ["即將到期"] : []),
+          ]}
+          data={[
+            summary.total - summary.out - summary.low - summary.expiring,
+            summary.low,
+            summary.out,
+            ...(summary.hasExpiry ? [summary.expiring] : []),
+          ]}
+          colors={[
+            STATUS.good,
+            STATUS.warning,
+            STATUS.critical,
+            ...(summary.hasExpiry ? [STATUS.info] : []),
+          ]}
+          height={170}
+        />
       </div>
 
       {attention.length > 0 && (

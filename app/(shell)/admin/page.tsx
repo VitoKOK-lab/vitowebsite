@@ -14,7 +14,10 @@ import {
 import { useSession } from "@/lib/auth/SessionProvider";
 import { getIndustryConfig } from "@/lib/industry/adapter";
 import { db } from "@/lib/data/store";
-import { growthStats } from "@/modules/decisions/service";
+import { growthStats, adoptTrend } from "@/modules/decisions/service";
+import { LineChart } from "@/lib/ui/charts";
+import { accentFor } from "@/lib/ui/chart-theme";
+import { TrendingUp } from "lucide-react";
 import { GrowthReport } from "@/modules/admin/components/GrowthReport";
 import { ToggleRow } from "@/modules/admin/components/ToggleRow";
 import { Badge } from "@/lib/ui/badge";
@@ -59,6 +62,7 @@ export default function AdminPage() {
   const cfg = getIndustryConfig(industry);
   const growth = growthStats(industry);
   const learningLog = db(industry).learningLog;
+  const trend = adoptTrend(industry);
 
   return (
     <div className="mx-auto max-w-2xl space-y-4">
@@ -75,6 +79,20 @@ export default function AdminPage() {
         revenueImpact={growth.revenueImpact}
         learnedCount={growth.learnedCount}
       />
+
+      {/* AI 採納率趨勢 */}
+      <Section icon={<TrendingUp className="h-4 w-4" />} title="AI 採納率近 14 日趨勢">
+        <LineChart
+          labels={trend.labels}
+          data={trend.rates}
+          accent={accentFor(industry)}
+          suffix="%"
+          height={160}
+        />
+        <p className="mt-1 px-1 text-[11px] text-slate-400">
+          隨著您每次決策的回饋,AI 建議越來越貼近您的偏好,採納率穩定上升。
+        </p>
+      </Section>
 
       {/* 學習紀錄 */}
       <Section icon={<GraduationCap className="h-4 w-4" />} title="AI 學習紀錄">
