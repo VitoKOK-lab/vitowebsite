@@ -24,6 +24,7 @@ export interface AiDecisionSeed {
   learningTag?: string;
   adjustOptions?: AiDecision["adjustOptions"];
   module?: AiDecision["module"];
+  urgent?: boolean;
 }
 
 export function materialize(
@@ -45,5 +46,6 @@ export function materialize(
     createdAt: iso(0, 7 + idx),
     adjustOptions: d.adjustOptions,
     learningTag: d.learningTag,
+    urgent: d.urgent,
   };
 }

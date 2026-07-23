@@ -40,6 +40,8 @@ export interface AiDecision {
   impact: ImpactItem[];
   status: DecisionStatus;
   createdAt: string;
+  /** 緊急事件:顯示紅色「緊急」標記並排到最前 */
+  urgent?: boolean;
   /** 給「調整」用的預設選項 */
   adjustOptions?: AdjustOption[];
   /** 決定後填入 */

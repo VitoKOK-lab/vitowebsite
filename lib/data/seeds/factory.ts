@@ -27,12 +27,12 @@ export function buildFactory(): IndustryData {
     "後搖臂 加工",
   ];
 
-  const workOrders: IndustryData["workOrders"] = Array.from({ length: 20 }).map(
+  const workOrders: IndustryData["workOrders"] = Array.from({ length: 32 }).map(
     (_, i) => {
       const stage = stages[i % stages.length];
       const cust = customers[i % customers.length];
       const emp = employees[1 + (i % 4)];
-      const delayed = i === 3 || i === 11;
+      const delayed = i === 3 || i === 11 || i === 22 || i === 28;
       const done = i % 7 === 6;
       const qty = 20 + ((i * 13) % 180);
       const unit = 1800 + ((i * 137) % 2600);
@@ -145,6 +145,20 @@ export function buildFactory(): IndustryData {
       suggestion: "建議提前備料電池模組與控制器,避免補助上路後缺貨。",
       importance: "mid", createdAt: iso(-1, 8),
     },
+    {
+      id: "f-r3", title: "主力電芯供應商爆產能危機", source: "產業供應鏈快訊",
+      fact: "多家車廠通報同一電芯供應商交期延誤,產業進入搶料期。",
+      impact: "本廠電池模組供應受直接衝擊,恐影響 6 張在製工單。",
+      suggestion: "已生成供應鏈決策卡,建議立即啟用備援供應商。",
+      importance: "high", createdAt: iso(0, 7),
+    },
+    {
+      id: "f-r4", title: "日圓兌台幣週貶 3%", source: "外匯快訊",
+      fact: "日圓走弱,日系軸承、感測器進口成本下降。",
+      impact: "進口零件成本短期下降,存在鎖匯機會。",
+      suggestion: "已生成鎖匯決策卡,建議承作 3 個月遠期外匯。",
+      importance: "mid", createdAt: iso(0, 8),
+    },
   ];
 
   const decisions: AiDecisionSeed[] = [
@@ -248,6 +262,142 @@ export function buildFactory(): IndustryData {
         { label: "客戶等級", value: "A 級", tone: "brand" },
       ],
       learningTag: "receivable",
+    },
+    {
+      id: "f-d8", category: "設備", urgent: true, title: "3 號加工中心主軸異音,建議立即停機檢修",
+      situation: "3 號 CNC 加工中心主軸振動值今晨升至警戒值 1.8x,伴隨異音,持續運轉恐損毀主軸(更換約 45 萬、停線 5 天)。",
+      suggestion: "本班結束後立即停機,安排保養商今晚到場檢測;受影響工單改由 1、2 號機分流。",
+      reasoning: "振動趨勢與 2 年前主軸損毀前徵兆吻合;預防性停機成本遠低於突發損毀 + 停線。",
+      impact: [
+        { label: "振動值", value: "1.8×警戒", tone: "rose" },
+        { label: "突發損毀成本", value: "約 45 萬", tone: "rose" },
+        { label: "預防停機", value: "1 班", tone: "emerald" },
+      ],
+      learningTag: "equipment",
+      adjustOptions: [
+        { label: "撐到週末再修", learned: "您偏好以產能為優先、接受一定設備風險" },
+        { label: "立即停機", learned: "您偏好預防性維護、優先保護關鍵設備" },
+      ],
+    },
+    {
+      id: "f-d9", category: "供應", urgent: true, title: "主力電芯供應商產能異常,建議啟用備援",
+      situation: "宏達電能來函通知因原料短缺,未來 3 週交貨量砍半;本廠電池模組安全庫存僅撐 9 天。",
+      suggestion: "立即向備援供應商『台達儲能』下 2 週用量急單(單價高 8%),並凍結非急件工單用料。",
+      reasoning: "斷料將導致 6 張在製工單停線;備援雖貴但可維持交期,總損失最低。",
+      impact: [
+        { label: "現有庫存", value: "撐 9 天", tone: "rose" },
+        { label: "備援溢價", value: "+8%", tone: "amber" },
+        { label: "可保工單", value: "6 張", tone: "emerald" },
+      ],
+      learningTag: "supply",
+      adjustOptions: [
+        { label: "先觀望一週", learned: "您偏好先確認缺口再備援、控制成本" },
+        { label: "立即雙軌備援", learned: "您偏好供應鏈斷點一律立即啟用備援" },
+      ],
+    },
+    {
+      id: "f-d10", category: "大單", title: "捷安車業急單 200 台,交期壓縮,建議加班+外包",
+      situation: "捷安車業臨時追加 200 台都會通勤款,要求 3 週內交貨,現有產能僅能吃下 130 台。",
+      suggestion: "接單:130 台自製 + 70 台委外組裝(毛利略降但守住客戶),並安排週六加班。",
+      reasoning: "此為 A 級客戶年度最大單;委外雖降毛利 4%,但維繫關係與現金流價值更高。",
+      impact: [
+        { label: "訂單金額", value: "約 380 萬", tone: "emerald" },
+        { label: "產能缺口", value: "70 台", tone: "amber" },
+        { label: "毛利影響", value: "-4%", tone: "slate" },
+      ],
+      learningTag: "bigorder",
+      adjustOptions: [
+        { label: "只接 130 台", learned: "您偏好守住毛利、不勉強吃下超量訂單" },
+        { label: "全接並外包", learned: "您偏好積極接大單、以委外補產能" },
+      ],
+    },
+    {
+      id: "f-d11", category: "召回", urgent: true, title: "某批控制器韌體異常,建議主動召回 30 台",
+      situation: "品管發現 6 月出貨的一批控制器(30 台)在低溫下可能誤觸限速,雖無事故但有安全疑慮。",
+      suggestion: "主動聯繫車主召回更新韌體(每台成本約 800 元),並發布安心聲明降低商譽衝擊。",
+      reasoning: "主動召回成本 2.4 萬,遠低於事故發生後的賠償與品牌損失;過往主動處理獲正面評價。",
+      impact: [
+        { label: "涉及台數", value: "30 台", tone: "rose" },
+        { label: "召回成本", value: "約 2.4 萬", tone: "amber" },
+        { label: "商譽風險", value: "大幅降低", tone: "emerald" },
+      ],
+      learningTag: "recall",
+    },
+    {
+      id: "f-d12", category: "資安", urgent: true, title: "員工帳號異常大量查詢客戶名單,建議立即凍結",
+      situation: "audit_log 偵測到員工帳號『張偉誠』於昨晚 22:40 起 20 分鐘內查詢 180 筆客戶聯絡資料,遠超日常。",
+      suggestion: "立即凍結該帳號查詢權限並要求說明;同時檢視是否有匯出行為,必要時通報。",
+      reasoning: "異常查詢量為平日 15 倍,符合資料外洩前兆;先凍結再釐清可將風險降到最低。",
+      impact: [
+        { label: "異常查詢", value: "180 筆", tone: "rose" },
+        { label: "為平日", value: "15 倍", tone: "rose" },
+        { label: "建議動作", value: "立即凍結", tone: "amber" },
+      ],
+      learningTag: "security",
+      adjustOptions: [
+        { label: "先私下詢問", learned: "您偏好先了解狀況再處置、避免誤傷員工" },
+        { label: "立即凍結+通報", learned: "您偏好資安事件一律先凍結、從嚴處理" },
+      ],
+    },
+    {
+      id: "f-d13", category: "匯率", title: "日圓走貶,建議鎖匯進口零件成本",
+      situation: "日圓兌台幣近一週貶值 3%,本廠日本進口軸承、感測器成本下降;預期短期反彈。",
+      suggestion: "趁低點與銀行承作 3 個月遠期外匯,鎖定 Q3 進口零件採購匯率。",
+      reasoning: "鎖匯可固定成本、避免反彈侵蝕毛利;過往鎖匯決策平均省下 1.5% 進口成本。",
+      impact: [
+        { label: "日圓貶", value: "-3%", tone: "emerald" },
+        { label: "可鎖成本", value: "Q3 進口", tone: "brand" },
+        { label: "預估省", value: "約 1.5%", tone: "emerald" },
+      ],
+      learningTag: "fx",
+    },
+    {
+      id: "f-d14", category: "缺工", title: "品檢組明日 2 人請假,建議調度支援",
+      situation: "品檢組王美惠、另一員工明日同時請假,僅剩 1 人,明日有 4 張工單待品檢恐塞車。",
+      suggestion: "調度組裝組張偉誠上午支援品檢(具檢驗證照),並將 1 張非急件品檢順延半天。",
+      reasoning: "跨組支援可維持品檢節奏、避免出貨延遲;過往調度未影響組裝進度。",
+      impact: [
+        { label: "品檢人力", value: "剩 1 人", tone: "rose" },
+        { label: "待品檢", value: "4 張", tone: "amber" },
+        { label: "調度後", value: "可消化", tone: "emerald" },
+      ],
+      learningTag: "staffing",
+    },
+    {
+      id: "f-d15", category: "客訴", urgent: true, title: "全速電動車行反映煞車異常,建議工程師到場",
+      situation: "全速電動車行今早來電,反映近期交付的 3 台車煞車手感異常,情緒不佳、暗示要退貨。",
+      suggestion: "今日派工程師到場檢測(免費),若確為出廠問題立即更換;主管李淑芬同行安撫。",
+      reasoning: "煞車屬安全件、客戶情緒升高,快速到場處理可避免退貨與負評擴散。",
+      impact: [
+        { label: "涉及車輛", value: "3 台", tone: "rose" },
+        { label: "客訴情緒", value: "偏高", tone: "rose" },
+        { label: "到場處理", value: "今日", tone: "emerald" },
+      ],
+      learningTag: "complaint",
+    },
+    {
+      id: "f-d16", category: "環安", title: "噴塗廢氣處理設備檢測到期,建議排定申報",
+      situation: "噴塗線廢氣處理設備的定檢與排放申報將於 14 天後到期,逾期恐遭環保裁罰。",
+      suggestion: "本週預約合格檢測機構到廠檢測,並準備排放數據於期限前完成申報。",
+      reasoning: "提前申報可避免裁罰與停工風險;檢測需預約、宜提早安排。",
+      impact: [
+        { label: "距到期", value: "14 天", tone: "amber" },
+        { label: "逾期風險", value: "裁罰/停工", tone: "rose" },
+        { label: "建議", value: "本週預約", tone: "brand" },
+      ],
+      learningTag: "compliance",
+    },
+    {
+      id: "f-d17", category: "現金流", title: "本月應付集中,建議調整付款排程",
+      situation: "本月下旬有 3 筆供應商貨款(合計 420 萬)集中到期,與薪資發放同週,現金水位偏緊。",
+      suggestion: "與 2 家長期供應商協商延後 7 天付款(關係良好、過往可行),平滑現金流。",
+      reasoning: "協商展延無利息成本、不影響信用;可避免動用高成本短期融資。",
+      impact: [
+        { label: "集中應付", value: "420 萬", tone: "rose" },
+        { label: "可協商展延", value: "2 筆", tone: "emerald" },
+        { label: "融資成本", value: "省下", tone: "emerald" },
+      ],
+      learningTag: "cashflow",
     },
   ];
 

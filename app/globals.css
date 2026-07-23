@@ -8,6 +8,46 @@
   --border: 226 232 240; /* slate-200 */
   --text: 15 23 42; /* slate-900 */
   --muted: 100 116 139; /* slate-500 */
+
+  /* 預設主題:電動機車廠 = 藍 */
+  --brand-50: 239 246 255;
+  --brand-100: 219 234 254;
+  --brand-200: 191 219 254;
+  --brand-300: 147 197 253;
+  --brand-400: 96 165 250;
+  --brand-500: 59 130 246;
+  --brand-600: 37 99 235;
+  --brand-700: 29 78 216;
+  --brand-800: 30 64 175;
+  --brand-900: 30 58 138;
+}
+
+/* 3C 選品電商 = 紫 */
+[data-industry="ecom"] {
+  --brand-50: 245 243 255;
+  --brand-100: 237 233 254;
+  --brand-200: 221 214 254;
+  --brand-300: 196 181 253;
+  --brand-400: 167 139 250;
+  --brand-500: 139 92 246;
+  --brand-600: 124 58 237;
+  --brand-700: 109 40 217;
+  --brand-800: 91 33 182;
+  --brand-900: 76 29 149;
+}
+
+/* 中央廚房 = 綠 */
+[data-industry="kitchen"] {
+  --brand-50: 236 253 245;
+  --brand-100: 209 250 229;
+  --brand-200: 167 243 208;
+  --brand-300: 110 231 183;
+  --brand-400: 52 211 153;
+  --brand-500: 16 185 129;
+  --brand-600: 5 150 105;
+  --brand-700: 4 120 87;
+  --brand-800: 6 95 70;
+  --brand-900: 6 78 59;
 }
 
 html,
@@ -22,9 +62,9 @@ body {
     "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  /* 柔和漸層畫布:手機幾乎純淨,投影/桌面時兩側不空盪 */
+  /* 柔和漸層畫布:依產業主題色,切換產業時整個氛圍也變 */
   background-image:
-    radial-gradient(60rem 40rem at 50% -10rem, rgba(37, 99, 235, 0.07), transparent 60%),
+    radial-gradient(60rem 40rem at 50% -10rem, rgb(var(--brand-600) / 0.07), transparent 60%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.6), transparent 30%);
   background-attachment: fixed;
 }

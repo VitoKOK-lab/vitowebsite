@@ -45,8 +45,14 @@ export function listDecisions(industry: IndustryKey): DecisionView[] {
       };
     })
     .sort((a, b) => {
+      // pending 在前
       if (a.status === "pending" && b.status !== "pending") return -1;
       if (a.status !== "pending" && b.status === "pending") return 1;
+      // pending 之中,緊急在前
+      if (a.status === "pending" && b.status === "pending") {
+        if (a.urgent && !b.urgent) return -1;
+        if (!a.urgent && b.urgent) return 1;
+      }
       return 0;
     });
 }
@@ -55,12 +61,13 @@ export function pendingCount(industry: IndustryKey): number {
   return db(industry).decisions.filter((d) => d.status === "pending").length;
 }
 
-/** AI 今日「完成的事」件數(demo:已決策 + 一個基底) */
+/** AI 今日「完成的事」件數(demo:AI 自動處理的量 + 已決策) */
 export function doneCount(industry: IndustryKey): number {
   const decided = db(industry).decisions.filter(
     (d) => d.status !== "pending"
   ).length;
-  return 12 + decided;
+  const base = { factory: 37, ecom: 52, kitchen: 41 }[industry] ?? 40;
+  return base + decided;
 }
 
 export interface ActResult {

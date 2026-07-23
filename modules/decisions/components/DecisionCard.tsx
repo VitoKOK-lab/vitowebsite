@@ -16,6 +16,7 @@ import {
   Factory,
   ShieldCheck,
   Wallet,
+  Siren,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/lib/ui/badge";
@@ -39,6 +40,27 @@ const categoryTone: Record<string, string> = {
   廣告: "violet",
   排班: "brand",
   品質: "violet",
+  // 緊急/擴充類別
+  設備: "rose",
+  供應: "rose",
+  大單: "emerald",
+  召回: "rose",
+  資安: "rose",
+  匯率: "amber",
+  缺工: "amber",
+  客訴: "rose",
+  現金流: "rose",
+  環安: "violet",
+  詐騙: "rose",
+  競品: "amber",
+  退貨: "amber",
+  合作: "emerald",
+  促銷: "brand",
+  金流: "amber",
+  食安: "rose",
+  冷鏈: "rose",
+  稽核: "violet",
+  天災: "rose",
 };
 
 // 每個決策「來自哪個系統」— 強化「AI 自動從各處抓資料處理」的敘事
@@ -63,6 +85,26 @@ const categorySource: Record<
   選品: { label: "選品雷達", href: "/picking", icon: Radar },
   廣告: { label: "廣告成效", icon: Radar },
   物流: { label: "物流監控", href: "/orders", icon: Factory },
+  設備: { label: "設備監控", icon: ShieldCheck },
+  供應: { label: "供應鏈監控", href: "/inventory", icon: Boxes },
+  大單: { label: "業務系統", icon: Wallet },
+  召回: { label: "品管系統", icon: ShieldCheck },
+  資安: { label: "資安稽核", icon: ShieldCheck },
+  匯率: { label: "財務系統", icon: Wallet },
+  缺工: { label: "排班系統", icon: Factory },
+  客訴: { label: "客服系統", icon: ShieldCheck },
+  現金流: { label: "財務系統", icon: Wallet },
+  環安: { label: "環安系統", icon: ShieldCheck },
+  詐騙: { label: "風控系統", icon: ShieldCheck },
+  競品: { label: "產業雷達", href: "/radar", icon: Radar },
+  退貨: { label: "客服系統", icon: ShieldCheck },
+  合作: { label: "業務系統", icon: Wallet },
+  促銷: { label: "行銷系統", icon: Radar },
+  金流: { label: "財務系統", icon: Wallet },
+  食安: { label: "品管系統", icon: ShieldCheck },
+  冷鏈: { label: "設備監控", icon: ShieldCheck },
+  稽核: { label: "品管系統", icon: ShieldCheck },
+  天災: { label: "產業雷達", href: "/radar", icon: Radar },
 };
 
 export interface ActPayload {
@@ -115,7 +157,12 @@ export function DecisionCard({
         else if (info.offset.x < -130) act({ action: "reject" });
       }}
       whileDrag={{ cursor: "grabbing" }}
-      className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card"
+      className={cn(
+        "relative overflow-hidden rounded-2xl border bg-white shadow-card",
+        decision.urgent
+          ? "border-rose-200 ring-1 ring-rose-200"
+          : "border-slate-200"
+      )}
     >
       {/* 滑動提示層 */}
       <motion.div
@@ -138,6 +185,11 @@ export function DecisionCard({
       <div className="relative p-4 sm:p-5">
         {/* header */}
         <div className="flex items-center gap-2">
+          {decision.urgent && (
+            <span className="flex items-center gap-1 rounded-full bg-rose-500 px-2 py-0.5 text-[11px] font-bold text-white shadow-sm">
+              <Siren className="h-3 w-3 animate-pulse" /> 緊急
+            </span>
+          )}
           <Badge tone={tone}>{decision.category}</Badge>
           {source &&
             (source.href ? (

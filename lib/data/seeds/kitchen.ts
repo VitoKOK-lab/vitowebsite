@@ -58,12 +58,12 @@ export function buildKitchen(): IndustryData {
   });
 
   const stages = ["purchase", "receiving", "prep", "delivery"];
-  const workOrders: IndustryData["workOrders"] = Array.from({ length: 16 }).map(
+  const workOrders: IndustryData["workOrders"] = Array.from({ length: 28 }).map(
     (_, i) => {
       const stage = stages[i % stages.length];
       const cust = customers[i % customers.length];
       const emp = employees[1 + (i % 3)];
-      const delayed = i === 6;
+      const delayed = i === 6 || i === 15 || i === 23;
       const done = stage === "delivery" && i % 2 === 0;
       const qty = 30 + (i % 5) * 20;
       return {
@@ -122,6 +122,20 @@ export function buildKitchen(): IndustryData {
       impact: "需強化效期追蹤與批號管理流程。",
       suggestion: "本系統效期警示已符合新規,可作為稽核佐證。",
       importance: "mid", createdAt: iso(-2, 8),
+    },
+    {
+      id: "k-r3", title: "強颱明日登陸,生鮮配送恐中斷", source: "中央氣象署",
+      fact: "強颱預計明日下午登陸,產地與物流恐停擺 1–2 天。",
+      impact: "生鮮進貨與門市配送受衝擊,需提前備料。",
+      suggestion: "已生成天災備料決策卡,建議提前備妥 2 日份耐儲食材。",
+      importance: "high", createdAt: iso(0, 6),
+    },
+    {
+      id: "k-r4", title: "蛋價連三週上漲", source: "農產運銷公司",
+      fact: "產地缺蛋,雞蛋批發價連三週上漲、累計 +15%。",
+      impact: "蛋料理成本上升,影響便當毛利。",
+      suggestion: "建議部分蛋料理替換或調整份量,已納入成本決策。",
+      importance: "mid", createdAt: iso(-1, 8),
     },
   ];
 
@@ -221,6 +235,118 @@ export function buildKitchen(): IndustryData {
         { label: "問題時段", value: "午後", tone: "slate" },
       ],
       learningTag: "quality",
+    },
+    {
+      id: "k-d8", category: "食安", urgent: true, title: "某批雞胸肉微生物初驗超標,建議全數下架通報",
+      situation: "今晨自主快篩顯示昨到貨的一批雞胸肉(80 kg)生菌數偏高,尚未進入產線但已排入今日菜單。",
+      suggestion: "立即隔離下架該批、今日雞肉菜色改用備援庫存,並送正式檢驗與通知供應商;必要時通報。",
+      reasoning: "食安零容忍,寧可停用一批也不可出餐;及早隔離可避免整日餐點與品牌風險。",
+      impact: [
+        { label: "涉及批量", value: "80 kg", tone: "rose" },
+        { label: "食安風險", value: "零容忍", tone: "rose" },
+        { label: "建議", value: "隔離下架", tone: "amber" },
+      ],
+      learningTag: "foodsafety",
+    },
+    {
+      id: "k-d9", category: "冷鏈", urgent: true, title: "2 號冷藏庫夜間溫度異常升至 9°C,建議緊急處理",
+      situation: "2 號冷藏庫昨夜 02:00–05:00 溫度異常升至 9°C(標準 <5°C),內含海鮮與乳製品即期品。",
+      suggestion: "立即檢查壓縮機、逐項評估受影響食材;無法確認安全者一律報廢,並排維修。",
+      reasoning: "冷鏈斷點涉及食安,無法確認安全的高風險食材不可出餐;維修避免再次發生。",
+      impact: [
+        { label: "異常溫度", value: "9°C", tone: "rose" },
+        { label: "影響時段", value: "3 小時", tone: "amber" },
+        { label: "建議", value: "評估+維修", tone: "brand" },
+      ],
+      learningTag: "coldchain",
+      adjustOptions: [
+        { label: "僅報廢海鮮", learned: "您偏好依風險分級處理、控制報廢成本" },
+        { label: "全數報廢", learned: "您偏好冷鏈斷點一律從嚴、全數報廢" },
+      ],
+    },
+    {
+      id: "k-d10", category: "大單", title: "連鎖客戶新增 5 門市,備料量 +40%,建議產能規劃",
+      situation: "主力連鎖客戶下月新增 5 家門市,每日便當需求將由 1,200 份增至約 1,700 份(+40%)。",
+      suggestion: "分兩階段擴充:先加開一班備料人力 + 主力食材簽長約鎖量鎖價,並評估設備瓶頸。",
+      reasoning: "階段性擴充可控風險;長約鎖量鎖價保供應穩定,避免旺季搶料漲價。",
+      impact: [
+        { label: "需求增幅", value: "+40%", tone: "emerald" },
+        { label: "每日份數", value: "1200→1700", tone: "brand" },
+        { label: "建議", value: "分階擴充", tone: "brand" },
+      ],
+      learningTag: "bigorder",
+    },
+    {
+      id: "k-d11", category: "缺工", urgent: true, title: "備料組 2 人確診請假,建議今日緊急調度",
+      situation: "備料組楊美玲等 2 人確診請假,今日 4 門市備料人力缺口約 12 工時,恐影響出餐。",
+      suggestion: "調度採購組許志豪上午支援備料 + 商請 2 名臨時人力,並將部分前處理外包中央供應。",
+      reasoning: "多管齊下補足人力可保出餐;過往臨時人力 + 內部調度可撐過短期缺工。",
+      impact: [
+        { label: "人力缺口", value: "12 工時", tone: "rose" },
+        { label: "影響門市", value: "4 家", tone: "amber" },
+        { label: "建議", value: "調度+外包", tone: "brand" },
+      ],
+      learningTag: "staffing",
+    },
+    {
+      id: "k-d12", category: "設備", urgent: true, title: "2 號蒸箱故障,建議維修排程並分流",
+      situation: "2 號蒸箱加熱異常無法達溫,今日蒸煮類菜色產能砍半,午餐備料恐延遲。",
+      suggestion: "立即報修 + 將蒸煮類分流至 1、3 號設備錯峰生產;必要時今日菜單微調為爐炒類。",
+      reasoning: "設備分流 + 菜單彈性可維持出餐;維修避免明日再次卡關。",
+      impact: [
+        { label: "蒸煮產能", value: "-50%", tone: "rose" },
+        { label: "建議", value: "分流+報修", tone: "brand" },
+        { label: "出餐", value: "可維持", tone: "emerald" },
+      ],
+      learningTag: "equipment",
+    },
+    {
+      id: "k-d13", category: "供應", urgent: true, title: "主力菜商臨時缺貨葉菜,建議啟用備援",
+      situation: "誠信蔬果通知今日高麗菜、青花菜因產地雨害無法足量供貨,缺口約 60 kg。",
+      suggestion: "向備援菜商緊急補貨(單價略高),不足部分以耐儲根莖類替換今日菜單。",
+      reasoning: "雙軌供應 + 菜單彈性可保出餐;過往雨害期替換方案口味影響低。",
+      impact: [
+        { label: "缺口", value: "60 kg", tone: "rose" },
+        { label: "備援溢價", value: "略高", tone: "amber" },
+        { label: "出餐", value: "不中斷", tone: "emerald" },
+      ],
+      learningTag: "supply",
+    },
+    {
+      id: "k-d14", category: "天災", urgent: true, title: "強颱明日登陸,建議提前備料與菜單調整",
+      situation: "氣象預報強颱明日下午登陸,配送與生鮮進貨恐中斷 1–2 天,門市可能提前拉貨。",
+      suggestion: "今日提前備妥 2 日份耐儲食材與半成品、預先分裝,並規劃颱風日簡化菜單。",
+      reasoning: "提前備料可因應斷鏈與門市搶貨;半成品化可降低颱風日人力需求。",
+      impact: [
+        { label: "預估斷鏈", value: "1–2 天", tone: "rose" },
+        { label: "建議備料", value: "2 日份", tone: "brand" },
+        { label: "菜單", value: "簡化", tone: "amber" },
+      ],
+      learningTag: "disaster",
+    },
+    {
+      id: "k-d15", category: "客訴", urgent: true, title: "板橋門市反映便當有異物,建議即刻追批號",
+      situation: "板橋門市回報一位客人於今日午餐便當發現疑似包材碎屑,已先致歉並保留餐點。",
+      suggestion: "立即依批號追出同批次去向、抽檢該時段產線與包材,並主動聯繫客人處理。",
+      reasoning: "異物客訴涉食安與商譽,快速追批 + 真誠處理可控制範圍、避免擴散。",
+      impact: [
+        { label: "涉及", value: "板橋門市", tone: "rose" },
+        { label: "動作", value: "追批號抽檢", tone: "amber" },
+        { label: "客戶", value: "主動聯繫", tone: "brand" },
+      ],
+      learningTag: "complaint",
+    },
+    {
+      id: "k-d16", category: "稽核", title: "衛生局預告稽核,建議啟動自主檢查清單",
+      situation: "衛生局預告兩週內將到廠稽核,重點為冷鏈溫控紀錄與人員健康管理。",
+      suggestion: "本週依稽核重點跑一次自主檢查清單,補齊溫控與健康檢查紀錄,提前排除缺失。",
+      reasoning: "提前自檢可從容通過稽核;本系統效期與溫控紀錄可直接作為佐證。",
+      impact: [
+        { label: "稽核期限", value: "2 週內", tone: "amber" },
+        { label: "重點", value: "冷鏈/健康", tone: "slate" },
+        { label: "建議", value: "自主檢查", tone: "brand" },
+      ],
+      learningTag: "compliance",
     },
   ];
 

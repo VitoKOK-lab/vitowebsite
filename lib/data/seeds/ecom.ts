@@ -42,12 +42,12 @@ export function buildEcom(): IndustryData {
   });
 
   const stages = ["received", "picking", "packing", "shipped", "signed"];
-  const workOrders: IndustryData["workOrders"] = Array.from({ length: 18 }).map(
+  const workOrders: IndustryData["workOrders"] = Array.from({ length: 30 }).map(
     (_, i) => {
       const stage = stages[i % stages.length];
       const cust = customers[i % customers.length];
       const emp = employees[1 + (i % 3)];
-      const delayed = i === 5;
+      const delayed = i === 5 || i === 17 || i === 24;
       const done = stage === "signed";
       const qty = 1 + (i % 4);
       const sku = skus[i % skus.length];
@@ -138,6 +138,20 @@ export function buildEcom(): IndustryData {
       impact: "選品機會:磁吸行動電源、磁吸支架需求上升。",
       suggestion: "已生成選品候選卡『磁吸無線行動電源』,建議測款 100 件。",
       importance: "mid", createdAt: iso(-1, 8),
+    },
+    {
+      id: "e-r3", title: "主力平台首頁演算法改版", source: "電商平台公告",
+      fact: "平台改版首頁推薦邏輯,賣家自然曝光普遍波動。",
+      impact: "本店自然流量單日下滑 22%,轉單受影響。",
+      suggestion: "已生成應對決策卡,建議短期加投站內廣告卡位。",
+      importance: "high", createdAt: iso(0, 7),
+    },
+    {
+      id: "e-r4", title: "盜刷詐團鎖定 3C 超商取貨", source: "金流風控快訊",
+      fact: "近期多店通報同一手法的盜刷詐團,鎖定高單價 3C 超商取貨。",
+      impact: "本店偵測到 14 筆疑似訂單,需即時攔截。",
+      suggestion: "已生成風控決策卡,建議攔截人工審核。",
+      importance: "high", createdAt: iso(0, 8),
     },
   ];
 
@@ -245,6 +259,118 @@ export function buildEcom(): IndustryData {
         { label: "移轉後 ROAS", value: "3.8", tone: "emerald" },
       ],
       learningTag: "ads",
+    },
+    {
+      id: "e-d8", category: "詐騙", urgent: true, title: "偵測一批可疑高額訂單,建議攔截人工審核",
+      situation: "風控偵測到今晨 14 筆訂單使用同一 IP 段、不同帳號、指定超商取貨且金額異常偏高,疑似盜刷/詐團。",
+      suggestion: "暫停這 14 筆出貨、轉人工審核並要求補驗;命中詐騙特徵者取消並通報金流商。",
+      reasoning: "特徵與上季一起盜刷案高度相似;先攔截可避免出貨損失與後續拒付。",
+      impact: [
+        { label: "可疑訂單", value: "14 筆", tone: "rose" },
+        { label: "潛在損失", value: "約 12 萬", tone: "rose" },
+        { label: "建議", value: "攔截審核", tone: "amber" },
+      ],
+      learningTag: "fraud",
+    },
+    {
+      id: "e-d9", category: "競品", urgent: true, title: "平台改版自然流量單日掉 22%,建議即時應對",
+      situation: "主力平台昨日改版首頁演算法,本店自然曝光單日下滑 22%,連帶轉單量下降。",
+      suggestion: "短期加投站內廣告卡位 + 更新熱銷品關鍵字與標題,兩天內觀察是否回穩。",
+      reasoning: "改版初期卡位成本較低;過往類似改版 1–2 週後流量部分回流,主動應對可縮短低谷。",
+      impact: [
+        { label: "自然流量", value: "-22%", tone: "rose" },
+        { label: "建議加投", value: "站內廣告", tone: "brand" },
+        { label: "觀察期", value: "2 天", tone: "slate" },
+      ],
+      learningTag: "platform",
+      adjustOptions: [
+        { label: "先觀望不加投", learned: "您偏好先觀察平台波動再決定投放" },
+        { label: "積極加投卡位", learned: "您偏好流量下滑時積極加投搶排名" },
+      ],
+    },
+    {
+      id: "e-d10", category: "補貨", urgent: true, title: "爆品斷貨連鎖影響 3 組搭售,建議緊急調整",
+      situation: "磁吸行動電源斷貨,連帶 3 組以它為主的加購組合無法出貨,影響今日 20+ 筆訂單。",
+      suggestion: "急單空運補貨 + 暫時將搭售主品換成替代款,並主動通知受影響買家預計到貨。",
+      reasoning: "斷貨不只損失單品、還拖累組合銷售;快速替換與溝通可保住訂單與評價。",
+      impact: [
+        { label: "受影響訂單", value: "20+ 筆", tone: "rose" },
+        { label: "連帶組合", value: "3 組", tone: "amber" },
+        { label: "建議", value: "空運+替換", tone: "brand" },
+      ],
+      learningTag: "reorder",
+    },
+    {
+      id: "e-d11", category: "退貨", urgent: true, title: "某藍牙耳機退貨率飆至 12%,建議下架檢查",
+      situation: "AeroPods Air 近 7 日退貨率由 3% 飆升至 12%,退貨原因集中在『單耳無聲』。",
+      suggestion: "暫時下架該 SKU、抽驗庫存批號,並聯繫供應商釐清是否為批次不良。",
+      reasoning: "退貨集中單一原因、指向批次瑕疵;及早下架可避免負評擴散與更多退貨成本。",
+      impact: [
+        { label: "退貨率", value: "12%", tone: "rose" },
+        { label: "主因", value: "單耳無聲", tone: "amber" },
+        { label: "建議", value: "下架抽驗", tone: "brand" },
+      ],
+      learningTag: "quality",
+    },
+    {
+      id: "e-d12", category: "合作", title: "3C 開箱 KOL 主動洽談,建議評估合作",
+      situation: "一位 42 萬粉的 3C 開箱 YouTuber 主動洽談合作,提案為磁吸行動電源開箱 + 導購連結。",
+      suggestion: "以『底薪 + 導購分潤』模式合作(先小額測試),並備妥足量庫存迎接導購流量。",
+      reasoning: "分潤模式風險低、可量化 ROI;過往微網紅導購轉換優於純曝光。",
+      impact: [
+        { label: "KOL 粉絲", value: "42 萬", tone: "brand" },
+        { label: "合作模式", value: "分潤", tone: "emerald" },
+        { label: "需備貨", value: "足量", tone: "amber" },
+      ],
+      learningTag: "partnership",
+    },
+    {
+      id: "e-d13", category: "促銷", title: "雙 11 前 60 天,建議啟動備貨與檔期規劃",
+      situation: "距雙 11 約 60 天,依去年同期,爆品類需提前備貨、廣告預算需提前卡位。",
+      suggestion: "依 AI 銷量預測產出備貨清單(TOP20),並預留檔期廣告預算與贈品組合。",
+      reasoning: "提前備貨可避免旺季斷貨與空運高成本;過往提前規劃檔期 GMV 顯著較高。",
+      impact: [
+        { label: "距檔期", value: "60 天", tone: "slate" },
+        { label: "備貨清單", value: "TOP20", tone: "brand" },
+        { label: "預期 GMV", value: "顯著提升", tone: "emerald" },
+      ],
+      learningTag: "promo",
+    },
+    {
+      id: "e-d14", category: "金流", title: "某支付通道費率調漲 0.3%,建議引導改用他道",
+      situation: "A 金流通道 9 月起手續費由 2.5% 調升至 2.8%,該通道佔本店收款約 45%。",
+      suggestion: "結帳頁優先推薦低費率通道(給小額回饋誘因),預估可將高費率佔比降至 25%。",
+      reasoning: "以誘因引導支付方式可壓低整體金流成本,回饋成本低於費率差。",
+      impact: [
+        { label: "費率調漲", value: "+0.3%", tone: "amber" },
+        { label: "高費率佔比", value: "45%→25%", tone: "emerald" },
+        { label: "淨省", value: "約 0.15%", tone: "emerald" },
+      ],
+      learningTag: "payment",
+    },
+    {
+      id: "e-d15", category: "稽核", urgent: true, title: "遭檢舉仿冒,建議即時提供授權證明",
+      situation: "平台通知本店某充電線商品被同業檢舉『疑似仿冒』,若 48 小時未回應恐遭下架與扣分。",
+      suggestion: "立即上傳品牌授權書與進貨憑證申覆,並暫時隱藏該商品避免爭議擴大。",
+      reasoning: "本店持有正式授權,及時申覆可解除下架風險;逾期不理將自動扣分影響全店權重。",
+      impact: [
+        { label: "回應期限", value: "48 小時", tone: "rose" },
+        { label: "逾期後果", value: "下架扣分", tone: "rose" },
+        { label: "本店", value: "有授權", tone: "emerald" },
+      ],
+      learningTag: "compliance",
+    },
+    {
+      id: "e-d16", category: "現金流", title: "平台結款週期拉長,建議調整備貨節奏",
+      situation: "平台將結款週期由 7 天延長至 14 天,旺季備貨壓力下現金週轉趨緊。",
+      suggestion: "對高週轉爆品維持備貨,對慢動銷品改小批多次進貨,平滑現金流。",
+      reasoning: "結款延後等同占用營運資金;依動銷分級備貨可兼顧不缺貨與現金安全。",
+      impact: [
+        { label: "結款週期", value: "7→14 天", tone: "amber" },
+        { label: "策略", value: "分級備貨", tone: "brand" },
+        { label: "現金安全", value: "提升", tone: "emerald" },
+      ],
+      learningTag: "cashflow",
     },
   ];
 

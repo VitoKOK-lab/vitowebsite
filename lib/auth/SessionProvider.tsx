@@ -33,6 +33,11 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     if (i && VALID_INDUSTRIES.includes(i)) setIndustryState(i);
   }, []);
 
+  // 依產業切換主題色(CSS 變數掛在 <html> 的 data-industry)
+  React.useEffect(() => {
+    document.documentElement.setAttribute("data-industry", industry);
+  }, [industry]);
+
   const setRole = React.useCallback((r: Role) => {
     setRoleState(r);
     localStorage.setItem(ROLE_KEY, r);

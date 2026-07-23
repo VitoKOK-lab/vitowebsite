@@ -23,6 +23,6 @@ describe("listOrders 角色範圍", () => {
     expect(list.every((o) => o.customerId === "f-c1")).toBe(true);
   });
   it("老闆看到全部訂單", () => {
-    expect(listOrders("factory", "owner").length).toBe(20);
+    expect(listOrders("factory", "owner").length).toBe(32);
   });
 });
