@@ -50,6 +50,9 @@ export function buildFactory(): IndustryData {
         ownerId: emp.id,
         ownerName: emp.name,
         delayed,
+        delayReason: delayed
+          ? ["碳纖前叉缺料,待供應商補料", "加工中心待維修排程", "品檢複驗中未放行", "上游零件到貨延遲"][i % 4]
+          : undefined,
         done,
         events: [
           { stageKey: "material", by: emp.name, at: iso(-5) },

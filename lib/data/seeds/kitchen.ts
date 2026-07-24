@@ -80,6 +80,9 @@ export function buildKitchen(): IndustryData {
         ownerId: emp.id,
         ownerName: emp.name,
         delayed,
+        delayReason: delayed
+          ? ["食材到貨延遲", "備料人力不足", "配送車輛調度中"][i % 3]
+          : undefined,
         done,
         events: [{ stageKey: "purchase", by: emp.name, at: iso(-1, 5) }],
       };

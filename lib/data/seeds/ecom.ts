@@ -65,6 +65,9 @@ export function buildEcom(): IndustryData {
         ownerId: emp.id,
         ownerName: emp.name,
         delayed,
+        delayReason: delayed
+          ? ["物流商配送延誤", "熱銷品缺貨待補", "地址資訊待客戶確認"][i % 3]
+          : undefined,
         done,
         events: [{ stageKey: "received", by: emp.name, at: iso(-1) }],
       };

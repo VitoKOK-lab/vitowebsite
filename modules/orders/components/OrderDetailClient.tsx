@@ -1,21 +1,23 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
-import { ArrowLeft, Camera, Clock, User } from "lucide-react";
+import { Camera, Clock, User, AlertTriangle, UserCog, CheckCircle2 } from "lucide-react";
 import { useSession } from "@/lib/auth/SessionProvider";
 import { getIndustryConfig } from "@/lib/industry/adapter";
-import { getOrder, stageLabel } from "@/modules/orders/service";
+import { getOrder, stageLabel, submitResolution } from "@/modules/orders/service";
 import { canSeeGlobalData } from "@/lib/auth/visibility";
 import { StageProgress } from "@/lib/ui/stage-progress";
 import { Badge } from "@/lib/ui/badge";
+import { BackButton } from "@/lib/ui/back-button";
 import { AdvanceButton } from "@/modules/orders/components/AdvanceButton";
 import { twd, formatDate } from "@/lib/utils";
-import type { IndustryKey } from "@/lib/types";
+import { ROLES, type IndustryKey } from "@/lib/types";
 
 const INDUSTRIES: IndustryKey[] = ["factory", "ecom", "kitchen"];
 
 export function OrderDetailClient({ id }: { id: string }) {
-  const { role, version } = useSession();
+  const { role, version, bump } = useSession();
   void version; // 訂閱 mutation,推進站點後重新讀取
 
   // 跨產業定位訂單(id 全域唯一);取得其所屬產業
@@ -51,12 +53,7 @@ export function OrderDetailClient({ id }: { id: string }) {
 
   return (
     <div className="mx-auto max-w-2xl space-y-4">
-      <Link
-        href="/orders"
-        className="inline-flex items-center gap-1 text-[13px] font-medium text-slate-400 hover:text-slate-600"
-      >
-        <ArrowLeft className="h-4 w-4" /> {cfg.terms.orderNoun}
-      </Link>
+      <BackButton label={cfg.terms.orderNoun} fallback="/orders" />
 
       {/* header */}
       <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-card">
@@ -92,6 +89,19 @@ export function OrderDetailClient({ id }: { id: string }) {
           />
         </div>
       </div>
+
+      {/* 延遲處理閉環:原因 + 負責人 + 處理回報 */}
+      {order.delayed && !order.done && (
+        <DelayPanel
+          industry={industry}
+          orderId={order.id}
+          reason={order.delayReason}
+          ownerName={order.ownerName}
+          resolution={order.resolution}
+          role={role}
+          onSubmitted={bump}
+        />
+      )}
 
       {/* advance */}
       {canAdvance && (
@@ -141,6 +151,97 @@ export function OrderDetailClient({ id }: { id: string }) {
           🔗 客戶自助查詢頁(只看得到進度與交期)
         </Link>
       )}
+    </div>
+  );
+}
+
+function DelayPanel({
+  industry,
+  orderId,
+  reason,
+  ownerName,
+  resolution,
+  role,
+  onSubmitted,
+}: {
+  industry: IndustryKey;
+  orderId: string;
+  reason?: string;
+  ownerName: string;
+  resolution?: { by: string; text: string; at: string };
+  role: string;
+  onSubmitted: () => void;
+}) {
+  const [text, setText] = React.useState("");
+  const [busy, setBusy] = React.useState(false);
+  const canHandle = role === "staff" || role === "manager" || role === "owner";
+  const roleLabel = ROLES.find((r) => r.key === role)?.label ?? "";
+
+  function submit() {
+    if (!text.trim()) return;
+    setBusy(true);
+    submitResolution(industry, orderId, `${ownerName}(${roleLabel})`, text);
+    setTimeout(() => {
+      onSubmitted();
+      setBusy(false);
+    }, 300);
+  }
+
+  return (
+    <div className="overflow-hidden rounded-2xl border border-rose-200 bg-rose-50/60">
+      <div className="flex items-center gap-2 border-b border-rose-100 px-4 py-2.5">
+        <AlertTriangle className="h-4 w-4 text-rose-500" />
+        <span className="text-[13px] font-semibold text-rose-700">延遲待處理</span>
+      </div>
+      <div className="space-y-2 p-4">
+        <div className="flex items-start gap-2 text-[13px]">
+          <span className="w-16 shrink-0 text-slate-400">延遲原因</span>
+          <span className="font-medium text-slate-800">{reason ?? "待釐清"}</span>
+        </div>
+        <div className="flex items-center gap-2 text-[13px]">
+          <span className="w-16 shrink-0 text-slate-400">負責人</span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-white px-2 py-0.5 font-medium text-slate-700 ring-1 ring-slate-200">
+            <UserCog className="h-3.5 w-3.5 text-slate-400" /> {ownerName}
+          </span>
+        </div>
+
+        {/* 已回報 → 老闆/員工都看得到 */}
+        {resolution ? (
+          <div className="mt-2 rounded-xl border border-emerald-200 bg-emerald-50 p-3">
+            <div className="flex items-center gap-1.5 text-[12px] font-semibold text-emerald-700">
+              <CheckCircle2 className="h-3.5 w-3.5" /> 處理回報 · {resolution.by}
+            </div>
+            <p className="mt-1 text-[13px] leading-relaxed text-slate-700">
+              {resolution.text}
+            </p>
+          </div>
+        ) : canHandle ? (
+          /* 負責人尚未回報 → 提供輸入 */
+          <div className="mt-2 rounded-xl border border-slate-200 bg-white p-3">
+            <div className="mb-1.5 text-[12px] font-semibold text-slate-600">
+              請儘快處理並回報處理方式(老闆將同步看到)
+            </div>
+            <textarea
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="例如:已改由備援供應商補料,預計明日到齊,交期順延 1 天並已通知客戶"
+              rows={2}
+              className="w-full resize-none rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[13px] outline-none focus:ring-2 focus:ring-brand-300"
+            />
+            <button
+              onClick={submit}
+              disabled={busy || !text.trim()}
+              className="mt-2 h-9 w-full rounded-lg bg-rose-600 text-[13px] font-semibold text-white active:scale-[0.98] disabled:opacity-40"
+            >
+              送出處理回報
+            </button>
+          </div>
+        ) : (
+          <div className="mt-2 rounded-xl bg-white p-3 text-[12px] text-slate-400">
+            等待 {ownerName} 回報處理方式…
+          </div>
+        )}
+      </div>
     </div>
   );
 }

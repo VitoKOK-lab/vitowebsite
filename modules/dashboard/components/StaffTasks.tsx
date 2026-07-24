@@ -1,12 +1,21 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, Package, ClipboardList, CheckCircle2 } from "lucide-react";
+import {
+  Check,
+  Package,
+  ClipboardList,
+  CheckCircle2,
+  AlertTriangle,
+  ChevronRight,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Toast, useToast } from "@/lib/ui/toast";
 import { useSession } from "@/lib/auth/SessionProvider";
 import { completeTask } from "../service";
+import { delayedOrders } from "@/modules/orders/service";
 import type { Task } from "@/lib/data/models";
 
 export function StaffTasks({
@@ -16,7 +25,14 @@ export function StaffTasks({
   tasks: Task[];
   name: string;
 }) {
-  const { industry, bump } = useSession();
+  const { role, industry, version, bump } = useSession();
+  void version; // 訂閱 mutation:回報處理後重新讀取待處理清單
+
+  // 延遲且尚未回報處理方式的訂單 → 提示負責人儘快處理(客戶不顯示)
+  const needHandling =
+    role === "customer"
+      ? []
+      : delayedOrders(industry).filter((o) => !o.resolution);
   const [done, setDone] = React.useState<Set<string>>(
     new Set(tasks.filter((t) => t.done).map((t) => t.id))
   );
@@ -40,6 +56,41 @@ export function StaffTasks({
           {name},今日有 {pending.length} 項任務
         </h1>
       </div>
+
+      {/* 延遲待處理:負責人限定,請儘快回報處理方式 */}
+      {needHandling.length > 0 && (
+        <div className="overflow-hidden rounded-2xl border border-rose-200 bg-rose-50/60">
+          <div className="flex items-center gap-2 border-b border-rose-100 px-4 py-2.5">
+            <AlertTriangle className="h-4 w-4 text-rose-500" />
+            <span className="text-[13px] font-semibold text-rose-700">
+              延遲待處理 · {needHandling.length}
+            </span>
+            <span className="ml-auto text-[11px] text-rose-500/80">請儘快回報處理方式</span>
+          </div>
+          <div className="space-y-2 p-3">
+            {needHandling.map((o) => (
+              <Link
+                key={o.id}
+                href={`/orders/${o.id}`}
+                className="flex items-center gap-3 rounded-xl bg-white px-3 py-2.5 shadow-sm ring-1 ring-rose-100 transition-colors hover:bg-rose-50/50"
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600">
+                  <Package className="h-4 w-4" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="text-[13px] font-semibold text-slate-800 tabular-nums">
+                    {o.orderNo} · {o.customerName}
+                  </div>
+                  <div className="truncate text-[12px] text-rose-600">
+                    {o.delayReason ?? "延遲待釐清"}
+                  </div>
+                </div>
+                <ChevronRight className="h-4 w-4 shrink-0 text-rose-300" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 進度 */}
       <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-card">

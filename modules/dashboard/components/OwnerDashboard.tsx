@@ -73,13 +73,11 @@ export function OwnerDashboard({
         {/* 左欄 */}
         <div className="space-y-4">
           {/* 營收 Hero */}
-          <motion.div
-            custom={1}
-            variants={fade}
-            initial="hidden"
-            animate="show"
-            className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-card"
-          >
+          <motion.div custom={1} variants={fade} initial="hidden" animate="show">
+            <Link
+              href="/orders"
+              className="group relative block overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-card transition-shadow hover:shadow-pop"
+            >
             <div className="flex items-start justify-between">
               <div>
                 <div className="flex items-center gap-1.5 text-[12px] font-medium text-slate-400">
@@ -107,6 +105,7 @@ export function OwnerDashboard({
                 <Sparkline data={metrics.spark} className="h-10 w-full" />
               </div>
             </div>
+            </Link>
           </motion.div>
 
           {/* KPI grid */}
@@ -119,6 +118,7 @@ export function OwnerDashboard({
               tone="brand"
               hint={metrics.delayedOrders > 0 ? `${metrics.delayedOrders} 件延遲` : "全部準時"}
               hintTone={metrics.delayedOrders > 0 ? "rose" : "emerald"}
+              href="/orders"
             />
             <Kpi
               custom={3}
@@ -128,6 +128,7 @@ export function OwnerDashboard({
               tone="amber"
               hint="需關注"
               hintTone="amber"
+              href="/inventory"
             />
           </div>
 
@@ -242,7 +243,7 @@ export function OwnerDashboard({
                 {alertRows.map((a) => (
                   <Link
                     key={a.id}
-                    href="/decisions"
+                    href={a.href}
                     className="flex items-center gap-3 rounded-xl bg-slate-50 px-3 py-2.5 transition-colors hover:bg-slate-100"
                   >
                     <span
@@ -287,6 +288,7 @@ function Kpi({
   tone,
   hint,
   hintTone,
+  href,
 }: {
   custom: number;
   label: string;
@@ -295,15 +297,10 @@ function Kpi({
   tone: "brand" | "amber";
   hint: string;
   hintTone: "rose" | "emerald" | "amber";
+  href?: string;
 }) {
-  return (
-    <motion.div
-      custom={custom}
-      variants={fade}
-      initial="hidden"
-      animate="show"
-      className="rounded-2xl border border-slate-200 bg-white p-4 shadow-card"
-    >
+  const inner = (
+    <>
       <div className="flex items-center justify-between">
         <span className="text-[12px] font-medium text-slate-400">{label}</span>
         <span
@@ -320,14 +317,29 @@ function Kpi({
       </div>
       <div
         className={cn(
-          "mt-0.5 text-[11px] font-medium",
+          "mt-0.5 flex items-center gap-0.5 text-[11px] font-medium",
           hintTone === "rose" && "text-rose-500",
           hintTone === "emerald" && "text-emerald-500",
           hintTone === "amber" && "text-amber-500"
         )}
       >
         {hint}
+        {href && <ChevronRight className="h-3 w-3 opacity-60" />}
       </div>
+    </>
+  );
+  const cls =
+    "block rounded-2xl border border-slate-200 bg-white p-4 shadow-card" +
+    (href ? " transition-shadow hover:shadow-pop" : "");
+  return (
+    <motion.div custom={custom} variants={fade} initial="hidden" animate="show">
+      {href ? (
+        <Link href={href} className={cls}>
+          {inner}
+        </Link>
+      ) : (
+        <div className={cls}>{inner}</div>
+      )}
     </motion.div>
   );
 }
@@ -346,7 +358,10 @@ function GrowthStat({ label, value, suffix }: { label: string; value: number; su
 function LeaderItem({ row, rank, maxScore }: { row: LeaderRow; rank: number; maxScore: number }) {
   const medal = ["🥇", "🥈", "🥉"][rank - 1];
   return (
-    <div className="flex items-center gap-3 rounded-xl px-1.5 py-2">
+    <Link
+      href={`/team/${row.id}`}
+      className="flex items-center gap-3 rounded-xl px-1.5 py-2 transition-colors hover:bg-slate-50"
+    >
       <span className="w-6 text-center text-[13px] font-bold text-slate-400 tabular-nums">
         {medal ?? rank}
       </span>
@@ -371,6 +386,7 @@ function LeaderItem({ row, rank, maxScore }: { row: LeaderRow; rank: number; max
           準時 {row.onTime}%{row.winRate ? ` · 成交 ${row.winRate}%` : ""}
         </div>
       </div>
-    </div>
+      <ChevronRight className="h-4 w-4 shrink-0 text-slate-300" />
+    </Link>
   );
 }

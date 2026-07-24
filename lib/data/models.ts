@@ -89,6 +89,10 @@ export interface WorkOrder {
   ownerId: string;
   ownerName: string;
   delayed: boolean;
+  /** 延遲原因 */
+  delayReason?: string;
+  /** 負責人回報的處理方式(老闆可見) */
+  resolution?: { by: string; text: string; at: string };
   done: boolean;
   events: StageEvent[];
 }

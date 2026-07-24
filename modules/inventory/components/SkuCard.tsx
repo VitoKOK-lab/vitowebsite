@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AlertTriangle, Clock, TrendingUp, Truck } from "lucide-react";
 import type { Role } from "@/lib/types";
 import type { SkuView } from "../service";
@@ -19,7 +20,10 @@ export function SkuCard({ sku, role }: { sku: SkuView; role: Role }) {
   const pct = Math.min(100, Math.round((sku.onHand / (sku.safetyStock * 2 || 1)) * 100));
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-card">
+    <Link
+      href={`/inventory/${sku.id}`}
+      className="block rounded-2xl border border-slate-200 bg-white p-4 shadow-card transition-shadow hover:shadow-pop"
+    >
       <div className="flex items-start gap-2">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
@@ -84,6 +88,6 @@ export function SkuCard({ sku, role }: { sku: SkuView; role: Role }) {
           {sku.category === "肉類" || sku.category === "蔬菜" ? "kg" : "件"}
         </div>
       )}
-    </div>
+    </Link>
   );
 }

@@ -92,19 +92,22 @@ export interface AlertRow {
   kind: "delay" | "low_stock" | "expiry";
   title: string;
   detail: string;
+  /** 點擊後導向的詳情頁(延遲→訂單、庫存→品項) */
+  href: string;
 }
 
 export function alerts(industry: IndustryKey): AlertRow[] {
   const data = db(industry);
   const out: AlertRow[] = [];
   data.workOrders
-    .filter((w) => w.delayed)
+    .filter((w) => w.delayed && !w.done)
     .forEach((w) =>
       out.push({
         id: `al-${w.id}`,
         kind: "delay",
         title: `${w.orderNo} 延遲`,
         detail: `${w.customerName} · ${w.itemsSummary}`,
+        href: `/orders/${w.id}`,
       })
     );
   data.skus
@@ -116,6 +119,7 @@ export function alerts(industry: IndustryKey): AlertRow[] {
         kind: "low_stock",
         title: `${s.name} 低於安全庫存`,
         detail: `現有 ${s.onHand} · 安全 ${s.safetyStock}`,
+        href: `/inventory/${s.id}`,
       })
     );
   data.skus
@@ -131,7 +135,65 @@ export function alerts(industry: IndustryKey): AlertRow[] {
         kind: "expiry",
         title: `${s.name} 即將到期`,
         detail: `庫存 ${s.onHand} · 需優先使用`,
+        href: `/inventory/${s.id}`,
       })
     );
   return out.slice(0, 5);
+}
+
+export interface EmployeeDetail {
+  id: string;
+  name: string;
+  dept: string;
+  role: "manager" | "staff";
+  rank: number;
+  closed: number;
+  onTime: number;
+  winRate: number;
+  orders: { total: number; done: number; delayed: number };
+  openOrders: { id: string; orderNo: string; customerName: string; delayed: boolean; done: boolean }[];
+  tasks: { id: string; title: string; done: boolean }[];
+}
+
+/** 單一員工的貢獻詳情(老闆點排行榜下鑽) */
+export function employeeDetail(
+  industry: IndustryKey,
+  id: string
+): EmployeeDetail | undefined {
+  const data = db(industry);
+  const emp = data.employees.find((e) => e.id === id);
+  if (!emp) return undefined;
+  const rank = leaderboard(industry).findIndex((r) => r.id === id) + 1;
+  const owned = data.workOrders.filter((w) => w.ownerId === id);
+  const openOrders = owned
+    .filter((w) => !w.done)
+    .sort((a, b) => (a.delayed === b.delayed ? 0 : a.delayed ? -1 : 1))
+    .slice(0, 6)
+    .map((w) => ({
+      id: w.id,
+      orderNo: w.orderNo,
+      customerName: w.customerName,
+      delayed: w.delayed,
+      done: w.done,
+    }));
+  const tasks = data.tasks
+    .filter((t) => t.ownerId === id)
+    .map((t) => ({ id: t.id, title: t.title, done: t.done }));
+  return {
+    id: emp.id,
+    name: emp.name,
+    dept: emp.dept,
+    role: emp.role,
+    rank,
+    closed: emp.closed,
+    onTime: emp.onTime,
+    winRate: emp.winRate,
+    orders: {
+      total: owned.length,
+      done: owned.filter((w) => w.done).length,
+      delayed: owned.filter((w) => w.delayed && !w.done).length,
+    },
+    openOrders,
+    tasks,
+  };
 }

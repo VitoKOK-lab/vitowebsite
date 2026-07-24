@@ -60,3 +60,21 @@ export function stageLabel(industry: IndustryKey, key: string): string {
     getIndustryConfig(industry).orderStages.find((s) => s.key === key)?.label ?? key
   );
 }
+
+/** 延遲且未完成的訂單(給員工待處理、老闆警示用) */
+export function delayedOrders(industry: IndustryKey): WorkOrder[] {
+  return db(industry).workOrders.filter((o) => o.delayed && !o.done);
+}
+
+/** 負責人回報處理方式(老闆端可見) */
+export function submitResolution(
+  industry: IndustryKey,
+  id: string,
+  by: string,
+  text: string
+): boolean {
+  const o = db(industry).workOrders.find((x) => x.id === id);
+  if (!o || !text.trim()) return false;
+  o.resolution = { by, text: text.trim(), at: iso(0, 12) };
+  return true;
+}

@@ -46,6 +46,29 @@ export function listSkus(industry: IndustryKey): SkuView[] {
   });
 }
 
+/** 跨產業定位單一品項(id 全域唯一),供詳情頁下鑽 */
+export function findSku(
+  id: string
+): { industry: IndustryKey; sku: SkuView } | undefined {
+  for (const k of ["factory", "ecom", "kitchen"] as IndustryKey[]) {
+    const s = db(k).skus.find((x) => x.id === id);
+    if (s) {
+      const { status, daysToExpiry } = skuStatus(s);
+      return {
+        industry: k,
+        sku: {
+          ...s,
+          status,
+          daysToExpiry,
+          suggestedReorder: reorderQty(s),
+          coverDays: s.avgDailyUse > 0 ? Math.round(s.onHand / s.avgDailyUse) : 999,
+        },
+      };
+    }
+  }
+  return undefined;
+}
+
 export function inventorySummary(industry: IndustryKey) {
   const list = listSkus(industry);
   return {
