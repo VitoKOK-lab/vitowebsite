@@ -34,7 +34,7 @@ export function SkuDetailClient({ id }: { id: string }) {
       <div className="mx-auto max-w-2xl py-16 text-center text-sm text-slate-400">
         查無此品項
         <div className="mt-3">
-          <Link href="/inventory" className="text-brand-600">
+          <Link href="/demo/inventory" className="text-brand-600">
             返回進銷存
           </Link>
         </div>
@@ -51,7 +51,7 @@ export function SkuDetailClient({ id }: { id: string }) {
 
   return (
     <div className="mx-auto max-w-2xl space-y-4">
-      <BackButton label="進銷存" fallback="/inventory" />
+      <BackButton label="進銷存" fallback="/demo/inventory" />
 
       {/* header */}
       <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-card">
@@ -101,7 +101,7 @@ export function SkuDetailClient({ id }: { id: string }) {
       {/* AI 補貨建議 */}
       {sku.suggestedReorder > 0 && sku.status !== "normal" && (
         <Link
-          href="/decisions"
+          href="/demo/decisions"
           className="flex items-center gap-3 rounded-2xl border border-brand-200 bg-brand-50/60 p-4 transition-colors hover:bg-brand-50"
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-100 text-brand-600">

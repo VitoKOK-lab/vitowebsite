@@ -1,4 +1,10 @@
-# AI 同事系統(AI Colleague OS)— Pitch Demo
+# Vito 個人網站
+
+首頁(`/`)為個人網站(建置中);原本的 AI 同事系統 pitch demo 移至 **`/demo`** 子頁,功能不變。
+
+---
+
+# AI 同事系統(AI Colleague OS)— Pitch Demo(`/demo`)
 
 一套以「AI 同事」為核心的中小企業營運系統 **展示版**:AI 自動處理有數據的工作並附上建議,人類只負責決策,每次決策回饋讓 AI 持續學習。
 
@@ -9,7 +15,8 @@
 ```bash
 npm install
 npm run dev
-# 開啟 http://localhost:3000
+# 開啟 http://localhost:3000 — 首頁為個人網站
+# Demo 入口:http://localhost:3000/demo
 ```
 
 不需要任何金鑰或設定。所有 AI、LINE、Email、資料庫皆為本機 mock。

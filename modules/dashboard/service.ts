@@ -107,7 +107,7 @@ export function alerts(industry: IndustryKey): AlertRow[] {
         kind: "delay",
         title: `${w.orderNo} 延遲`,
         detail: `${w.customerName} · ${w.itemsSummary}`,
-        href: `/orders/${w.id}`,
+        href: `/demo/orders/${w.id}`,
       })
     );
   data.skus
@@ -119,7 +119,7 @@ export function alerts(industry: IndustryKey): AlertRow[] {
         kind: "low_stock",
         title: `${s.name} 低於安全庫存`,
         detail: `現有 ${s.onHand} · 安全 ${s.safetyStock}`,
-        href: `/inventory/${s.id}`,
+        href: `/demo/inventory/${s.id}`,
       })
     );
   data.skus
@@ -135,7 +135,7 @@ export function alerts(industry: IndustryKey): AlertRow[] {
         kind: "expiry",
         title: `${s.name} 即將到期`,
         detail: `庫存 ${s.onHand} · 需優先使用`,
-        href: `/inventory/${s.id}`,
+        href: `/demo/inventory/${s.id}`,
       })
     );
   return out.slice(0, 5);

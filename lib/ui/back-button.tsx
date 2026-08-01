@@ -7,7 +7,7 @@ import { ArrowLeft } from "lucide-react";
 /** 回到上一頁(使用者原本所在位置);無歷史時退回 fallback */
 export function BackButton({
   label = "返回",
-  fallback = "/dashboard",
+  fallback = "/demo/dashboard",
 }: {
   label?: string;
   fallback?: string;

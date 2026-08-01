@@ -35,7 +35,7 @@ export function OrderDetailClient({ id }: { id: string }) {
       <div className="mx-auto max-w-2xl py-16 text-center text-sm text-slate-400">
         查無此{"訂單"}
         <div className="mt-3">
-          <Link href="/orders" className="text-brand-600">
+          <Link href="/demo/orders" className="text-brand-600">
             返回列表
           </Link>
         </div>
@@ -53,7 +53,7 @@ export function OrderDetailClient({ id }: { id: string }) {
 
   return (
     <div className="mx-auto max-w-2xl space-y-4">
-      <BackButton label={cfg.terms.orderNoun} fallback="/orders" />
+      <BackButton label={cfg.terms.orderNoun} fallback="/demo/orders" />
 
       {/* header */}
       <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-card">
@@ -145,7 +145,7 @@ export function OrderDetailClient({ id }: { id: string }) {
       {/* 客戶查詢連結 */}
       {role !== "customer" && (
         <Link
-          href={`/track/${order.orderNo}`}
+          href={`/demo/track/${order.orderNo}`}
           className="block rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-center text-[13px] font-medium text-slate-500 hover:bg-slate-100"
         >
           🔗 客戶自助查詢頁(只看得到進度與交期)

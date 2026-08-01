@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { SessionProvider } from "@/lib/auth/SessionProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,9 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "AI 同事 — 中小企業 AI 營運系統",
-  description:
-    "AI 自動處理有數據的工作並附上建議,人類只負責決策。老闆 5 分鐘處理完全公司決策。",
+  title: "Vito — 個人網站",
+  description: "Vito 的個人網站與作品集。",
 };
 
 export const viewport: Viewport = {
@@ -29,9 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-Hant" className={inter.variable}>
-      <body>
-        <SessionProvider>{children}</SessionProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -40,7 +40,7 @@ export default function InventoryPage() {
           </h1>
         </div>
         <Link
-          href="/inventory/stocktake"
+          href="/demo/inventory/stocktake"
           className="flex items-center gap-1.5 rounded-xl bg-brand-600 px-3 py-2 text-[13px] font-semibold text-white shadow-sm active:scale-95"
         >
           <ClipboardList className="h-4 w-4" /> 盤點

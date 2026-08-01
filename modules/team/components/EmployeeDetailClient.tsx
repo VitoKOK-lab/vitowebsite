@@ -38,7 +38,7 @@ export function EmployeeDetailClient({ id }: { id: string }) {
       <div className="mx-auto max-w-2xl py-16 text-center text-sm text-slate-400">
         查無此員工
         <div className="mt-3">
-          <Link href="/dashboard" className="text-brand-600">
+          <Link href="/demo/dashboard" className="text-brand-600">
             返回總覽
           </Link>
         </div>
@@ -50,7 +50,7 @@ export function EmployeeDetailClient({ id }: { id: string }) {
 
   return (
     <div className="mx-auto max-w-2xl space-y-4">
-      <BackButton label="員工貢獻" fallback="/dashboard" />
+      <BackButton label="員工貢獻" fallback="/demo/dashboard" />
 
       {/* 名片 */}
       <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-card">
@@ -106,7 +106,7 @@ export function EmployeeDetailClient({ id }: { id: string }) {
             {detail.openOrders.map((o) => (
               <Link
                 key={o.id}
-                href={`/orders/${o.id}`}
+                href={`/demo/orders/${o.id}`}
                 className="flex items-center gap-3 rounded-xl bg-slate-50 px-3 py-2.5 transition-colors hover:bg-slate-100"
               >
                 <span

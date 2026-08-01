@@ -21,7 +21,7 @@ export function SkuCard({ sku, role }: { sku: SkuView; role: Role }) {
 
   return (
     <Link
-      href={`/inventory/${sku.id}`}
+      href={`/demo/inventory/${sku.id}`}
       className="block rounded-2xl border border-slate-200 bg-white p-4 shadow-card transition-shadow hover:shadow-pop"
     >
       <div className="flex items-start gap-2">

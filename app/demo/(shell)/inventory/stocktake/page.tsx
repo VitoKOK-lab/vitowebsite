@@ -23,7 +23,7 @@ export default function StocktakePage() {
   return (
     <div className="mx-auto max-w-2xl space-y-4">
       <Link
-        href="/inventory"
+        href="/demo/inventory"
         className="inline-flex items-center gap-1 text-[13px] font-medium text-slate-400 hover:text-slate-600"
       >
         <ArrowLeft className="h-4 w-4" /> 進銷存
