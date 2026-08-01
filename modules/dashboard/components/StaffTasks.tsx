@@ -71,7 +71,7 @@ export function StaffTasks({
             {needHandling.map((o) => (
               <Link
                 key={o.id}
-                href={`/orders/${o.id}`}
+                href={`/demo/orders/${o.id}`}
                 className="flex items-center gap-3 rounded-xl bg-white px-3 py-2.5 shadow-sm ring-1 ring-rose-100 transition-colors hover:bg-rose-50/50"
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600">

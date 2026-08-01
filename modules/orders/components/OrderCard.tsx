@@ -20,7 +20,7 @@ export function OrderCard({
   const showMoney = canSeeGlobalData(role);
   return (
     <Link
-      href={`/orders/${order.id}`}
+      href={`/demo/orders/${order.id}`}
       className="block rounded-2xl border border-slate-200 bg-white p-4 shadow-card transition-shadow hover:shadow-card-hover"
     >
       <div className="flex items-center gap-2">

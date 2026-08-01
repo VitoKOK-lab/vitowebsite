@@ -71,7 +71,7 @@ export default function RadarPage() {
               </div>
               {r.importance === "high" && (
                 <Link
-                  href="/decisions"
+                  href="/demo/decisions"
                   className="flex items-center justify-center gap-1 border-t border-slate-100 bg-brand-50/50 px-4 py-2.5 text-center text-[12px] font-medium text-brand-600 transition-colors hover:bg-brand-50"
                 >
                   ⚡ 已為此則生成決策卡,前往決策佇列處理

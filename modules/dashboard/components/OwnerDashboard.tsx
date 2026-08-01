@@ -75,7 +75,7 @@ export function OwnerDashboard({
           {/* 營收 Hero */}
           <motion.div custom={1} variants={fade} initial="hidden" animate="show">
             <Link
-              href="/orders"
+              href="/demo/orders"
               className="group relative block overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-card transition-shadow hover:shadow-pop"
             >
             <div className="flex items-start justify-between">
@@ -118,7 +118,7 @@ export function OwnerDashboard({
               tone="brand"
               hint={metrics.delayedOrders > 0 ? `${metrics.delayedOrders} 件延遲` : "全部準時"}
               hintTone={metrics.delayedOrders > 0 ? "rose" : "emerald"}
-              href="/orders"
+              href="/demo/orders"
             />
             <Kpi
               custom={3}
@@ -128,14 +128,14 @@ export function OwnerDashboard({
               tone="amber"
               hint="需關注"
               hintTone="amber"
-              href="/inventory"
+              href="/demo/inventory"
             />
           </div>
 
           {/* AI 成長卡 */}
           <motion.div custom={4} variants={fade} initial="hidden" animate="show">
             <Link
-              href="/decisions"
+              href="/demo/decisions"
               className="block overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-700 p-5 text-white shadow-pop"
             >
               <div className="absolute -right-6 -top-8 h-32 w-32 rounded-full bg-white/10" />
@@ -359,7 +359,7 @@ function LeaderItem({ row, rank, maxScore }: { row: LeaderRow; rank: number; max
   const medal = ["🥇", "🥈", "🥉"][rank - 1];
   return (
     <Link
-      href={`/team/${row.id}`}
+      href={`/demo/team/${row.id}`}
       className="flex items-center gap-3 rounded-xl px-1.5 py-2 transition-colors hover:bg-slate-50"
     >
       <span className="w-6 text-center text-[13px] font-bold text-slate-400 tabular-nums">
