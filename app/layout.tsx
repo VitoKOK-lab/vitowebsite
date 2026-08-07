@@ -10,16 +10,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "AI 同事 — 中小企業 AI 營運系統",
+  title: "LUXKEY — 商業策略、產品設計與 AI",
   description:
-    "AI 自動處理有數據的工作並附上建議,人類只負責決策。老闆 5 分鐘處理完全公司決策。",
+    "LUXKEY 專注商業策略、產品設計與 AI 應用，把複雜問題做成能被使用、能產生結果的系統。",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  themeColor: "#ffffff",
+  themeColor: "#151411",
 };
 
 export default function RootLayout({

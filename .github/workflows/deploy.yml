@@ -28,8 +28,8 @@ jobs:
       - name: Build static site
         run: npm run build
         env:
-          # GitHub Pages 專案站台的子路徑
-          BASE_PATH: /vitowebsite
+          # 自訂網域 luxkey.com.tw 從根路徑提供網站
+          BASE_PATH: ""
       - name: Disable Jekyll (保留 _next 目錄)
         run: touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v3

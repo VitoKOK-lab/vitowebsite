@@ -15,13 +15,14 @@
 2. **Build and deployment → Source** 選 **GitHub Actions**
 3. 完成。之後每次 push 會自動部署。
 
-### 你的公開網址
+### 公開網址
 
 ```
-https://vitokok-lab.github.io/vitowebsite/
+https://luxkey.com.tw/
 ```
 
-(第一次 Action 跑完後就會生效;到 repo 的 **Actions** 分頁可看部署進度。)
+GitHub Pages 的 Custom domain 設為 `luxkey.com.tw`，DNS 生效後即可使用。
+使用 GitHub Actions 發布時不需要在輸出目錄建立 `CNAME` 檔。
 
 ## 本機執行
 
