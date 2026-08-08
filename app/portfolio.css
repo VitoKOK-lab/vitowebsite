@@ -256,6 +256,10 @@
 .line-contact:hover, .email-contact:hover { transform: translateY(-2px); border-color: var(--copper); }
 .contact footer { margin-top: 9rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.13); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; color: #77716a; font-size: .6rem; letter-spacing: .12em; }
 .contact footer > a:last-child { justify-self: end; }
+.company-info { display: grid; gap: .45rem; text-align: center; }
+.company-info strong { color: #b8b1a7; font-size: .72rem; letter-spacing: .08em; }
+.company-info address { font-style: normal; line-height: 1.6; }
+.company-info p { margin: .15rem 0 0; }
 
 /* LUXKEY headline system: square, modern Traditional Chinese sans serif. */
 .statement-copy,
@@ -360,7 +364,7 @@
   .line-contact, .email-contact { width: 100%; min-height: 76px; }
   .line-contact { font-size: 1.05rem; }
   .contact footer { margin-top: 6rem; grid-template-columns: 1fr auto; gap: 1.5rem; }
-  .contact footer p { grid-column: 1 / -1; grid-row: 2; }
+  .company-info { grid-column: 1 / -1; grid-row: 2; text-align: left; }
 }
 
 @media (max-width: 390px) {

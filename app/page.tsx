@@ -459,44 +459,10 @@ export default function Home() {
             <span>AI 讓工作主動完成。</span>
             <strong>它讓工作自己完成。</strong>
           </div>
-          <a className="round-link" href="#about" aria-label="繼續往下閱讀">
+          <a className="round-link" href="#work" aria-label="繼續往下閱讀">
             <ArrowDown />
           </a>
         </motion.div>
-      </section>
-
-      <section className="statement section-pad" id="about">
-        <Reveal className="section-label">ABOUT LUXKEY · 關於我們</Reveal>
-        <Reveal delay={0.08} className="about-intro">
-          <p className="statement-copy">
-            <span>LUXKEY 整合商業、產品與 AI。</span>
-            <span>把複雜工作，做成<em>真正好用的 AI 系統。</em></span>
-          </p>
-          <p className="about-lead">
-            我們從企業每天真正面對的問題出發：資料散落、流程靠人盯、決策總是慢一步。從釐清需求、產品規劃、介面設計到 AI 落地，LUXKEY 陪伴團隊把想法做成可以操作、可以驗證，也能持續成長的產品。
-          </p>
-        </Reveal>
-        <Reveal delay={0.16} className="about-details">
-          <article>
-            <span>01 · WHAT I DO</span>
-            <strong>商業問題拆解</strong>
-            <p>先找出最花時間、最容易出錯的環節，再決定 AI 應該從哪裡開始。</p>
-          </article>
-          <article>
-            <span>02 · HOW I BUILD</span>
-            <strong>產品設計與實作</strong>
-            <p>把流程、資料與人的判斷接起來，完成員工能操作、老闆看得懂的系統。</p>
-          </article>
-          <article>
-            <span>03 · WHO I HELP</span>
-            <strong>想提高效率的企業</strong>
-            <p>適合正在成長、工作量增加，希望用 AI 讓團隊更快完成工作的公司。</p>
-          </article>
-        </Reveal>
-        <Reveal delay={0.22} className="statement-meta">
-          <p>商業顧問 · 產品策劃 · AI 實作者</p>
-          <p>BASED IN TAIWAN · WORKING EVERYWHERE</p>
-        </Reveal>
       </section>
 
       <section className="work section-pad" id="work">
@@ -727,6 +693,40 @@ export default function Home() {
         </Reveal>
       </section>
 
+      <section className="statement section-pad" id="about">
+        <Reveal className="section-label">ABOUT LUXKEY · 關於我們</Reveal>
+        <Reveal delay={0.08} className="about-intro">
+          <p className="statement-copy">
+            <span>LUXKEY 整合商業、產品與 AI。</span>
+            <span>把複雜工作，做成<em>真正好用的 AI 系統。</em></span>
+          </p>
+          <p className="about-lead">
+            我們從企業每天真正面對的問題出發：資料散落、流程靠人盯、決策總是慢一步。從釐清需求、產品規劃、介面設計到 AI 落地，LUXKEY 陪伴團隊把想法做成可以操作、可以驗證，也能持續成長的產品。
+          </p>
+        </Reveal>
+        <Reveal delay={0.16} className="about-details">
+          <article>
+            <span>01 · WHAT WE DO</span>
+            <strong>商業問題拆解</strong>
+            <p>先找出最花時間、最容易出錯的環節，再決定 AI 應該從哪裡開始。</p>
+          </article>
+          <article>
+            <span>02 · HOW WE BUILD</span>
+            <strong>產品設計與實作</strong>
+            <p>把流程、資料與人的判斷接起來，完成員工能操作、老闆看得懂的系統。</p>
+          </article>
+          <article>
+            <span>03 · WHO WE HELP</span>
+            <strong>想提高效率的企業</strong>
+            <p>適合正在成長、工作量增加，希望用 AI 讓團隊更快完成工作的公司。</p>
+          </article>
+        </Reveal>
+        <Reveal delay={0.22} className="statement-meta">
+          <p>商業顧問 · 產品策劃 · AI 實作者</p>
+          <p>BASED IN TAIWAN · WORKING EVERYWHERE</p>
+        </Reveal>
+      </section>
+
       <section className="contact section-pad" id="contact">
         <div className="contact-grid">
           <Reveal>
@@ -761,7 +761,11 @@ export default function Home() {
         </div>
         <footer>
           <a className="wordmark" href="#top">LUXKEY<span>.</span></a>
-          <p>© 2026 LUXKEY. ALL RIGHTS RESERVED.</p>
+          <div className="company-info">
+            <strong>金曜石國際股份有限公司</strong>
+            <address>臺北市信義區信義路四段458號6樓</address>
+            <p>© 2026 LUXKEY. ALL RIGHTS RESERVED.</p>
+          </div>
           <a href="#top">BACK TO TOP ↑</a>
         </footer>
       </section>
