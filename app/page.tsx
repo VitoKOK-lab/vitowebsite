@@ -423,7 +423,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12, ease }}
           >
-            讓複雜，<em>開始有秩序。</em>
+            <span>複雜，</span><em>開始有秩序。</em>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -658,7 +658,7 @@ export default function Home() {
       <section className="approach section-pad" id="approach">
         <Reveal className="approach-intro">
           <span className="section-label">TIME × EFFICIENCY</span>
-          <h2>時間，是企業最昂貴的成本。<br /><em>AI 在你看不見的地方，先把工作完成。</em></h2>
+          <h2><span>時間，是企業最昂貴的成本。</span><em>AI 先完成重複工作。</em></h2>
           <p>每天消耗時間的工作，通常藏在找資料、追進度和反覆確認裡。LUXKEY 讓 AI 在背後持續整理、檢查與推進，讓老闆和團隊一打開畫面，就能處理真正重要的事。</p>
         </Reveal>
         <div className="capability-grid">
@@ -691,7 +691,7 @@ export default function Home() {
           <span className="section-label">USER VOICES</span>
           <p>每天少一點雜事，<br />多一點時間做重要的決定。</p>
         </div>
-        <h2 id="feedback-title">他們說，工作開始<br />變得更順了。</h2>
+        <h2 id="feedback-title">工作更順，<span>決策更快。</span></h2>
         <div className="bubble-field">
           {testimonials.map((item, index) => (
             <motion.article
