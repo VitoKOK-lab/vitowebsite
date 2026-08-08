@@ -102,8 +102,20 @@
 .project-card:hover .project-visual img { transform: translateY(-7px) scale(1.012); box-shadow: 0 32px 70px rgba(20,22,26,.17); }
 .phone-stage { position: relative; z-index: 1; width: 100%; min-height: 640px; display: grid; place-items: center; overflow: hidden; background: linear-gradient(145deg, #e9edf0, #f9fafb); }
 .phone-stage::before { content: ""; position: absolute; width: 410px; aspect-ratio: 1; border-radius: 50%; background: rgba(226,64,29,.1); filter: blur(1px); }
-.phone-device { position: relative; width: min(365px, 68%); padding: 9px; border-radius: 42px; background: #101216; box-shadow: 0 35px 80px rgba(16,19,23,.3); transform: rotate(-2deg); transition: transform .5s cubic-bezier(.16,1,.3,1); }
+.employee-desktop { position: absolute; z-index: 1; top: 68px; left: 6%; width: 88%; padding: 8px 8px 0; border-radius: 14px 14px 7px 7px; background: #1b1e23; box-shadow: 0 28px 65px rgba(20,22,26,.26); transition: transform .55s cubic-bezier(.16,1,.3,1), opacity .3s ease; }
+.desktop-toolbar { height: 32px; padding: 0 .65rem; display: flex; align-items: center; justify-content: space-between; color: rgba(255,255,255,.66); font-size: .5rem; font-weight: 700; letter-spacing: .12em; }
+.desktop-toolbar > div { display: flex; gap: 5px; }
+.desktop-toolbar i { width: 7px; height: 7px; display: block; border-radius: 50%; background: #59606a; }
+.desktop-toolbar i:first-child { background: #e2401d; }
+.desktop-toolbar i:nth-child(2) { background: #d7a63d; }
+.desktop-toolbar i:nth-child(3) { background: #54a675; }
+.desktop-toolbar b { padding: .25rem .42rem; border-radius: 99px; background: rgba(117,217,214,.14); color: #75d9d6; font-size: .45rem; }
+.employee-desktop > img { width: 100%; height: auto; display: block; border: 0; box-shadow: none; }
+.project-card:hover .employee-desktop > img { transform: none; box-shadow: none; }
+.desktop-base { position: absolute; left: 50%; bottom: -19px; width: 30%; height: 19px; transform: translateX(-50%); background: linear-gradient(180deg, #3b4048, #171a1e); clip-path: polygon(35% 0, 65% 0, 75% 76%, 100% 76%, 100% 100%, 0 100%, 0 76%, 25% 76%); }
+.phone-device { position: relative; z-index: 2; width: min(365px, 68%); padding: 9px; border-radius: 42px; background: #101216; box-shadow: 0 35px 80px rgba(16,19,23,.36); transform: rotate(-2deg); transition: transform .5s cubic-bezier(.16,1,.3,1); }
 .project-card:hover .phone-device { transform: rotate(0) translateY(-7px); }
+.project-card:hover .employee-desktop { transform: translateY(-4px) scale(1.012); }
 .phone-hardware { position: absolute; z-index: 4; top: 16px; left: 50%; width: 92px; height: 25px; transform: translateX(-50%); border-radius: 99px; background: #101216; }
 .phone-hardware span { position: absolute; top: 8px; right: 18px; width: 7px; height: 7px; border-radius: 50%; background: #262c34; }
 .phone-screen { min-height: 610px; padding: 2.9rem 1.15rem 1.05rem; display: flex; flex-direction: column; border-radius: 34px; overflow: hidden; background: #fff; color: #171a1e; }
@@ -249,6 +261,9 @@
   .project-card:nth-child(even) .project-content, .project-content { border: 0; border-top: 1px solid #dfe3e7; padding: 2.3rem 1.4rem 3rem; }
   .project-visual { min-height: 300px; padding: 1.35rem; }
   .phone-stage { min-height: 670px; padding: 2rem .5rem; }
+  .employee-desktop { top: 48px; left: -18%; width: 136%; opacity: .88; }
+  .desktop-toolbar { padding: 0 .5rem; }
+  .desktop-toolbar span { font-size: .45rem; }
   .phone-device { width: min(360px, 88%); transform: none; }
   .phone-screen { min-height: 620px; }
   .phone-stage-timeline .phone-device, .phone-stage-production .phone-device { transform: none; }

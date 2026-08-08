@@ -552,6 +552,19 @@ export default function Home() {
                 <div className="project-visual">
                   {selectedProject.aiInsight ? (
                     <div className={`phone-stage phone-stage-${selectedProject.aiVariant}`}>
+                      <div className="employee-desktop">
+                        <div className="desktop-toolbar">
+                          <div aria-hidden="true"><i /><i /><i /></div>
+                          <span>員工操作端 · DESKTOP</span>
+                          <b>LIVE</b>
+                        </div>
+                        <img
+                          src={selectedProject.image}
+                          alt={`${selectedProject.title}員工操作儀表板`}
+                          loading="lazy"
+                        />
+                        <div className="desktop-base" aria-hidden="true" />
+                      </div>
                       <div className="phone-device">
                         <div className="phone-hardware" aria-hidden="true"><span /></div>
                         <div className="phone-screen">
