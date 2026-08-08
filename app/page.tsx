@@ -466,13 +466,33 @@ export default function Home() {
       </section>
 
       <section className="statement section-pad" id="about">
-        <Reveal className="section-label">ABOUT VITO</Reveal>
-        <Reveal delay={0.08}>
+        <Reveal className="section-label">ABOUT VITO · 關於我</Reveal>
+        <Reveal delay={0.08} className="about-intro">
           <p className="statement-copy">
-            技術服務真正的目的：<em>看懂問題的本質</em>，把人、流程與商業目標放回同一張圖上。
+            我是 Vito，LUXKEY 的創辦人。<br />我把複雜的工作，做成<em>團隊真正用得起來的 AI 系統</em>。
+          </p>
+          <p className="about-lead">
+            我從老闆每天真正面對的問題出發：資料散落、流程靠人盯、決策總是慢一步。從釐清需求、產品規劃、介面設計到 AI 落地，由我陪你把想法做成可以操作、可以驗證，也能持續成長的產品。
           </p>
         </Reveal>
-        <Reveal delay={0.16} className="statement-meta">
+        <Reveal delay={0.16} className="about-details">
+          <article>
+            <span>01 · WHAT I DO</span>
+            <strong>商業問題拆解</strong>
+            <p>先找出最花時間、最容易出錯的環節，再決定 AI 應該從哪裡開始。</p>
+          </article>
+          <article>
+            <span>02 · HOW I BUILD</span>
+            <strong>產品設計與實作</strong>
+            <p>把流程、資料與人的判斷接起來，完成員工能操作、老闆看得懂的系統。</p>
+          </article>
+          <article>
+            <span>03 · WHO I HELP</span>
+            <strong>想提高效率的企業</strong>
+            <p>適合正在成長、工作量增加，希望用 AI 讓團隊更快完成工作的公司。</p>
+          </article>
+        </Reveal>
+        <Reveal delay={0.22} className="statement-meta">
           <p>商業顧問 · 產品策劃 · AI 實作者</p>
           <p>BASED IN TAIWAN · WORKING EVERYWHERE</p>
         </Reveal>
@@ -711,8 +731,27 @@ export default function Home() {
           </Reveal>
           <Reveal delay={0.1} className="contact-side">
             <p>把目前最花時間、最容易出錯，或最需要你親自盯著的事情告訴我。我會先幫你拆解問題，再提出可以真正執行的 AI 方案。</p>
-            <div className="contact-action">
-              告訴我你想解決的問題 <ArrowUpRight />
+            <div className="contact-methods">
+              <a
+                className="line-contact"
+                href="https://lin.ee/6M3pM1o"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="加入 LUXKEY LINE 好友"
+              >
+                <span>LINE 直接聊聊</span>
+                <img
+                  src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"
+                  alt="加入好友"
+                  width="116"
+                  height="36"
+                />
+              </a>
+              <a className="email-contact" href="mailto:luxkey.tw@gmail.com">
+                <span>EMAIL</span>
+                <strong>luxkey.tw@gmail.com</strong>
+                <ArrowUpRight />
+              </a>
             </div>
           </Reveal>
         </div>
