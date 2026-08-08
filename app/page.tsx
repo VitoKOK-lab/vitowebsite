@@ -378,7 +378,7 @@ export default function Home() {
           <a href="#about">關於 LUXKEY</a>
         </nav>
         <a className="nav-cta" href="#contact">
-          開始一段對話 <ArrowUpRight size={16} />
+          開始解決你的問題 <ArrowUpRight size={16} />
         </a>
         <button
           className="menu-button"
@@ -402,7 +402,7 @@ export default function Home() {
               <a href="#work" onClick={closeMenu}>精選作品</a>
               <a href="#approach" onClick={closeMenu}>工作方法</a>
               <a href="#about" onClick={closeMenu}>關於 LUXKEY</a>
-              <a href="#contact" onClick={closeMenu}>開始一段對話</a>
+              <a href="#contact" onClick={closeMenu}>開始解決你的問題</a>
             </motion.nav>
           )}
         </AnimatePresence>
