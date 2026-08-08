@@ -469,7 +469,8 @@ export default function Home() {
         <Reveal className="section-label">ABOUT LUXKEY · 關於我們</Reveal>
         <Reveal delay={0.08} className="about-intro">
           <p className="statement-copy">
-            LUXKEY 專注於商業、產品與 AI 的整合。<br />我們把複雜的工作，做成<em>團隊真正用得起來的 AI 系統</em>。
+            <span>LUXKEY 整合商業、產品與 AI。</span>
+            <span>把複雜工作，做成<em>真正好用的 AI 系統。</em></span>
           </p>
           <p className="about-lead">
             我們從企業每天真正面對的問題出發：資料散落、流程靠人盯、決策總是慢一步。從釐清需求、產品規劃、介面設計到 AI 落地，LUXKEY 陪伴團隊把想法做成可以操作、可以驗證，也能持續成長的產品。
@@ -719,7 +720,10 @@ export default function Home() {
 
       <section className="principle">
         <Reveal>
-          <p>“ 好的 AI 主動完成工作，<br />讓人把時間留給真正重要的判斷。 ”</p>
+          <p>
+            <span>好的 AI，主動完成工作。</span>
+            <span>把時間留給重要判斷。</span>
+          </p>
         </Reveal>
       </section>
 

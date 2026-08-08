@@ -68,6 +68,7 @@
 
 .statement { display: grid; grid-template-columns: 1fr 3fr; gap: 3rem; background: #fbf7f1; }
 .statement-copy { max-width: 980px; margin: 0; font-family: Georgia, "Noto Serif TC", serif; font-size: clamp(2.2rem, 4.5vw, 5.2rem); line-height: 1.22; letter-spacing: -.04em; }
+.statement-copy > span { display: block; }
 .statement-copy em { color: var(--copper); font-weight: 400; }
 .about-intro { display: grid; gap: 2rem; }
 .about-lead { max-width: 720px; margin: 0; color: #656b73; font-size: 1rem; line-height: 1.95; }
@@ -234,6 +235,7 @@
 .chat-bubble footer { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: .45rem .8rem; align-items: center; }
 .chat-bubble footer strong { font-size: .72rem; }
 .chat-bubble footer span { color: #8b9199; font-size: .62rem; }
+.principle p > span { display: block; }
 @keyframes bubble-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
 .principle { min-height: 72vh; display: grid; place-items: center; padding: 8rem 1.5rem; text-align: center; background: var(--copper); color: #f4eae2; }
@@ -299,7 +301,9 @@
   .about-details article, .about-details article + article { min-height: 0; padding: 1.35rem 0; border-right: 0; border-bottom: 1px solid #e1e5ea; }
   .about-details article:last-child { border-bottom: 0; }
   .about-details strong { margin-top: 1.5rem; font-size: 1.4rem; }
-  .statement-copy { font-size: clamp(2.1rem, 10.8vw, 3.35rem); line-height: 1.2; }
+  .statement-copy { max-width: 22ch; font-size: clamp(1.85rem, 8.1vw, 2.45rem); line-height: 1.28; letter-spacing: -.035em; }
+  .statement-copy > span + span { margin-top: .55em; }
+  .statement-copy em { display: inline; }
   .statement-meta { grid-column: 1; margin-top: 1rem; flex-direction: column; gap: .5rem; }
   .section-heading { margin-bottom: 2.5rem; }
   .section-heading h2, .approach h2, .contact h2 { font-size: clamp(2.25rem, 9.4vw, 3.35rem); line-height: 1.14; }
@@ -343,14 +347,16 @@
   .feedback-head { flex-direction: column; gap: 1.15rem; }
   .feedback > h2 { margin: 1.6rem 0 2.5rem; font-size: clamp(2.25rem, 9.4vw, 3.35rem); }
   .bubble-field { min-height: 0; display: flex; flex-direction: column; gap: 1.5rem; }
+  .bubble-field { padding-bottom: 1.5rem; }
   .feedback-bubble { width: 100%; }
   .feedback-bubble:nth-child(even) { flex-direction: row; }
   .bubble-2, .bubble-4 { padding-top: 0; }
   .avatar-crop { flex-basis: 52px; width: 52px; height: 52px; }
   .chat-bubble { min-height: 0; padding: 1.15rem; border-radius: 20px 20px 20px 6px; }
   .chat-bubble > p { font-size: 1.05rem; line-height: 1.6; }
-  .principle { min-height: 58vh; padding: 6rem 1.2rem; }
-  .principle p { font-size: clamp(2rem, 10vw, 3.2rem); }
+  .principle { min-height: 0; padding: 5rem 1.2rem; }
+  .principle p { max-width: 18ch; font-size: clamp(1.9rem, 8.3vw, 2.55rem); line-height: 1.35; letter-spacing: -.035em; text-align: left; }
+  .principle p > span + span { margin-top: .45em; }
   .line-contact, .email-contact { width: 100%; min-height: 76px; }
   .line-contact { font-size: 1.05rem; }
   .contact footer { margin-top: 6rem; grid-template-columns: 1fr auto; gap: 1.5rem; }
