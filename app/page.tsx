@@ -62,24 +62,30 @@ const projects = [
     image: "/media/demo-decisions.png",
     tone: "copper",
     aiInsight: "今天只需要你決定 3 件事",
-    aiReason: "其餘 47 項例行工作，AI 已經處理完成。",
+    aiReason: "AI 已整理訂單、庫存與客服訊息，並依影響程度排好順序。",
     aiAction: "先處理主力電芯供應風險",
     aiMetric: "省下 1.5 小時",
+    aiTime: "今天 08:30",
+    aiVariant: "brief",
+    aiDetails: ["供應商交期增加 4 天", "現有庫存可支撐 12 天", "本週共有 3 件事需要確認"],
   },
   {
     no: "05",
     eyebrow: "DECISION INTELLIGENCE",
     title: "決策儀表板",
     description:
-      "不堆疊更多報表。AI 先找出異常、提出判斷，再把最後一哩留給人。",
+      "AI 主動找出異常、提出判斷，再把關鍵決定交到你手上。",
     stat: "47 項例行工作自動完成",
     href: "/dashboard",
     image: "/media/demo-dashboard.png",
     tone: "sand",
-    aiInsight: "本週營收成長 10%，但交期風險升高",
-    aiReason: "AI 發現 2 張高價值工單可能延遲。",
+    aiInsight: "本週營收成長 10%，現在優先守住交期",
+    aiReason: "AI 比對產能與工單進度，找到 2 張需要提前安排的高價值訂單。",
     aiAction: "優先調整第二產線排程",
     aiMetric: "準時率 +8%",
+    aiTime: "週一 09:12",
+    aiVariant: "timeline",
+    aiDetails: ["本週營收 NT$428 萬", "第二產線週三可釋出 6 小時", "兩張訂單合計 NT$86 萬"],
   },
   {
     no: "06",
@@ -91,16 +97,19 @@ const projects = [
     href: "/quote",
     image: "/media/demo-quote.png",
     tone: "ink",
-    aiInsight: "這張報價毛利低於安全線",
-    aiReason: "依歷史成交與成本波動，25% 是較安全區間。",
+    aiInsight: "把這張報價調到 25% 毛利，成交更健康",
+    aiReason: "AI 綜合近 18 筆成交紀錄、材料成本與客戶價格接受度完成試算。",
     aiAction: "建議售價調整為 NT$1,860,000",
     aiMetric: "毛利 25%",
+    aiTime: "報價前 3 分鐘",
+    aiVariant: "quote",
+    aiDetails: ["材料成本本月增加 6.2%", "相似案件成交區間 24–28%", "客戶預算仍有 8% 空間"],
   },
   {
     no: "07",
     eyebrow: "ORDER OPERATIONS",
     title: "訂單與工單中樞",
-    description: "把每張訂單的交期、站點與負責人集中管理，讓團隊不用再靠訊息追進度。",
+    description: "把每張訂單的交期、站點與負責人集中管理，團隊打開畫面就能掌握進度。",
     stat: "所有工單進度一眼掌握",
     href: "/orders",
     image: "/media/demo-orders.png",
@@ -109,6 +118,9 @@ const projects = [
     aiReason: "CNC 工序負載已超過本週可用產能。",
     aiAction: "改派第二產線",
     aiMetric: "追回 2 天",
+    aiTime: "今天 10:45",
+    aiVariant: "production",
+    aiDetails: ["原交期 8/16", "第二產線 14:00 可開工", "陳組長目前可接手"],
   },
   {
     no: "08",
@@ -123,6 +135,9 @@ const projects = [
     aiReason: "目前銷售速度比近 30 日平均快 18%。",
     aiAction: "今天補貨 120 組",
     aiMetric: "避免停線 6 小時",
+    aiTime: "今天 11:20",
+    aiVariant: "inventory",
+    aiDetails: ["現有庫存 84 組", "每日平均使用 9.3 組", "供應商交期 7 天"],
   },
   {
     no: "09",
@@ -133,17 +148,20 @@ const projects = [
     href: "/inventory/stocktake",
     image: "/media/demo-stocktake.png",
     tone: "ink",
-    aiInsight: "差異不是遺失，可能是未入帳領料",
-    aiReason: "3 筆領料紀錄與現場數量高度吻合。",
+    aiInsight: "3 筆領料紀錄可以解釋這次盤點差異",
+    aiReason: "AI 已把現場數量、領料時間與工單用量逐筆配對。",
     aiAction: "核對 3 筆領料單",
     aiMetric: "差異縮小 82%",
+    aiTime: "盤點後 8 秒",
+    aiVariant: "scan",
+    aiDetails: ["A 區差異 12 件", "工單 018 領用 8 件", "工單 021 領用 2 件"],
   },
   {
     no: "10",
     eyebrow: "CUSTOMER SERVICE",
     title: "AI 客服工作台",
     description: "整合客戶訊息、訂單資訊與情緒判斷，常見問題自動處理，重要客訴即時轉交。",
-    stat: "24 小時不漏接客戶需求",
+    stat: "24 小時完整接住客戶需求",
     href: "/cs",
     image: "/media/demo-cs.png",
     tone: "copper",
@@ -151,6 +169,9 @@ const projects = [
     aiReason: "連續兩次詢問交期，情緒已轉為負面。",
     aiAction: "轉真人並提供補償方案",
     aiMetric: "挽回機率 76%",
+    aiTime: "剛剛 14:36",
+    aiVariant: "chat",
+    aiDetails: ["客戶今天第 2 次詢問", "訂單預計延後 1 天", "過去 12 個月消費 NT$32 萬"],
   },
   {
     no: "11",
@@ -165,6 +186,9 @@ const projects = [
     aiReason: "3 個主要供應市場同時出現短缺訊號。",
     aiAction: "提前鎖定下一批原料",
     aiMetric: "預估節省 12%",
+    aiTime: "今天 07:50 更新",
+    aiVariant: "radar",
+    aiDetails: ["越南出口量減少 14%", "同業詢價量增加 22%", "目前價格仍在採購區間"],
   },
   {
     no: "12",
@@ -179,6 +203,9 @@ const projects = [
     aiReason: "搜尋成長、毛利與退貨風險都落在安全區。",
     aiAction: "先上架 50 件測市場",
     aiMetric: "成功機率 81%",
+    aiTime: "趨勢更新 16:10",
+    aiVariant: "product",
+    aiDetails: ["近 30 日搜尋量 +38%", "預估毛利 41%", "同類商品退貨率 3.8%"],
   },
   {
     no: "13",
@@ -193,12 +220,15 @@ const projects = [
     aiReason: "本月 85% 建議被採納，準確度持續提升。",
     aiAction: "套用至所有補貨決策",
     aiMetric: "採納率 85%",
+    aiTime: "每週五 17:00 學習",
+    aiVariant: "learning",
+    aiDetails: ["偏好安全庫存 14 天", "高毛利商品優先補貨", "急單交由第二供應商"],
   },
   {
     no: "14",
     eyebrow: "CUSTOMER EXPERIENCE",
     title: "客戶訂單追蹤",
-    description: "客戶不用再反覆詢問，透過專屬頁面即時查看訂單進度、預計完成時間與狀態。",
+    description: "客戶透過專屬頁面即時查看訂單進度、預計完成時間與最新狀態。",
     stat: "降低重複詢問，提升交付透明度",
     href: "/track/WO-2607-001",
     image: "/media/demo-tracking.png",
@@ -207,6 +237,9 @@ const projects = [
     aiReason: "訂單進度、延遲原因與新交期已自動整理。",
     aiAction: "發送最新進度",
     aiMetric: "詢問量 -63%",
+    aiTime: "預計今天 18:00 發送",
+    aiVariant: "tracking",
+    aiDetails: ["工單已完成 72%", "包裝預計明天上午完成", "最新到貨日 8/18"],
   },
 ];
 
@@ -233,28 +266,52 @@ const capabilities = [
 
 const testimonials = [
   {
-    quote: "以前每天都在問進度，現在早上打開系統，就知道今天真正要決定什麼。",
-    role: "製造業負責人",
+    quote: "我早上喝咖啡的時間看一下，就知道今天先處理哪三件事，腦袋輕鬆很多。",
+    role: "阿誠｜工廠老闆",
     context: "製造業 · AI 營運決策",
     number: "01",
   },
   {
-    quote: "它沒有丟給我更多報表，而是直接告訴我哪裡有問題、下一步可以怎麼做。",
-    role: "零售品牌營運主管",
+    quote: "它會直接圈出今天要補的貨，我確認一下就能送單，真的快很多。",
+    role: "小雯｜品牌營運",
     context: "零售業 · 老闆營運管理",
     number: "02",
   },
   {
-    quote: "最有感的不是 AI 會回答，而是它真的記得流程，還能把事情一路追到完成。",
-    role: "電商團隊經理",
+    quote: "最有感的是它會一直幫我追進度，我忙完回來，事情已經走到下一步了。",
+    role: "David｜電商團隊",
     context: "電商業 · AI 工作流程",
     number: "03",
   },
   {
-    quote: "原本只有資深同事會做的判斷，現在新人也能照著建議快速完成。",
-    role: "中小企業營運者",
+    quote: "新人照著建議就能報價，我現在只要看最後的毛利，放心很多。",
+    role: "雅婷｜貿易公司",
     context: "中小企業 · 智慧報價",
     number: "04",
+  },
+  {
+    quote: "客人一急，它會先提醒我。我可以在情緒變糟前打電話處理，差很多。",
+    role: "怡君｜客服主管",
+    context: "服務業 · AI 客服",
+    number: "05",
+  },
+  {
+    quote: "盤點完馬上就看到差在哪，我們那天提早一個多小時收工。",
+    role: "俊宏｜倉庫主任",
+    context: "物流業 · AI 盤點",
+    number: "06",
+  },
+  {
+    quote: "以前選新品都靠感覺，現在先看 AI 幫我整理的三個數字，再決定要進多少。",
+    role: "美玲｜選物店主",
+    context: "零售業 · AI 選品",
+    number: "07",
+  },
+  {
+    quote: "客人自己就看得到做到哪裡，LINE 少了一大半，我終於可以專心做現場。",
+    role: "國偉｜工程負責人",
+    context: "工程業 · 訂單追蹤",
+    number: "08",
   },
 ];
 
@@ -375,7 +432,7 @@ export default function Home() {
             <span>TAIWAN · 2026</span>
           </div>
           <div className="film-caption">
-            <span>AI 不增加更多工作。</span>
+            <span>AI 讓工作主動完成。</span>
             <strong>它讓工作自己完成。</strong>
           </div>
           <a className="round-link" href="#about" aria-label="繼續往下閱讀">
@@ -388,7 +445,7 @@ export default function Home() {
         <Reveal className="section-label">ABOUT VITO</Reveal>
         <Reveal delay={0.08}>
           <p className="statement-copy">
-            技術從來不是目的。真正重要的是，<em>看懂問題的本質</em>，把人、流程與商業目標放回同一張圖上。
+            技術服務真正的目的：<em>看懂問題的本質</em>，把人、流程與商業目標放回同一張圖上。
           </p>
         </Reveal>
         <Reveal delay={0.16} className="statement-meta">
@@ -401,7 +458,7 @@ export default function Home() {
         <div className="section-heading">
           <Reveal>
             <span className="section-label">SELECTED WORK</span>
-            <h2>作品不是展示，<br />是解題的證明。</h2>
+            <h2>每一個作品，<br />都是解題的證明。</h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p>每一個專案都從一個真實的商業問題開始，最後成為一個能被操作、驗證與持續迭代的系統。</p>
@@ -419,25 +476,46 @@ export default function Home() {
               >
                 <div className="project-visual">
                   {project.aiInsight ? (
-                    <div className="ai-cover">
-                      <div className="ai-cover-status">
-                        <span className="ai-signal"><Sparkles size={16} /></span>
-                        <strong>AI 已完成分析</strong>
-                        <em>即時</em>
-                      </div>
-                      <div className="ai-cover-body">
-                        <small>AI 發現</small>
-                        <h4>{project.aiInsight}</h4>
-                        <p>{project.aiReason}</p>
-                      </div>
-                      <div className="ai-cover-action">
-                        <div>
-                          <small>建議你現在</small>
-                          <strong>{project.aiAction}</strong>
-                        </div>
-                        <div className="ai-cover-metric">
-                          <b>{project.aiMetric}</b>
-                          <span>預期影響</span>
+                    <div className={`phone-stage phone-stage-${project.aiVariant}`}>
+                      <div className="phone-device">
+                        <div className="phone-hardware" aria-hidden="true"><span /></div>
+                        <div className="phone-screen">
+                          <div className="phone-appbar">
+                            <div>
+                              <small>LUXKEY AI</small>
+                              <strong>{project.title}</strong>
+                            </div>
+                            <span className="phone-avatar">LK</span>
+                          </div>
+                          <div className="ai-cover-status">
+                            <span className="ai-signal"><Sparkles size={15} /></span>
+                            <strong>AI 已完成分析</strong>
+                            <time>{project.aiTime}</time>
+                          </div>
+                          <div className="ai-cover-body">
+                            <small>AI 發現</small>
+                            <h4>{project.aiInsight}</h4>
+                            <p>{project.aiReason}</p>
+                          </div>
+                          <div className="ai-evidence">
+                            {project.aiDetails.map((detail, detailIndex) => (
+                              <div key={detail}>
+                                <span>0{detailIndex + 1}</span>
+                                <p>{detail}</p>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="ai-cover-action">
+                            <div>
+                              <small>建議下一步</small>
+                              <strong>{project.aiAction}</strong>
+                            </div>
+                            <div className="ai-cover-metric">
+                              <b>{project.aiMetric}</b>
+                              <span>預期影響</span>
+                            </div>
+                          </div>
+                          <div className="phone-action">確認並執行 <ArrowUpRight size={17} /></div>
                         </div>
                       </div>
                     </div>
@@ -496,9 +574,9 @@ export default function Home() {
       >
         <div className="feedback-head">
           <span className="section-label">USER VOICES</span>
-          <p>不是功能比較多，<br />而是每天少做一點沒必要的事。</p>
+          <p>每天少一點雜事，<br />多一點時間做重要的決定。</p>
         </div>
-        <h2 id="feedback-title">他們說，工作開始<br />變得不一樣。</h2>
+        <h2 id="feedback-title">他們說，工作開始<br />變得更順了。</h2>
         <div className="bubble-field">
           {testimonials.map((item, index) => (
             <motion.article
@@ -509,8 +587,8 @@ export default function Home() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: .65, delay: index * .13, ease }}
             >
-              <div className={`avatar-crop avatar-${index + 1}`} aria-hidden="true">
-                <img src="/media/feedback-avatars.png" alt="" />
+              <div className={`avatar-crop avatar-${index + 1}`}>
+                <img src="/media/feedback-avatars-v2.png" alt={`${item.role}的生活照`} />
               </div>
               <div className="chat-bubble">
                 <p>{item.quote}</p>
@@ -526,7 +604,7 @@ export default function Home() {
 
       <section className="principle">
         <Reveal>
-          <p>“ 好的 AI 不是取代人，<br />而是讓人把時間留給真正重要的判斷。 ”</p>
+          <p>“ 好的 AI 主動完成工作，<br />讓人把時間留給真正重要的判斷。 ”</p>
         </Reveal>
       </section>
 
@@ -534,12 +612,12 @@ export default function Home() {
         <div className="contact-grid">
           <Reveal>
             <span className="section-label">LET&apos;S BUILD SOMETHING USEFUL</span>
-            <h2>有一個值得<br />被解決的問題？</h2>
+            <h2>現在，最想解決<br />哪一個問題？</h2>
           </Reveal>
           <Reveal delay={0.1} className="contact-side">
-            <p>不需要先整理成完整需求。告訴我現在最卡、最花時間，或一直需要你親自處理的那件事。</p>
+            <p>把目前最花時間、最容易出錯，或最需要你親自盯著的事情告訴我。我會先幫你拆解問題，再提出可以真正執行的 AI 方案。</p>
             <a href="https://luxkey.com.tw/#contact" target="_blank" rel="noreferrer">
-              和我談談 <ArrowUpRight />
+              告訴我你想解決的問題 <ArrowUpRight />
             </a>
           </Reveal>
         </div>
