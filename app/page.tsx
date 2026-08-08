@@ -243,6 +243,13 @@ const projects = [
   },
 ];
 
+const projectCategories = [
+  { id: "featured", label: "精選案例", projects: ["01", "02", "03"] },
+  { id: "operations", label: "AI 營運決策", projects: ["04", "05", "07", "13", "14"] },
+  { id: "commerce", label: "銷售與庫存", projects: ["06", "08", "09", "12"] },
+  { id: "growth", label: "客戶與市場", projects: ["10", "11"] },
+];
+
 const capabilities = [
   {
     icon: BrainCircuit,
@@ -332,6 +339,18 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(projectCategories[0].id);
+  const [activeProject, setActiveProject] = useState(projectCategories[0].projects[0]);
+
+  const selectedCategory = projectCategories.find((category) => category.id === activeCategory) ?? projectCategories[0];
+  const visibleProjects = projects.filter((project) => selectedCategory.projects.includes(project.no));
+  const selectedProject = projects.find((project) => project.no === activeProject) ?? visibleProjects[0];
+
+  const chooseCategory = (categoryId: string) => {
+    const category = projectCategories.find((item) => item.id === categoryId) ?? projectCategories[0];
+    setActiveCategory(category.id);
+    setActiveProject(category.projects[0]);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -465,40 +484,96 @@ export default function Home() {
           </Reveal>
         </div>
 
-        <div className="project-list">
-          {projects.map((project, index) => (
-            <Reveal key={project.no} delay={index * 0.06}>
+        <div className="portfolio-browser">
+          <div className="portfolio-menu" aria-label="作品選單">
+            <div className="category-tabs" role="tablist" aria-label="作品分類">
+              {projectCategories.map((category) => (
+                <button
+                  key={category.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeCategory === category.id}
+                  className={activeCategory === category.id ? "is-active" : ""}
+                  onClick={() => chooseCategory(category.id)}
+                >
+                  {category.label}
+                  <span>{String(category.projects.length).padStart(2, "0")}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="portfolio-selects">
+              <label>
+                <span>選擇類別</span>
+                <select value={activeCategory} onChange={(event) => chooseCategory(event.target.value)}>
+                  {projectCategories.map((category) => <option key={category.id} value={category.id}>{category.label}</option>)}
+                </select>
+              </label>
+              <label>
+                <span>選擇作品</span>
+                <select value={activeProject} onChange={(event) => setActiveProject(event.target.value)}>
+                  {visibleProjects.map((project) => <option key={project.no} value={project.no}>{project.no} · {project.title}</option>)}
+                </select>
+              </label>
+            </div>
+
+            <div className="project-options" role="tablist" aria-label={`${selectedCategory.label}作品`}>
+              {visibleProjects.map((project) => (
+                <button
+                  key={project.no}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeProject === project.no}
+                  className={activeProject === project.no ? "is-active" : ""}
+                  onClick={() => setActiveProject(project.no)}
+                >
+                  <span>{project.no}</span>
+                  <strong>{project.title}</strong>
+                  <ArrowUpRight size={17} />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedProject.no}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: .28, ease }}
+            >
               <Link
-                className={`project-card ${project.tone}`}
-                href={project.href}
-                target={project.external ? "_blank" : undefined}
-                rel={project.external ? "noreferrer" : undefined}
+                className={`project-card ${selectedProject.tone}`}
+                href={selectedProject.href}
+                target={selectedProject.external ? "_blank" : undefined}
+                rel={selectedProject.external ? "noreferrer" : undefined}
               >
                 <div className="project-visual">
-                  {project.aiInsight ? (
-                    <div className={`phone-stage phone-stage-${project.aiVariant}`}>
+                  {selectedProject.aiInsight ? (
+                    <div className={`phone-stage phone-stage-${selectedProject.aiVariant}`}>
                       <div className="phone-device">
                         <div className="phone-hardware" aria-hidden="true"><span /></div>
                         <div className="phone-screen">
                           <div className="phone-appbar">
                             <div>
                               <small>LUXKEY AI</small>
-                              <strong>{project.title}</strong>
+                              <strong>{selectedProject.title}</strong>
                             </div>
                             <span className="phone-avatar">LK</span>
                           </div>
                           <div className="ai-cover-status">
                             <span className="ai-signal"><Sparkles size={15} /></span>
                             <strong>AI 已完成分析</strong>
-                            <time>{project.aiTime}</time>
+                            <time>{selectedProject.aiTime}</time>
                           </div>
                           <div className="ai-cover-body">
                             <small>AI 發現</small>
-                            <h4>{project.aiInsight}</h4>
-                            <p>{project.aiReason}</p>
+                            <h4>{selectedProject.aiInsight}</h4>
+                            <p>{selectedProject.aiReason}</p>
                           </div>
                           <div className="ai-evidence">
-                            {project.aiDetails.map((detail, detailIndex) => (
+                            {selectedProject.aiDetails.map((detail, detailIndex) => (
                               <div key={detail}>
                                 <span>0{detailIndex + 1}</span>
                                 <p>{detail}</p>
@@ -508,10 +583,10 @@ export default function Home() {
                           <div className="ai-cover-action">
                             <div>
                               <small>建議下一步</small>
-                              <strong>{project.aiAction}</strong>
+                              <strong>{selectedProject.aiAction}</strong>
                             </div>
                             <div className="ai-cover-metric">
-                              <b>{project.aiMetric}</b>
+                              <b>{selectedProject.aiMetric}</b>
                               <span>預期影響</span>
                             </div>
                           </div>
@@ -520,28 +595,28 @@ export default function Home() {
                       </div>
                     </div>
                   ) : (
-                    <img src={project.image} alt={`${project.title} Demo 系統畫面`} />
+                    <img src={selectedProject.image} alt={`${selectedProject.title} Demo 系統畫面`} />
                   )}
-                  <span className="demo-badge">{project.badge ?? (project.external ? "LIVE SITE" : "LIVE DEMO")}</span>
+                  <span className="demo-badge">{selectedProject.badge ?? (selectedProject.external ? "LIVE SITE" : "LIVE DEMO")}</span>
                 </div>
                 <div className="project-content">
                   <div className="project-meta">
-                    <span>{project.no}</span>
-                    <span>{project.eyebrow}</span>
+                    <span>{selectedProject.no}</span>
+                    <span>{selectedProject.eyebrow}</span>
                   </div>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
+                  <h3>{selectedProject.title}</h3>
+                  <p>{selectedProject.description}</p>
                   <div className="project-result">
                     <small>DESIGNED OUTCOME</small>
-                    <strong>{project.stat}</strong>
+                    <strong>{selectedProject.stat}</strong>
                   </div>
                   <div className="project-link">
-                    {project.cta ?? (project.external ? "前往正式網站" : "操作完整 Demo")} <ArrowUpRight size={18} />
+                    {selectedProject.cta ?? (selectedProject.external ? "前往正式網站" : "操作完整 Demo")} <ArrowUpRight size={18} />
                   </div>
                 </div>
               </Link>
-            </Reveal>
-          ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 
