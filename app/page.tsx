@@ -375,7 +375,7 @@ export default function Home() {
         <nav className="desktop-nav" aria-label="主要導覽">
           <a href="#work">精選作品</a>
           <a href="#approach">工作方法</a>
-          <a href="#about">關於我</a>
+          <a href="#about">關於 LUXKEY</a>
         </nav>
         <a className="nav-cta" href="#contact">
           開始一段對話 <ArrowUpRight size={16} />
@@ -401,7 +401,7 @@ export default function Home() {
             >
               <a href="#work" onClick={closeMenu}>精選作品</a>
               <a href="#approach" onClick={closeMenu}>工作方法</a>
-              <a href="#about" onClick={closeMenu}>關於我</a>
+              <a href="#about" onClick={closeMenu}>關於 LUXKEY</a>
               <a href="#contact" onClick={closeMenu}>開始一段對話</a>
             </motion.nav>
           )}
@@ -466,13 +466,13 @@ export default function Home() {
       </section>
 
       <section className="statement section-pad" id="about">
-        <Reveal className="section-label">ABOUT VITO · 關於我</Reveal>
+        <Reveal className="section-label">ABOUT LUXKEY · 關於我們</Reveal>
         <Reveal delay={0.08} className="about-intro">
           <p className="statement-copy">
-            我是 Vito，LUXKEY 的創辦人。<br />我把複雜的工作，做成<em>團隊真正用得起來的 AI 系統</em>。
+            LUXKEY 專注於商業、產品與 AI 的整合。<br />我們把複雜的工作，做成<em>團隊真正用得起來的 AI 系統</em>。
           </p>
           <p className="about-lead">
-            我從老闆每天真正面對的問題出發：資料散落、流程靠人盯、決策總是慢一步。從釐清需求、產品規劃、介面設計到 AI 落地，由我陪你把想法做成可以操作、可以驗證，也能持續成長的產品。
+            我們從企業每天真正面對的問題出發：資料散落、流程靠人盯、決策總是慢一步。從釐清需求、產品規劃、介面設計到 AI 落地，LUXKEY 陪伴團隊把想法做成可以操作、可以驗證，也能持續成長的產品。
           </p>
         </Reveal>
         <Reveal delay={0.16} className="about-details">
