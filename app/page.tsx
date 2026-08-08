@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowDown,
@@ -257,7 +256,7 @@ const capabilities = [
     title: "資料自己排好",
     text: "訂單、庫存和客服訊息一進來，AI 就自動分類、比對、排出優先順序。你打開畫面，就能直接開始決定。",
     result: "每天找資料，省下 2 小時",
-    image: "/media/demo-orders.png",
+    image: "/media/ai-organize-v2.png",
   },
   {
     icon: Layers3,
@@ -265,7 +264,7 @@ const capabilities = [
     title: "問題提早浮出來",
     text: "交期變慢、庫存快用完、客人開始著急，AI 會持續盯著變化，在事情變大以前提醒你。",
     result: "平均提早 3 天發現風險",
-    image: "/media/demo-dashboard.png",
+    image: "/media/ai-detect-v2.png",
   },
   {
     icon: Sparkles,
@@ -273,7 +272,7 @@ const capabilities = [
     title: "下一步自動往前走",
     text: "該追的進度、該通知的人、該準備的報表，AI 依照你的規則主動完成，團隊每天都接得上進度。",
     result: "47 項例行工作自動完成",
-    image: "/media/demo-tracking.png",
+    image: "/media/ai-execute-v2.png",
   },
 ];
 
@@ -549,11 +548,8 @@ export default function Home() {
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: .28, ease }}
             >
-              <Link
+              <div
                 className={`project-card ${selectedProject.tone}`}
-                href={selectedProject.href}
-                target={selectedProject.external ? "_blank" : undefined}
-                rel={selectedProject.external ? "noreferrer" : undefined}
               >
                 <div className="project-visual">
                   {selectedProject.aiInsight ? (
@@ -616,7 +612,7 @@ export default function Home() {
                   ) : (
                     <img src={selectedProject.image} alt={`${selectedProject.title} Demo 系統畫面`} />
                   )}
-                  <span className="demo-badge">{selectedProject.badge ?? (selectedProject.external ? "LIVE SITE" : "LIVE DEMO")}</span>
+                  <span className="demo-badge">{selectedProject.badge ?? "PROJECT VIEW"}</span>
                 </div>
                 <div className="project-content">
                   <div className="project-meta">
@@ -630,10 +626,10 @@ export default function Home() {
                     <strong>{selectedProject.stat}</strong>
                   </div>
                   <div className="project-link">
-                    {selectedProject.cta ?? (selectedProject.external ? "前往正式網站" : "操作完整 Demo")} <ArrowUpRight size={18} />
+                    作品預覽 · 僅在本站展示
                   </div>
                 </div>
-              </Link>
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -715,9 +711,9 @@ export default function Home() {
           </Reveal>
           <Reveal delay={0.1} className="contact-side">
             <p>把目前最花時間、最容易出錯，或最需要你親自盯著的事情告訴我。我會先幫你拆解問題，再提出可以真正執行的 AI 方案。</p>
-            <a href="https://luxkey.com.tw/#contact" target="_blank" rel="noreferrer">
+            <div className="contact-action">
               告訴我你想解決的問題 <ArrowUpRight />
-            </a>
+            </div>
           </Reveal>
         </div>
         <footer>
