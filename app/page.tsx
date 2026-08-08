@@ -61,6 +61,10 @@ const projects = [
     href: "/decisions",
     image: "/media/demo-decisions.png",
     tone: "copper",
+    aiInsight: "今天只需要你決定 3 件事",
+    aiReason: "其餘 47 項例行工作，AI 已經處理完成。",
+    aiAction: "先處理主力電芯供應風險",
+    aiMetric: "省下 1.5 小時",
   },
   {
     no: "05",
@@ -72,6 +76,10 @@ const projects = [
     href: "/dashboard",
     image: "/media/demo-dashboard.png",
     tone: "sand",
+    aiInsight: "本週營收成長 10%，但交期風險升高",
+    aiReason: "AI 發現 2 張高價值工單可能延遲。",
+    aiAction: "優先調整第二產線排程",
+    aiMetric: "準時率 +8%",
   },
   {
     no: "06",
@@ -83,6 +91,10 @@ const projects = [
     href: "/quote",
     image: "/media/demo-quote.png",
     tone: "ink",
+    aiInsight: "這張報價毛利低於安全線",
+    aiReason: "依歷史成交與成本波動，25% 是較安全區間。",
+    aiAction: "建議售價調整為 NT$1,860,000",
+    aiMetric: "毛利 25%",
   },
   {
     no: "07",
@@ -93,6 +105,10 @@ const projects = [
     href: "/orders",
     image: "/media/demo-orders.png",
     tone: "copper",
+    aiInsight: "WO-2607-018 可能延遲 2 天",
+    aiReason: "CNC 工序負載已超過本週可用產能。",
+    aiAction: "改派第二產線",
+    aiMetric: "追回 2 天",
   },
   {
     no: "08",
@@ -103,6 +119,10 @@ const projects = [
     href: "/inventory",
     image: "/media/demo-inventory.png",
     tone: "sand",
+    aiInsight: "電池模組 9 天後缺貨",
+    aiReason: "目前銷售速度比近 30 日平均快 18%。",
+    aiAction: "今天補貨 120 組",
+    aiMetric: "避免停線 6 小時",
   },
   {
     no: "09",
@@ -113,6 +133,10 @@ const projects = [
     href: "/inventory/stocktake",
     image: "/media/demo-stocktake.png",
     tone: "ink",
+    aiInsight: "差異不是遺失，可能是未入帳領料",
+    aiReason: "3 筆領料紀錄與現場數量高度吻合。",
+    aiAction: "核對 3 筆領料單",
+    aiMetric: "差異縮小 82%",
   },
   {
     no: "10",
@@ -123,6 +147,10 @@ const projects = [
     href: "/cs",
     image: "/media/demo-cs.png",
     tone: "copper",
+    aiInsight: "這位客戶有流失風險",
+    aiReason: "連續兩次詢問交期，情緒已轉為負面。",
+    aiAction: "轉真人並提供補償方案",
+    aiMetric: "挽回機率 76%",
   },
   {
     no: "11",
@@ -133,6 +161,10 @@ const projects = [
     href: "/radar",
     image: "/media/demo-radar.png",
     tone: "sand",
+    aiInsight: "原料價格可能在 14 天內上漲",
+    aiReason: "3 個主要供應市場同時出現短缺訊號。",
+    aiAction: "提前鎖定下一批原料",
+    aiMetric: "預估節省 12%",
   },
   {
     no: "12",
@@ -143,6 +175,10 @@ const projects = [
     href: "/picking",
     image: "/media/demo-picking.png",
     tone: "ink",
+    aiInsight: "這款商品值得先小量測試",
+    aiReason: "搜尋成長、毛利與退貨風險都落在安全區。",
+    aiAction: "先上架 50 件測市場",
+    aiMetric: "成功機率 81%",
   },
   {
     no: "13",
@@ -153,6 +189,10 @@ const projects = [
     href: "/admin",
     image: "/media/demo-admin.png",
     tone: "copper",
+    aiInsight: "AI 已學會你的 6 條決策偏好",
+    aiReason: "本月 85% 建議被採納，準確度持續提升。",
+    aiAction: "套用至所有補貨決策",
+    aiMetric: "採納率 85%",
   },
   {
     no: "14",
@@ -163,6 +203,10 @@ const projects = [
     href: "/track/WO-2607-001",
     image: "/media/demo-tracking.png",
     tone: "sand",
+    aiInsight: "客戶在問之前，AI 已主動通知",
+    aiReason: "訂單進度、延遲原因與新交期已自動整理。",
+    aiAction: "發送最新進度",
+    aiMetric: "詢問量 -63%",
   },
 ];
 
@@ -374,7 +418,32 @@ export default function Home() {
                 rel={project.external ? "noreferrer" : undefined}
               >
                 <div className="project-visual">
-                  <img src={project.image} alt={`${project.title} Demo 系統畫面`} />
+                  {project.aiInsight ? (
+                    <div className="ai-cover">
+                      <div className="ai-cover-status">
+                        <span className="ai-signal"><Sparkles size={16} /></span>
+                        <strong>AI 已完成分析</strong>
+                        <em>即時</em>
+                      </div>
+                      <div className="ai-cover-body">
+                        <small>AI 發現</small>
+                        <h4>{project.aiInsight}</h4>
+                        <p>{project.aiReason}</p>
+                      </div>
+                      <div className="ai-cover-action">
+                        <div>
+                          <small>建議你現在</small>
+                          <strong>{project.aiAction}</strong>
+                        </div>
+                        <div className="ai-cover-metric">
+                          <b>{project.aiMetric}</b>
+                          <span>預期影響</span>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <img src={project.image} alt={`${project.title} Demo 系統畫面`} />
+                  )}
                   <span className="demo-badge">{project.badge ?? (project.external ? "LIVE SITE" : "LIVE DEMO")}</span>
                 </div>
                 <div className="project-content">
