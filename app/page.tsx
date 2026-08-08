@@ -253,21 +253,27 @@ const projectCategories = [
 const capabilities = [
   {
     icon: BrainCircuit,
-    label: "STRATEGY",
-    title: "商業策略",
-    text: "先定義值得解的問題，再決定技術。讓每一個產品選擇，都能回到營收、效率與風險。",
+    label: "AI 先整理",
+    title: "資料自己排好",
+    text: "訂單、庫存和客服訊息一進來，AI 就自動分類、比對、排出優先順序。你打開畫面，就能直接開始決定。",
+    result: "每天找資料，省下 2 小時",
+    image: "/media/demo-orders.png",
   },
   {
     icon: Layers3,
-    label: "PRODUCT",
-    title: "產品設計",
-    text: "把複雜流程收斂成直覺體驗。從第一個畫面到最後一個決策，都有清楚的使用理由。",
+    label: "AI 先發現",
+    title: "問題提早浮出來",
+    text: "交期變慢、庫存快用完、客人開始著急，AI 會持續盯著變化，在事情變大以前提醒你。",
+    result: "平均提早 3 天發現風險",
+    image: "/media/demo-dashboard.png",
   },
   {
     icon: Sparkles,
-    label: "AI SYSTEM",
-    title: "AI 落地",
-    text: "把資料、規則與人的判斷接起來，做成團隊每天真的會使用、也能持續進化的系統。",
+    label: "AI 先執行",
+    title: "下一步自動往前走",
+    text: "該追的進度、該通知的人、該準備的報表，AI 依照你的規則主動完成，團隊每天都接得上進度。",
+    result: "47 項例行工作自動完成",
+    image: "/media/demo-tracking.png",
   },
 ];
 
@@ -635,8 +641,9 @@ export default function Home() {
 
       <section className="approach section-pad" id="approach">
         <Reveal className="approach-intro">
-          <span className="section-label">HOW I WORK</span>
-          <h2>從策略，到落地。<br />少一點術語，多一點結果。</h2>
+          <span className="section-label">TIME × EFFICIENCY</span>
+          <h2>時間，是企業最昂貴的成本。<br /><em>AI 在你看不見的地方，先把工作完成。</em></h2>
+          <p>每天消耗時間的工作，通常藏在找資料、追進度和反覆確認裡。LUXKEY 讓 AI 在背後持續整理、檢查與推進，讓老闆和團隊一打開畫面，就能處理真正重要的事。</p>
         </Reveal>
         <div className="capability-grid">
           {capabilities.map((item, index) => {
@@ -647,9 +654,13 @@ export default function Home() {
                   <Icon size={24} strokeWidth={1.4} />
                   <span>0{index + 1}</span>
                 </div>
+                <div className="capability-image">
+                  <img src={item.image} alt={`${item.title}的 AI 系統畫面`} loading="lazy" />
+                </div>
                 <small>{item.label}</small>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
+                <strong>{item.result}</strong>
               </Reveal>
             );
           })}
