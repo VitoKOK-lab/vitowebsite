@@ -55,5 +55,5 @@ export function estimateCapacity(hoursPerWeek: number, hourlyCost: number, reduc
 }
 export function buildBrief(industry: string, service: ServiceKey, details: string) {
   const plan = servicePlans[service];
-  return ['LUXKEY AI 合作需求', `產業：${industry}`, `想先做：${plan.label}`, `目前的需求：${details.trim() || '希望先聊聊適合的做法'}`, `建議第一步：${plan.first}`, `可先準備：${plan.input}`].join('\n');
+  return ['LUXKEY AI 月度合作需求', `產業：${industry}`, `想先做：${plan.label}`, `目前的需求：${details.trim() || '希望先聊聊適合的做法'}`, `建議第一步：${plan.first}`, `可先準備：${plan.input}`].join('\n');
 }

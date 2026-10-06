@@ -2,6 +2,8 @@
 
 The official homepage now sells six understandable AI services: cloud social editor, automated video editor, operations, sales/support, new business models, and agency partnerships. CIS.md and app/icon.svg are unchanged.
 
+Positioning: “每月一位行銷小編的預算，請一整隊 AI 商業顧問。” The homepage, service mix, monthly goals/delivery/review process, FAQ, brief, and share metadata use this monthly partnership model. No salary, fixed fee, unlimited quota or contract duration is invented.
+
 ## Editing
 
 - Homepage: `app/home-client.tsx`; metadata and organization schema: `app/page.tsx`.

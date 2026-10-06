@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import HomePage from './home-client';
 
 export const metadata: Metadata = {
-  title: 'LUXKEY｜雲端 AI 小編、自動剪輯與企業 AI 導入',
-  description: '讓 AI 上工，讓生意加速。LUXKEY 提供雲端 AI 小編、自動剪輯師、企業流程自動化、AI 商業模式與代理合作。低成本起步，快速看見首版。',
+  title: 'LUXKEY｜每月一位小編的預算，一整隊 AI 商業顧問',
+  description: '每月一位行銷小編的預算，請一整隊 AI 商業顧問。從行銷企劃、雲端小編、自動剪輯，到企業 AI 導入與商業策略，按月合作、持續交付。',
   alternates: { canonical: 'https://luxkey.com.tw/' },
 };
 const organization = {

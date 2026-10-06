@@ -2,6 +2,10 @@
 
 CIS.md is authoritative. Preserve its wordmark, exact Ink/Vermillion/Teal/White/Silver tokens, editorial serif display, spacious grids and square cards. Do not inherit the old portfolio's blue accent.
 
+## Positioning
+
+One monthly social-editor budget brings together an AI business team. Explain recurring goals, scope, deliverables and reviews. Exact monthly fees, workload and tools remain proposal-defined.
+
 ## Visitor journey
 
 Understand the business outcome → pick an AI role → inspect a workflow and finished videos → estimate recoverable labor capacity → prepare a scoped brief → copy it to LINE or open an email draft. Direct LINE contact remains available throughout. No website submission endpoint or live AI is implied.
