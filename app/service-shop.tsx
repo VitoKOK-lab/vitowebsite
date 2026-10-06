@@ -9,7 +9,7 @@ const offers = [
  {key:'software' as ServiceKey,title:'專案型軟體',need:'我需要一套本案專用的系統',price:'150,000',unit:'起／案',image:'desktop-software',alt:'桌上大型 iMac 展示管理系統概念介面',summary:'報名、報到、管理工具，為本案而做。',items:['1 個核心使用流程的網頁軟體首版','最多 5 個主要頁面、2 種使用角色','1 種約定格式的資料匯入／匯出','操作教學、部署與結案退場規劃'],time:'規格確認後，目標 15–20 個工作天首版。',revision:'原約定範圍內 2 次集中修改。',input:'必要功能、使用人數、資料範例、預算與截止日。',extra:'不含原生 App、金流、複雜 ERP 整合、主機／第三方費用及長期維護；資安與權限需求先納入估價。',payment:'建議啟動 50%、首版 30%、驗收 20%。'},
 ];
 const outcomeImages = {
- content: {image:'service-marketing',alt:'五種行銷交付成果：內容月曆、廣告圖、短影音、推廣與網站',caption:'把行銷工作，交給一個團隊'},
+ content: {image:'service-marketing-relaxed',alt:'一位老闆輕鬆喝咖啡，同時掌握文案、設計、短影音、社群排程與成效報表五件行銷工作',caption:'一個人，輕鬆掌握五件事'},
  video: {image:'service-video',alt:'一份原始影片經過剪輯，變成四支直式短影音',caption:'1 份素材 → 4 支短影音'},
  operations: {image:'service-automation',alt:'訂單、表格、出貨與報表沿著自動流程依序完成',caption:'接單 → 整理 → 執行 → 報表'},
  software: {image:'service-software',alt:'依專案組合報名、報到與報表模組，建立桌機與平板可用的軟體',caption:'本案要什麼，就組出什麼'},
