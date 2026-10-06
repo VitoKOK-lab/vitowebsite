@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   title: "LUXKEY｜企業 AI 導入與商業應用",
   description:
     "雲端 AI 小編、自動剪輯師、企業流程自動化與 AI 商業模式。低成本起步，快速看見首版。",
-  openGraph: { images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "LUXKEY 讓 AI 上工，讓生意加速" }], type: "website", locale: "zh_TW", siteName: "LUXKEY", title: "LUXKEY｜讓 AI 上工，讓生意加速。", description: "從雲端小編、自動剪輯，到企業流程與新商業模式。把 AI 做進生意裡。" },
-  twitter: { images: ["/og-image.png"], card: "summary_large_image", title: "LUXKEY｜讓 AI 上工，讓生意加速。" },
+  openGraph: { images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "LUXKEY 一位小編的預算，一整隊 AI 商業顧問" }], type: "website", locale: "zh_TW", siteName: "LUXKEY", title: "LUXKEY｜一位小編的預算，一整隊 AI 商業顧問", description: "每月一位行銷小編的預算，讓 AI 商業團隊替你工作。企劃、小編、剪輯、營運與策略，按月合作、持續交付。" },
+  twitter: { images: ["/og-image.png"], card: "summary_large_image", title: "LUXKEY｜一位小編的預算，一整隊 AI 商業顧問" },
 };
 
 export const viewport: Viewport = {

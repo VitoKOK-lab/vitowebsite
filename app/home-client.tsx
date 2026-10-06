@@ -28,8 +28,9 @@ const demos = [
   { key: 'operations', label: 'AI 營運助理', icon: LayoutDashboard, title: '先整理好，再交給你做決定。', subtitle: '把散落的資訊整理成今天的優先順序。', input: '訂單在 Excel、進度在 LINE，每天都要問同事才知道做到哪。', output: '今天先看這三件事，其餘進度已整理。', steps: ['整合既有資料', '比對進度與規則', '整理異常摘要', '重要動作由你確認'], rows: [['01', '交期提醒', '兩筆訂單需要確認出貨安排。'], ['02', '補貨建議', '主力品項接近設定的安全庫存。'], ['03', '日報整理', '把今日進度彙整成一頁摘要。']], result: '一份重點摘要 + 可追蹤的待辦清單', action: '找出我能省下的工作' },
 ] as const;
 const faqs = [
+  ['每月一位小編的預算，能請 AI 團隊做哪些事？', '依你的月度目標，組合行銷企劃、社群內容、影片剪輯、營運自動化與商業策略。每月先確認優先任務與交付清單，再持續製作、回顧與調整。實際月費、內容數量、影片長度、串接與工具費，會在提案中確認。'],
   ['我不懂 AI，也沒有工程師，可以開始嗎？', '可以。先告訴我們你現在怎麼做事、哪裡最花時間。我們會把需求整理成清楚的交付項目，從一條流程或一份內容開始，並提供操作教學。'],
-  ['真的能降低成本？費用怎麼算？', '先做小範圍，把重複工作交給 AI，再依實際使用擴充。報價會拆開製作、串接、工具訂閱與維護費；網站試算的是可釋出工時的價值，不代表保證省下的現金，也未扣除導入費用。'],
+  ['真的能降低成本？費用怎麼算？', '以月度目標與工作量規劃合作，讓一份預算能使用多種 AI 專長。提案會列出月費、交付範圍，以及另計的串接、工具訂閱或維護費。網站試算的是可釋出工時的價值，尚未扣除這些費用。'],
   ['多久能看到成果？', '我們以可展示的首版開始：例如一支短片、一週內容或一條自動流程。確認素材、串接需求與修改範圍後，會把首版、驗收與正式上線時間寫進提案。'],
   ['AI 小編會直接幫我發文嗎？', '可以依需求設計為先審核再排程，也能在你授權的範圍內自動發布。可串接的平台、帳號權限與工具費用會在提案中確認；內容方向與發布控制權始終由你掌握。'],
   ['會用到公司的機密資料嗎？', '評估時可先使用去識別化範例。正式導入前，會確認資料能否交給外部服務、可使用的工具與人員權限，再決定部署與串接方式。'],
@@ -102,12 +103,12 @@ export default function HomePage() {
       <main id="main">
         <section className="lk-hero lk-container" aria-labelledby="hero-title">
           <div className="lk-hero-copy">
-            <div className="lk-eyebrow"><span className="lk-dot" /> YOUR NEXT BUSINESS ADVANTAGE</div>
-            <h1 id="hero-title">讓 AI 上工。<br /><em>讓生意加速。</em></h1>
-            <p className="lk-hero-lead">少一點人力成本，多一點生意可能。</p>
-            <p className="lk-hero-body">從雲端小編、自動剪輯，到企業流程與新商業模式。<br className="lk-desktop-break" />LUXKEY 把 AI 做成你用得上的服務，低成本起步，快速看見首版。</p>
-            <div className="lk-hero-actions"><a className="lk-button lk-button-primary" href="#start">找出適合我的 AI <ArrowUpRight size={19} /></a><a className="lk-text-link" href="#work"><CirclePlay size={21} /> 先看做得出什麼</a></div>
-            <div className="lk-hero-promises"><span><Check size={14} /> 從小需求開始</span><span><Check size={14} /> 先看首版再擴大</span><span><Check size={14} /> 不懂技術也能用</span></div>
+            <div className="lk-eyebrow"><span className="lk-dot" /> 按月合作 / YOUR AI BUSINESS TEAM</div>
+            <h1 id="hero-title" className="lk-monthly-title">一位小編的預算，<br /><em>一整隊 AI <span>商業顧問。</span></em></h1>
+            <p className="lk-hero-lead">每月，讓 AI 商業團隊替你工作。</p>
+            <p className="lk-hero-body">行銷企劃、社群小編、影音剪輯、營運自動化與商業策略。<br className="lk-desktop-break" />用一位行銷小編的月度預算，組合你需要的 AI 專長，持續把想法做成成果。</p>
+            <div className="lk-hero-actions"><a className="lk-button lk-button-primary" href="#start">組建我的 AI 團隊 <ArrowUpRight size={19} /></a><a className="lk-text-link" href="#work"><CirclePlay size={21} /> 先看做得出什麼</a></div>
+            <div className="lk-hero-promises"><span><Check size={14} /> 按月合作</span><span><Check size={14} /> 多種專長</span><span><Check size={14} /> 持續交付</span></div>
           </div>
           <div className="lk-hero-studio" aria-label="AI 製作工作室作品展示">
             <div className="lk-studio-grid" />
@@ -116,20 +117,20 @@ export default function HomePage() {
             <span className="lk-studio-giant" aria-hidden="true">MAKE<br />IT WORK.</span>
             <button className="lk-hero-video lk-hero-video-back" onClick={() => openVideo(videos[0])} aria-label="播放 AI 情境廣告作品"><img src="/showcase/ai-product-ad.jpg" alt="AI 情境廣告：男子展示產品資訊" width="720" height="1280" fetchPriority="high" /><span className="lk-video-topline">AI 情境廣告 <Play size={12} fill="currentColor" /></span><span className="lk-video-bottomline">把產品，說成故事。<ArrowUpRight size={15} /></span></button>
             <button className="lk-hero-video lk-hero-video-front" onClick={() => openVideo(videos[2])} aria-label="播放 AI 品牌角色作品"><img src="/showcase/ai-brand-presenter.jpg" alt="AI 品牌角色示範影片" width="720" height="1280" fetchPriority="high" /><span className="lk-video-topline">品牌專屬 AI 角色 <Play size={12} fill="currentColor" /></span><span className="lk-play-circle"><Play size={19} fill="currentColor" /></span></button>
-            <div className="lk-delivery-stamp"><span><CheckCheck size={18} /> 一個想法，多種交付</span><div><span>社群圖文</span><span>短影音</span><span>自動化</span></div></div>
+            <div className="lk-delivery-stamp"><span><CheckCheck size={18} /> 一份合作，多種專長</span><div><span>社群圖文</span><span>短影音</span><span>自動化</span></div></div>
             <div className="lk-studio-bottom"><span>STRATEGY × CONTENT × AUTOMATION</span><span>真實交付影片 · 點擊播放</span></div>
           </div>
-          <div className="lk-hero-baseline"><span>你的下一位得力夥伴，不一定要加一張辦公桌。</span><a href="#services" aria-label="向下看 AI 服務"><ArrowDown size={19} /></a><span>TAIWAN · BUILT FOR YOUR BUSINESS</span></div>
+          <div className="lk-hero-baseline"><span>你定方向，AI 團隊把工作往前推。</span><a href="#services" aria-label="向下看 AI 服務"><ArrowDown size={19} /></a><span>TAIWAN · BUILT FOR YOUR BUSINESS</span></div>
         </section>
 
         <section className="lk-value-strip" aria-label="合作優勢"><div className="lk-container lk-value-grid">
-          <div><span>01</span><p><strong>小預算，也能開始。</strong><small>先解決最值得的一件事。</small></p></div><div><span>02</span><p><strong>首版快，調整更快。</strong><small>把大專案拆成看得到的交付。</small></p></div><div><span>03</span><p><strong>交給你，真的能用。</strong><small>從內容製作到流程，連操作一起交付。</small></p></div>
+          <div><span>01</span><p><strong>一份月度預算。</strong><small>從你最需要的 AI 專長開始。</small></p></div><div><span>02</span><p><strong>一整隊專長上場。</strong><small>企劃、內容、影音、策略一起接力。</small></p></div><div><span>03</span><p><strong>每月，持續有交付。</strong><small>按目標安排工作，定期看成果、調方向。</small></p></div>
         </div></section>
 
         <section className="lk-section lk-container" id="services">
-          <SectionHeading number="01" label="YOUR AI TEAM" description="不用先研究一百個工具。從你最想少做的工作，或最想多做的生意開始。">你缺的那個人，<br /><span className="lk-muted-heading">AI 可以先補上。</span></SectionHeading>
+          <SectionHeading number="01" label="YOUR AI TEAM" description="不用自己找工具、湊團隊。依每月的生意目標，組合企劃、內容、影音與自動化，把預算用在最需要的地方。">你需要的專長，<br /><span className="lk-muted-heading">這一隊，都能接力。</span></SectionHeading>
           <div className="lk-services-grid">{services.map((item, index) => { const Icon = item.icon; return <button key={item.key} className="lk-service-card" onClick={() => chooseService(item.key)}><div className="lk-service-top"><Icon size={27} strokeWidth={1.4} /><span>0{index + 1}</span></div><small>{item.outcome}</small><h3>{item.title}</h3><p>{item.copy}</p><div className="lk-service-bottom"><span>{item.tags.join(' · ')}</span><ArrowUpRight size={22} /></div></button>; })}</div>
-          <p className="lk-section-footnote"><ShieldCheck size={16} /> 每個方案都包含人工確認與交付教學；串接平台、工具費用與使用範圍在提案中說清楚。</p>
+          <p className="lk-section-footnote"><ShieldCheck size={16} /> 每月先確認工作優先順序與交付清單；月費、內容數量、工具費與串接範圍，提案裡說清楚。</p>
         </section>
 
         <section className="lk-demo-section" id="experience"><div className="lk-container lk-section">
@@ -163,24 +164,24 @@ export default function HomePage() {
           </div>
         </div></section>
 
-        <section className="lk-section lk-container" id="process"><SectionHeading number="05" label="START SMALL. MOVE FAST." description="不用一開始就換系統、招團隊。先把一件事做成，再把有效的方法放大。">低成本的關鍵，<br /><span className="lk-muted-heading">是把第一步做對。</span></SectionHeading>
-          <div className="lk-process-grid">{[{ title: '說一個問題', text: '哪件事最花時間？哪個生意最想試？先用你熟悉的方式聊。', deliverable: '需求與優先順序' }, { title: '看一份提案', text: '做什麼、花多少、多久交付。工具費用與修改範圍一起說明。', deliverable: '範圍、報價、時程' }, { title: '試一個首版', text: '先給你可看的影片、可點的網站，或真的跑得動的流程。', deliverable: '可驗證的第一版' }, { title: '讓成果持續', text: '驗收、教學、交接，再依使用成效決定維護與下一步擴充。', deliverable: '正式交付與操作教學' }].map((step, i) => <article key={step.title}><div className="lk-process-num">0{i + 1}<ArrowRight size={20} /></div><h3>{step.title}</h3><p>{step.text}</p><span><Check size={14} />{step.deliverable}</span></article>)}</div>
+        <section className="lk-section lk-container" id="process"><SectionHeading number="05" label="START SMALL. MOVE FAST." description="每月有目標、有交付、有回顧。從最值得做的事情開始，讓 AI 團隊持續跟著你的生意前進。">每個月，<br /><span className="lk-muted-heading">都讓生意往前一步。</span></SectionHeading>
+          <div className="lk-process-grid">{[{ title: '定本月目標', text: '想增加詢問、讓內容穩定上線，還是省下例行工作？先抓最重要的一件事。', deliverable: '月度目標與優先順序' }, { title: '排交付清單', text: '組合這個月需要的 AI 專長，談清楚月費、工作量、交期與修改範圍。', deliverable: '月費、範圍、交付節點' }, { title: '快速看首版', text: '先看內容、影片、網站或流程的第一版，確認方向後持續推進。', deliverable: '首版與當月交付成果' }, { title: '每月再進步', text: '一起回顧成果，調整內容與工作優先順序，把有效的方法持續放大。', deliverable: '月度回顧與下月計畫' }].map((step, i) => <article key={step.title}><div className="lk-process-num">0{i + 1}<ArrowRight size={20} /></div><h3>{step.title}</h3><p>{step.text}</p><span><Check size={14} />{step.deliverable}</span></article>)}</div>
           <div className="lk-about-strip"><Wordmark /><p>把複雜的事，做成有價值的系統。</p><span>商業策略 × 產品設計 × AI 落地</span></div>
         </section>
 
         <section className="lk-faq-section lk-container"><div><span className="lk-eyebrow">BEFORE WE START</span><h2>老闆常問的，<br />先幫你回答。</h2><a href="https://lin.ee/6M3pM1o" target="_blank" rel="noreferrer" className="lk-text-link">還有問題？LINE 直接聊 <ArrowUpRight size={17} /></a></div><div className="lk-faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<Plus size={19} /></summary><p>{answer}</p></details>)}</div></section>
 
-        <section className="lk-start-section" id="start"><div className="lk-container lk-start-grid"><div className="lk-start-copy"><div className="lk-eyebrow"><span className="lk-dot" /> LET'S MAKE IT WORK</div><h2>先把一件事，<br /><em>交給 AI。</em></h2><p>選擇你想開始的方向，<br />我們一起把「想做」變成「做得到」。</p><a href="https://lin.ee/6M3pM1o" target="_blank" rel="noreferrer" className="lk-direct-contact"><MessageCircle size={20} /><span>不想填？LINE 直接聊<small>告訴我們，你最想解決哪件事。</small></span><ArrowUpRight size={22} /></a></div>
-          <div className="lk-brief-builder"><div className="lk-form-heading"><span>你的 AI 起步計畫</span><small>選擇需求，即時整理</small></div><div className="lk-field-row"><label>你的產業<select value={industry} onChange={e => setIndustry(e.target.value)}>{industries.map(item => <option key={item}>{item}</option>)}</select></label><label>最想先做什麼<select value={service} onChange={e => setService(e.target.value as ServiceKey)}>{Object.entries(servicePlans).map(([key, value]) => <option key={key} value={key}>{value.label}</option>)}</select></label></div>
+        <section className="lk-start-section" id="start"><div className="lk-container lk-start-grid"><div className="lk-start-copy"><div className="lk-eyebrow"><span className="lk-dot" /> LET'S MAKE IT WORK</div><h2>這個月，<br /><em>讓 AI 上工。</em></h2><p>告訴我們這個月最想完成的事，<br />一起排出 AI 團隊的第一份工作清單。</p><a href="https://lin.ee/6M3pM1o" target="_blank" rel="noreferrer" className="lk-direct-contact"><MessageCircle size={20} /><span>不想填？LINE 直接聊<small>告訴我們，你最想解決哪件事。</small></span><ArrowUpRight size={22} /></a></div>
+          <div className="lk-brief-builder"><div className="lk-form-heading"><span>你的 AI 月度合作計畫</span><small>選擇需求，即時整理</small></div><div className="lk-field-row"><label>你的產業<select value={industry} onChange={e => setIndustry(e.target.value)}>{industries.map(item => <option key={item}>{item}</option>)}</select></label><label>最想先做什麼<select value={service} onChange={e => setService(e.target.value as ServiceKey)}>{Object.entries(servicePlans).map(([key, value]) => <option key={key} value={key}>{value.label}</option>)}</select></label></div>
             <div className="lk-plan-result" aria-live="polite"><span><Sparkles size={15} /> 建議從這裡開始</span><h3>{plan.first}</h3><ul>{plan.deliverables.map(item => <li key={item}><Check size={15} />{item}</li>)}</ul><p><strong>可以先準備：</strong>{plan.input}</p></div>
-            <label className="lk-details-label" htmlFor="brief-details">還有什麼想告訴我們？<span>選填</span></label><textarea id="brief-details" maxLength={1200} rows={3} value={details} onChange={e => setDetails(e.target.value)} placeholder="例如：每週想發 3 則貼文，但沒有專職小編。" />
+            <label className="lk-details-label" htmlFor="brief-details">這個月，最想完成什麼？<span>選填</span></label><textarea id="brief-details" maxLength={1200} rows={3} value={details} onChange={e => setDetails(e.target.value)} placeholder="例如：想增加客戶詢問，每週需要貼文與短影音。" />
             <div className="lk-brief-actions"><button className="lk-button lk-button-primary" onClick={copyBrief}>{copied ? <CheckCheck size={17} /> : <Copy size={17} />}{copied ? '需求已複製' : '複製需求，帶去聊聊'}</button><a className="lk-button lk-button-outline" href="https://lin.ee/6M3pM1o" target="_blank" rel="noreferrer">開啟 LINE <ArrowUpRight size={17} /></a></div>
             <div role="status" className="lk-copy-status">{copied ? '已複製。開啟 LINE 後貼上，就能接著討論。' : copyError ? '瀏覽器不允許複製，請展開需求摘要手動複製，或改用 Email。' : '內容只在你的瀏覽器整理；開啟 LINE 後貼上，再由你送出。'}</div>
             <details className="lk-brief-preview" open={copyError || contactOpen} onToggle={e => setContactOpen(e.currentTarget.open)}><summary>查看完整需求摘要 <ChevronDown size={15} /></summary><pre tabIndex={0}>{brief}</pre></details>
             <a className="lk-email-link" href={`mailto:luxkey.tw@gmail.com?subject=${encodeURIComponent(`AI 合作需求｜${plan.label}`)}&body=${encodeURIComponent(brief)}`}><Mail size={16} /> 或用 Email 帶著需求聯絡我們 <ArrowUpRight size={15} /></a>
           </div></div></section>
       </main>
-      <footer className="lk-footer lk-container"><div className="lk-footer-main"><a href="#top" aria-label="LUXKEY 回到頁首"><Wordmark /></a><div><strong>金曜石國際股份有限公司</strong><address>臺北市信義區信義路四段458號6樓</address></div><a href="mailto:luxkey.tw@gmail.com">luxkey.tw@gmail.com <ArrowUpRight size={16} /></a><a href="#top" className="lk-back-top">回到頂端 <ArrowUpRight size={16} /></a></div><div className="lk-footer-bottom"><span>© {new Date().getFullYear()} LUXKEY. ALL RIGHTS RESERVED.</span><span>把 AI 做進生意裡。</span><a href="/privacy/">隱私說明</a></div></footer>
+      <footer className="lk-footer lk-container"><div className="lk-footer-main"><a href="#top" aria-label="LUXKEY 回到頁首"><Wordmark /></a><div><strong>金曜石國際股份有限公司</strong><address>臺北市信義區信義路四段458號6樓</address></div><a href="mailto:luxkey.tw@gmail.com">luxkey.tw@gmail.com <ArrowUpRight size={16} /></a><a href="#top" className="lk-back-top">回到頂端 <ArrowUpRight size={16} /></a></div><div className="lk-footer-bottom"><span>© {new Date().getFullYear()} LUXKEY. ALL RIGHTS RESERVED.</span><span>你的 AI 商業團隊。</span><a href="/privacy/">隱私說明</a></div></footer>
       <dialog className="lk-video-dialog" ref={dialog} onClose={closeVideo} onClick={e => { if (e.target === e.currentTarget) closeVideo(); }} aria-labelledby="video-title">
         {selectedVideo && <div className="lk-video-dialog-content"><div className="lk-dialog-header"><div><span>{selectedVideo.label}</span><h2 id="video-title">{selectedVideo.title}</h2></div><button autoFocus onClick={closeVideo} aria-label="關閉影片"><X size={23} /></button></div><div className={`lk-dialog-player ${selectedVideo.portrait ? 'is-portrait' : ''}`}><video ref={videoRef} key={selectedVideo.id} controls autoPlay playsInline preload="metadata" poster={`/showcase/${selectedVideo.id}.jpg`} onError={() => setVideoError(true)}><source src={`/showcase/${selectedVideo.id}.mp4`} type="video/mp4" />你的瀏覽器不支援影片播放。</video></div>{videoError && <p role="alert">影片暫時無法載入。請重開播放器，或使用下方連結直接開啟。</p>}<div className="lk-dialog-footer"><span>展示作品 · 含 AI 生成內容 · 影片內含中文字幕</span><a href={`/showcase/${selectedVideo.id}.mp4`} target="_blank" rel="noreferrer">直接開啟影片 <ArrowUpRight size={14} /></a></div></div>}
       </dialog>

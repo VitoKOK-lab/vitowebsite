@@ -346,3 +346,11 @@
 .lk-button-primary { background: var(--copper-deep); }
 .lk-button-primary:hover { background: #9f2c14; }
 .lk-menu-toggle { min-width: 44px; min-height: 44px; }
+/* Monthly AI business-team positioning. */
+.lk-hero h1.lk-monthly-title { font-size: clamp(39px,4.7vw,68px); }
+@media (min-width:700px) and (max-width:959px) { .lk-hero h1.lk-monthly-title { font-size: clamp(32px,4.5vw,43px); } }
+@media (max-width:699px) {
+  .lk-hero h1.lk-monthly-title { font-size: clamp(34px,9.5vw,49px); }
+  .lk-monthly-title em > span { display: block; }
+  .lk-hero-lead { font-size: 17px; }
+}
