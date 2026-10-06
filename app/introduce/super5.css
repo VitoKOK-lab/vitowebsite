@@ -1,0 +1,5 @@
+.s5-brand { display: inline-flex; flex-direction: column; gap: 3px; color: #26343b; white-space: nowrap; }
+.s5-brand-name { font-family: Arial, sans-serif; font-size: 34px; font-weight: 800; letter-spacing: -1.7px; line-height: 1; }
+.s5-brand-name b { color: #28627a; font-weight: 900; }
+.s5-brand-tagline { font-size: 9px; line-height: 1.4; font-weight: 500; letter-spacing: .045em; }
+@media (max-width: 600px) { .s5-brand-name { font-size: 29px; } .s5-brand-tagline { font-size: 8px; } }
