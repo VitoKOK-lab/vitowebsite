@@ -122,7 +122,7 @@ export default function HomePage() {
         <section className="lk-software" id="software" aria-labelledby="software-title">
           <div className="lk-software-visual">
             <img src="/heroes/desktop-software-1774.webp" srcSet="/heroes/desktop-software-900.webp 900w, /heroes/desktop-software-1774.webp 1774w" sizes="100vw" alt="AI 生成示意：桌上的大型 iMac 電腦展示訂單、專案與報表管理系統" width="1774" height="887" loading="lazy" />
-            <div className="lk-container lk-software-image-copy"><div className="lk-eyebrow">BUILT FOR THE PROJECT.</div><h2 id="software-title">大型軟體，<br />也能<span>用完就退場。</span></h2><p>訂單、專案、報表，放進同一個工作畫面。<br />為本案打造，結案後可匯出資料、停用系統。</p><div className="lk-scene-labels"><span><Check size={14} /> 訂單管理</span><span><Check size={14} /> 專案進度</span><span><Check size={14} /> 報表匯出</span></div></div>
+            <div className="lk-container lk-software-image-copy"><div className="lk-eyebrow">BUILT FOR THE PROJECT.</div><h2 id="software-title">200萬的大型軟體，<br /><span>你也能快速擁有</span></h2><p>拋棄式的訂製軟體？專案結束就送人，<br />快速上線、快速去賺錢</p><div className="lk-scene-labels"><span><Check size={14} /> 訂單管理</span><span><Check size={14} /> 專案進度</span><span><Check size={14} /> 報表匯出</span></div></div>
             <small className="lk-image-caption">AI 生成介面示意 · 非實際產品畫面</small>
           </div>
           <div className="lk-container lk-software-details">
