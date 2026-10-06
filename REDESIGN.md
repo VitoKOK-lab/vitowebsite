@@ -30,3 +30,11 @@ No invented client testimonials, fixed prices, delivery guarantees or measured b
 - Verified three workflow selections, all four video loads, active video playback, Escape/close, mobile menu, FAQ, service preselection, calculator → brief transfer, clipboard feedback, encoded email body, and demo/privacy navigation. No browser error logs in the checked flows.
 
 A PR validation workflow runs tests and build. Production continues to use the existing deployment workflow on `claude/system-design-confirmation-342l3q`.
+
+## Cinematic hero and project software update
+
+- Two original AI-generated concept images, responsive WebP (roughly 150 KB per desktop image); lead image loads eagerly, second image lazily. Prompts and provenance: `public/heroes/asset-notes.txt`.
+- Proactive AI team positioning retains monthly budget premise. Annual backlog is framed as an action plan, not a measured productivity claim.
+- Project software section explains scoped NT$150,000 starting proposal versus a hypothetical NT$2m full-system budget; 10x is an improvement target, not a guarantee. Export and retirement are explicit.
+- Dedicated software selection and contact brief separate project pricing from monthly collaboration.
+- Verified production static export, all 30 tests, desktop hero and software images, mobile hero and software images, 320/375/768/1440 layout checks, software CTA selection and email brief, no browser errors.

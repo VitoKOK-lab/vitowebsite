@@ -1,5 +1,12 @@
 /** Public-site estimates and a transparent, browser-local service matcher. */
 export const servicePlans = {
+  software: {
+    label: '專案型軟體', headline: '為這一案而生，用完就能退場。',
+    description: '把完整系統的需求拆成單次專案需要的功能，15 萬起評估聚焦首版，獨立於月度服務報價。',
+    deliverables: ['約定範圍的可操作軟體首版', '功能、串接與交期驗收清單', '資料匯出、停用與留用方案'],
+    first: '先確認 15 萬起首版可涵蓋的範圍',
+    input: '專案目的、必要功能、使用人數、預算與截止日期',
+  },
   content: {
     label: '雲端 AI 小編', headline: '讓品牌每天有內容，團隊不用每天趕稿。',
     description: '把品牌語氣、產品資料與檔期交給 AI，從選題、文案、配圖到排程，一條流程接起來。',
@@ -55,5 +62,5 @@ export function estimateCapacity(hoursPerWeek: number, hourlyCost: number, reduc
 }
 export function buildBrief(industry: string, service: ServiceKey, details: string) {
   const plan = servicePlans[service];
-  return ['LUXKEY AI 月度合作需求', `產業：${industry}`, `想先做：${plan.label}`, `目前的需求：${details.trim() || '希望先聊聊適合的做法'}`, `建議第一步：${plan.first}`, `可先準備：${plan.input}`].join('\n');
+  return [service === 'software' ? 'LUXKEY 專案軟體需求（獨立報價）' : 'LUXKEY AI 月度合作需求', `產業：${industry}`, `想先做：${plan.label}`, `目前的需求：${details.trim() || '希望先聊聊適合的做法'}`, `建議第一步：${plan.first}`, `可先準備：${plan.input}`].join('\n');
 }

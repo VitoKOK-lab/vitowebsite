@@ -19,6 +19,7 @@ describe('contact brief', () => {
     for (const key of Object.keys(servicePlans) as ServiceKey[]) {
       const brief = buildBrief('品牌／電商', key, '每週三則貼文');
       expect(brief).toContain(servicePlans[key].label);
+      expect(brief.split('\n')[0]).toBe(key === 'software' ? 'LUXKEY 專案軟體需求（獨立報價）' : 'LUXKEY AI 月度合作需求');
       expect(brief).toContain(servicePlans[key].first);
       expect(brief).toContain('產業：品牌／電商');
       expect(brief).toContain('每週三則貼文');
