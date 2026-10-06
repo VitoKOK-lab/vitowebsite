@@ -28,6 +28,8 @@ const demos = [
   { key: 'operations', label: 'AI 營運助理', icon: LayoutDashboard, title: '先整理好，再交給你做決定。', subtitle: '把散落的資訊整理成今天的優先順序。', input: '訂單在 Excel、進度在 LINE，每天都要問同事才知道做到哪。', output: '今天先看這三件事，其餘進度已整理。', steps: ['整合既有資料', '比對進度與規則', '整理異常摘要', '重要動作由你確認'], rows: [['01', '交期提醒', '兩筆訂單需要確認出貨安排。'], ['02', '補貨建議', '主力品項接近設定的安全庫存。'], ['03', '日報整理', '把今日進度彙整成一頁摘要。']], result: '一份重點摘要 + 可追蹤的待辦清單', action: '找出我能省下的工作' },
 ] as const;
 const faqs = [
+  ['拋棄式軟體是什麼？15 萬包含什麼？', '是為單次活動或專案打造的工具，結案後可依約匯出資料並停用服務。15 萬起的首版會先限定功能與驗收範圍，與 200 萬完整系統的預算假設並非同規格比較。實際報價、稅費、第三方工具、主機與後續維護另於提案確認，且不包含在月度團隊服務內。'],
+  ['10 倍效率是保證嗎？', '10 倍是用來挑選高重複流程的改善目標。導入前先記錄原本工時，導入後以相同任務驗證；實際幅度取決於資料品質、串接限制與人工審核需求。'],
   ['每月一位小編的預算，能請 AI 團隊做哪些事？', '依你的月度目標，組合行銷企劃、社群內容、影片剪輯、營運自動化與商業策略。每月先確認優先任務與交付清單，再持續製作、回顧與調整。實際月費、內容數量、影片長度、串接與工具費，會在提案中確認。'],
   ['我不懂 AI，也沒有工程師，可以開始嗎？', '可以。先告訴我們你現在怎麼做事、哪裡最花時間。我們會把需求整理成清楚的交付項目，從一條流程或一份內容開始，並提供操作教學。'],
   ['真的能降低成本？費用怎麼算？', '以月度目標與工作量規劃合作，讓一份預算能使用多種 AI 專長。提案會列出月費、交付範圍，以及另計的串接、工具訂閱或維護費。網站試算的是可釋出工時的價值，尚未扣除這些費用。'],
@@ -94,33 +96,29 @@ export default function HomePage() {
       <header className="lk-header">
         <a href="#top" className="lk-logo-link" aria-label="LUXKEY 首頁"><Wordmark /></a>
         <nav className={menuOpen ? 'lk-nav is-open' : 'lk-nav'} id="main-navigation" aria-label="主選單">
-          {[['AI 能做什麼', '#services'], ['看交付作品', '#work'], ['算算能省多少', '#calculator'], ['合作方式', '#process']].map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
+          {[['AI 能做什麼', '#services'], ['看交付作品', '#work'], ['專案軟體', '#software'], ['合作方式', '#process']].map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
           <a href="#start" className="lk-nav-mobile-cta" onClick={() => setMenuOpen(false)}>聊聊你的需求 <ArrowUpRight size={16} /></a>
         </nav>
         <a className="lk-header-cta" href="#start">讓 AI 開始上工 <ArrowUpRight size={16} /></a>
         <button className="lk-menu-toggle" ref={menuButton} aria-label={menuOpen ? '關閉選單' : '開啟選單'} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
       </header>
       <main id="main">
-        <section className="lk-hero lk-container" aria-labelledby="hero-title">
-          <div className="lk-hero-copy">
-            <div className="lk-eyebrow"><span className="lk-dot" /> 按月合作 / YOUR AI BUSINESS TEAM</div>
-            <h1 id="hero-title" className="lk-monthly-title">一位小編的預算，<br /><em>一整隊 AI <span>商業顧問。</span></em></h1>
-            <p className="lk-hero-lead">每月，讓 AI 商業團隊替你工作。</p>
-            <p className="lk-hero-body">行銷企劃、社群小編、影音剪輯、營運自動化與商業策略。<br className="lk-desktop-break" />用一位行銷小編的月度預算，組合你需要的 AI 專長，持續把想法做成成果。</p>
-            <div className="lk-hero-actions"><a className="lk-button lk-button-primary" href="#start">組建我的 AI 團隊 <ArrowUpRight size={19} /></a><a className="lk-text-link" href="#work"><CirclePlay size={21} /> 先看做得出什麼</a></div>
-            <div className="lk-hero-promises"><span><Check size={14} /> 按月合作</span><span><Check size={14} /> 多種專長</span><span><Check size={14} /> 持續交付</span></div>
+        <section className="lk-cinema" aria-labelledby="hero-title">
+          <img className="lk-cinema-image" src="/heroes/ai-team-1860.webp" srcSet="/heroes/ai-team-900.webp 900w, /heroes/ai-team-1860.webp 1860w" sizes="100vw" alt="AI 工作室概念視覺：多個工作站在朱紅圓形建築中協同運作" width="1860" height="845" fetchPriority="high" />
+          <div className="lk-cinema-shade" />
+          <div className="lk-container lk-cinema-content">
+            <div className="lk-eyebrow"><span className="lk-dot" /> YOUR NEXT BUSINESS TEAM</div>
+            <h1 id="hero-title">比你更積極的，<br /><em>AI 商業團隊。</em></h1>
+            <p className="lk-cinema-lead">每月一位行銷小編的預算，<br />請一整隊 AI 商業顧問替你工作。</p>
+            <p className="lk-cinema-body">主動排企劃、做內容、剪影片、追進度。<br />你決定生意的方向，讓 AI 把下一步準備好。</p>
+            <div className="lk-hero-actions"><a className="lk-button lk-button-primary" href="#start">組建我的 AI 團隊 <ArrowUpRight size={19} /></a><a className="lk-text-link" href="#software">看看專案軟體 <ArrowDown size={18} /></a></div>
           </div>
-          <div className="lk-hero-studio" aria-label="AI 製作工作室作品展示">
-            <div className="lk-studio-grid" />
-            <div className="lk-studio-top"><span><span className="lk-dot" /> LUXKEY / AI STUDIO</span><span>從想法，到交付 <ArrowUpRight size={13} /></span></div>
-            <div className="lk-orbit lk-orbit-one" /><div className="lk-orbit lk-orbit-two" />
-            <span className="lk-studio-giant" aria-hidden="true">MAKE<br />IT WORK.</span>
-            <button className="lk-hero-video lk-hero-video-back" onClick={() => openVideo(videos[0])} aria-label="播放 AI 情境廣告作品"><img src="/showcase/ai-product-ad.jpg" alt="AI 情境廣告：男子展示產品資訊" width="720" height="1280" fetchPriority="high" /><span className="lk-video-topline">AI 情境廣告 <Play size={12} fill="currentColor" /></span><span className="lk-video-bottomline">把產品，說成故事。<ArrowUpRight size={15} /></span></button>
-            <button className="lk-hero-video lk-hero-video-front" onClick={() => openVideo(videos[2])} aria-label="播放 AI 品牌角色作品"><img src="/showcase/ai-brand-presenter.jpg" alt="AI 品牌角色示範影片" width="720" height="1280" fetchPriority="high" /><span className="lk-video-topline">品牌專屬 AI 角色 <Play size={12} fill="currentColor" /></span><span className="lk-play-circle"><Play size={19} fill="currentColor" /></span></button>
-            <div className="lk-delivery-stamp"><span><CheckCheck size={18} /> 一份合作，多種專長</span><div><span>社群圖文</span><span>短影音</span><span>自動化</span></div></div>
-            <div className="lk-studio-bottom"><span>STRATEGY × CONTENT × AUTOMATION</span><span>真實交付影片 · 點擊播放</span></div>
-          </div>
-          <div className="lk-hero-baseline"><span>你定方向，AI 團隊把工作往前推。</span><a href="#services" aria-label="向下看 AI 服務"><ArrowDown size={19} /></a><span>TAIWAN · BUILT FOR YOUR BUSINESS</span></div>
+          <div className="lk-cinema-bottom lk-container"><span>STRATEGY / CONTENT / AUTOMATION</span><a href="#work"><CirclePlay size={19} /> 看 AI 交付作品</a><small>AI 生成概念視覺</small></div>
+        </section>
+
+        <section className="lk-momentum lk-container" aria-labelledby="momentum-title">
+          <div><div className="lk-eyebrow"><span>THE NEW PACE /</span> 讓工作主動往前</div><h2 id="momentum-title">把排了一年的待辦，<br />變成<span>這個月的行動。</span></h2></div>
+          <div className="lk-momentum-copy"><p>不用每件事都等老闆催。從目標拆解、提案到製作，讓多種 AI 專長同時接力，把卡住的想法一件件做出來。</p><div><span><CalendarDays size={18} /> 先排好優先順序</span><span><Workflow size={18} /> 多項工作同步推進</span><span><CheckCheck size={18} /> 定期交付給你確認</span></div><small>每月依確認的工作量與交付清單執行。</small></div>
         </section>
 
         <section className="lk-value-strip" aria-label="合作優勢"><div className="lk-container lk-value-grid">
@@ -131,6 +129,19 @@ export default function HomePage() {
           <SectionHeading number="01" label="YOUR AI TEAM" description="不用自己找工具、湊團隊。依每月的生意目標，組合企劃、內容、影音與自動化，把預算用在最需要的地方。">你需要的專長，<br /><span className="lk-muted-heading">這一隊，都能接力。</span></SectionHeading>
           <div className="lk-services-grid">{services.map((item, index) => { const Icon = item.icon; return <button key={item.key} className="lk-service-card" onClick={() => chooseService(item.key)}><div className="lk-service-top"><Icon size={27} strokeWidth={1.4} /><span>0{index + 1}</span></div><small>{item.outcome}</small><h3>{item.title}</h3><p>{item.copy}</p><div className="lk-service-bottom"><span>{item.tags.join(' · ')}</span><ArrowUpRight size={22} /></div></button>; })}</div>
           <p className="lk-section-footnote"><ShieldCheck size={16} /> 每月先確認工作優先順序與交付清單；月費、內容數量、工具費與串接範圍，提案裡說清楚。</p>
+        </section>
+
+        <section className="lk-software" id="software" aria-labelledby="software-title">
+          <div className="lk-software-visual">
+            <img src="/heroes/project-software-1860.webp" srcSet="/heroes/project-software-900.webp 900w, /heroes/project-software-1860.webp 1860w" sizes="100vw" alt="模組化軟體概念視覺：朱紅模組從銀色系統中獨立取出" width="1774" height="887" loading="lazy" />
+            <div className="lk-container lk-software-image-copy"><div className="lk-eyebrow">BUILT FOR THE PROJECT.</div><h2 id="software-title">大型軟體，<br />也能<span>用完就退場。</span></h2><p>為這一案而生。<br />不必為了用一次，養一套系統。</p></div>
+            <small className="lk-image-caption">AI 生成概念視覺</small>
+          </div>
+          <div className="lk-container lk-software-details">
+            <div className="lk-software-pitch"><div className="lk-eyebrow"><span>PROJECT SOFTWARE /</span> 專案型軟體</div><h3>你以為要 200 萬，<br />我們先談 15 萬怎麼做。</h3><p>活動報名、專案管理、資料整合、報價工具。把大型系統的需求，拆成這個專案真正會用到的功能；快速做出能操作、能驗收的版本。</p><button className="lk-button lk-button-primary" onClick={() => chooseService('software')}>評估我的 15 萬專案 <ArrowUpRight size={18} /></button></div>
+            <div className="lk-project-offer"><span className="lk-micro-label">縮小範圍，放大專案效益 / 提案情境</span><div className="lk-project-price"><div><small>完整系統預算假設</small><span className="lk-old-price">200<small>萬</small></span></div><ArrowRight size={27} /><div><small>聚焦本案的首版</small><strong>15<small>萬起</small></strong></div></div><div className="lk-project-speed"><strong>10×</strong><p>以 10 倍效率為目標<small>先量出原本工時，再驗證改善幅度。</small></p></div><p className="lk-project-terms">新臺幣計價，專案另行報價。以上為不同交付範圍的規劃情境，非同規格價格比較；功能、稅費、串接、主機與維護費於提案確認。實際效率依流程與資料條件驗收。</p></div>
+          </div>
+          <div className="lk-container lk-project-lifecycle"><div><span>01 / BUILD</span><h4>只做這次要用的。</h4><p>先定功能、交期與驗收標準，讓預算集中在本案。</p></div><div><span>02 / RUN</span><h4>上線就讓它工作。</h4><p>接上資料與流程，完成教學，把重複操作交給系統。</p></div><div><span>03 / EXPORT</span><h4>專案結束，資料帶走。</h4><p>依約匯出資料、停用服務；要留用，再談維護或擴充。</p></div></div>
         </section>
 
         <section className="lk-demo-section" id="experience"><div className="lk-container lk-section">
@@ -172,7 +183,7 @@ export default function HomePage() {
         <section className="lk-faq-section lk-container"><div><span className="lk-eyebrow">BEFORE WE START</span><h2>老闆常問的，<br />先幫你回答。</h2><a href="https://lin.ee/6M3pM1o" target="_blank" rel="noreferrer" className="lk-text-link">還有問題？LINE 直接聊 <ArrowUpRight size={17} /></a></div><div className="lk-faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<Plus size={19} /></summary><p>{answer}</p></details>)}</div></section>
 
         <section className="lk-start-section" id="start"><div className="lk-container lk-start-grid"><div className="lk-start-copy"><div className="lk-eyebrow"><span className="lk-dot" /> LET'S MAKE IT WORK</div><h2>這個月，<br /><em>讓 AI 上工。</em></h2><p>告訴我們這個月最想完成的事，<br />一起排出 AI 團隊的第一份工作清單。</p><a href="https://lin.ee/6M3pM1o" target="_blank" rel="noreferrer" className="lk-direct-contact"><MessageCircle size={20} /><span>不想填？LINE 直接聊<small>告訴我們，你最想解決哪件事。</small></span><ArrowUpRight size={22} /></a></div>
-          <div className="lk-brief-builder"><div className="lk-form-heading"><span>你的 AI 月度合作計畫</span><small>選擇需求，即時整理</small></div><div className="lk-field-row"><label>你的產業<select value={industry} onChange={e => setIndustry(e.target.value)}>{industries.map(item => <option key={item}>{item}</option>)}</select></label><label>最想先做什麼<select value={service} onChange={e => setService(e.target.value as ServiceKey)}>{Object.entries(servicePlans).map(([key, value]) => <option key={key} value={key}>{value.label}</option>)}</select></label></div>
+          <div className="lk-brief-builder"><div className="lk-form-heading"><span>{service === 'software' ? '你的專案軟體需求' : '你的 AI 月度合作計畫'}</span><small>選擇需求，即時整理</small></div><div className="lk-field-row"><label>你的產業<select value={industry} onChange={e => setIndustry(e.target.value)}>{industries.map(item => <option key={item}>{item}</option>)}</select></label><label>最想先做什麼<select value={service} onChange={e => setService(e.target.value as ServiceKey)}>{Object.entries(servicePlans).map(([key, value]) => <option key={key} value={key}>{value.label}</option>)}</select></label></div>
             <div className="lk-plan-result" aria-live="polite"><span><Sparkles size={15} /> 建議從這裡開始</span><h3>{plan.first}</h3><ul>{plan.deliverables.map(item => <li key={item}><Check size={15} />{item}</li>)}</ul><p><strong>可以先準備：</strong>{plan.input}</p></div>
             <label className="lk-details-label" htmlFor="brief-details">這個月，最想完成什麼？<span>選填</span></label><textarea id="brief-details" maxLength={1200} rows={3} value={details} onChange={e => setDetails(e.target.value)} placeholder="例如：想增加客戶詢問，每週需要貼文與短影音。" />
             <div className="lk-brief-actions"><button className="lk-button lk-button-primary" onClick={copyBrief}>{copied ? <CheckCheck size={17} /> : <Copy size={17} />}{copied ? '需求已複製' : '複製需求，帶去聊聊'}</button><a className="lk-button lk-button-outline" href="https://lin.ee/6M3pM1o" target="_blank" rel="noreferrer">開啟 LINE <ArrowUpRight size={17} /></a></div>
