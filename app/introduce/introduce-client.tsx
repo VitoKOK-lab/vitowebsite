@@ -5,6 +5,7 @@ import type { ReactNode } from 'react';
 import { ArrowRight, ArrowUpRight, ArrowDown, Check, CirclePlay, Clapperboard, LayoutDashboard, Menu, MessageCircle, Play, Plus, Sparkles, X, Clock3, Layers3 } from 'lucide-react';
 import { estimateCapacity, type ServiceKey } from '@/lib/marketing';
 import '../portfolio.css';
+import './super5.css';
 import ServiceShop, { TeamComparison } from '../service-shop';
 
 const videos = [
@@ -39,7 +40,7 @@ const faqs = [
   ['我是行銷公司或顧問，可以代理合作嗎？', '可以。可討論共同提案、品牌協作與技術交付。先挑一個明確的客戶需求，把服務範圍、交期、驗收與後續維護的分工談清楚。'],
 ];
 const money = (n: number) => new Intl.NumberFormat('zh-TW').format(n);
-function Wordmark() { return <span className="lk-wordmark">LUXKEY<span>.</span></span>; }
+function Wordmark() { return <span className="s5-brand"><span className="s5-brand-name">super <b>5</b></span><span className="s5-brand-tagline">ai market automatic system</span></span>; }
 function SectionHeading({ number, label, children, description }: { number: string; label: string; children: ReactNode; description?: string }) {
   return <div className="lk-section-heading"><div className="lk-eyebrow"><span>{number} /</span> {label}</div><div className="lk-heading-row"><h2>{children}</h2>{description && <p>{description}</p>}</div></div>;
 }
@@ -79,7 +80,7 @@ export default function IntroducePage() {
     <div className="luxkey-site" id="top">
       <a className="lk-skip" href="#main">跳至主要內容</a>
       <header className="lk-header">
-        <a href="#top" className="lk-logo-link" aria-label="LUXKEY 首頁"><Wordmark /></a>
+        <a href="#top" className="lk-logo-link" aria-label="super 5 首頁"><Wordmark /></a>
         <nav className={menuOpen ? 'lk-nav is-open' : 'lk-nav'} id="main-navigation" aria-label="主選單">
           {[['服務與收費', '#services'], ['看交付作品', '#work'], ['專案軟體', '#software'], ['合作方式', '#process']].map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
           
@@ -102,11 +103,11 @@ export default function IntroducePage() {
         </section>
 
         <ServiceShop />
-        <TeamComparison />
+        <TeamComparison brandName="super 5" />
         <section className="lk-growth lk-container" id="growth" aria-labelledby="growth-title">
           <div className="lk-eyebrow">ONE TEAM / 從曝光到訂單，一個窗口接起來</div>
           <h2 id="growth-title">你專心做生意，<br /><em>我們讓行銷持續運轉。</em></h2>
-          <p className="lk-growth-lead">原本要找小編、設計、剪輯、廣告手、工程師。<br />現在，把目標交給 LUXKEY，從內容到系統一起規劃。</p>
+          <p className="lk-growth-lead">原本要找小編、設計、剪輯、廣告手、工程師。<br />現在，把目標交給 super 5，從內容到系統一起規劃。</p>
           <div className="lk-growth-steps">{[
             { title: '讓客戶看見你', label: '01 / 曝光', copy: '找題目、寫文案、做圖、拍攝或生成影片、剪短影音、做數位人。', result: '有主題、有畫面、有內容' },
             { title: '把興趣變詢問', label: '02 / 客戶', copy: '經營社群、投放廣告、製作網站與銷售頁，讓有興趣的人找到聯絡入口。', result: '從看見，到主動找你' },
@@ -134,7 +135,7 @@ export default function IntroducePage() {
           <SectionHeading number="02" label="SEE HOW IT WORKS" description="不用懂 AI 原理。選一個工作，看看從交辦到交付，中間可以少掉多少瑣事。">你交代一句，<br /><span className="lk-muted-heading">工作就有了下一步。</span></SectionHeading>
           <div className="lk-demo-tabs" role="group" aria-label="選擇工作流程示範">{demos.map((item, index) => { const Icon = item.icon; return <button key={item.key} aria-pressed={activeDemo === index} onClick={() => setActiveDemo(index)}><Icon size={18} />{item.label}<ArrowUpRight size={16} /></button>; })}</div>
           <div className="lk-demo-window">
-            <div className="lk-window-bar"><span className="lk-window-dots" aria-hidden="true"><i /><i /><i /></span><span>LUXKEY WORKSPACE</span><span className="lk-demo-badge">互動流程示範</span></div>
+            <div className="lk-window-bar"><span className="lk-window-dots" aria-hidden="true"><i /><i /><i /></span><span>super 5 WORKSPACE</span><span className="lk-demo-badge">互動流程示範</span></div>
             <div className="lk-demo-content" key={demo.key}>
               <div className="lk-demo-brief"><span className="lk-micro-label">01 / 你交代的事</span><div className="lk-chat-avatar">YOU</div><p className="lk-chat-message">{demo.input}</p><span className="lk-micro-label lk-workflow-label">02 / AI 協助的流程</span><ol>{demo.steps.map((step, i) => <li key={step}><span>{i + 1}</span>{step}{i < 3 && <div className="lk-step-line" />}</li>)}</ol><span className="lk-demo-note">預設情境示範，未呼叫即時 AI 或連接你的帳號。</span></div>
               <div className="lk-demo-output" aria-live="polite"><div className="lk-output-eyebrow"><Sparkles size={17} /><span>03 / 你拿到的成果</span><span className="lk-review-status">待你確認</span></div><h3>{demo.title}</h3><p>{demo.subtitle}</p><div className="lk-output-insight"><span>內容方向</span><strong>{demo.output}</strong></div><div className="lk-output-rows">{demo.rows.map(([day, label, text]) => <div key={day}><span className="lk-output-day">{day}</span><div><small>{label}</small><strong>{text}</strong></div><Check size={17} /></div>)}</div><div className="lk-output-footer"><span><Layers3 size={16} />{demo.result}</span><button onClick={() => chooseService(demo.key)} aria-label={demo.action}><ArrowUpRight size={23} /></button></div></div>
@@ -170,7 +171,7 @@ export default function IntroducePage() {
         <section className="lk-faq-section lk-container"><div><span className="lk-eyebrow">BEFORE WE START</span><h2>老闆常問的，<br />先幫你回答。</h2></div><div className="lk-faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<Plus size={19} /></summary><p>{answer}</p></details>)}</div></section>
 
       </main>
-      <footer className="lk-footer lk-container"><div className="lk-footer-main"><a href="#top" aria-label="LUXKEY 回到頁首"><Wordmark /></a><a href="#top" className="lk-back-top">回到頂端 <ArrowUpRight size={16} /></a></div><div className="lk-footer-bottom"><span>© {new Date().getFullYear()} LUXKEY. ALL RIGHTS RESERVED.</span><span>中小企業的五倍行銷部。</span><span>服務介紹</span></div></footer>
+      <footer className="lk-footer lk-container"><div className="lk-footer-main"><a href="#top" aria-label="super 5 回到頁首"><Wordmark /></a><a href="#top" className="lk-back-top">回到頂端 <ArrowUpRight size={16} /></a></div><div className="lk-footer-bottom"><span>© {new Date().getFullYear()} super 5. ALL RIGHTS RESERVED.</span><span>中小企業的五倍行銷部。</span><span>服務介紹</span></div></footer>
       <dialog className="lk-video-dialog" ref={dialog} onClose={closeVideo} onClick={e => { if (e.target === e.currentTarget) closeVideo(); }} aria-labelledby="video-title">
         {selectedVideo && <div className="lk-video-dialog-content"><div className="lk-dialog-header"><div><span>{selectedVideo.label}</span><h2 id="video-title">{selectedVideo.title}</h2></div><button autoFocus onClick={closeVideo} aria-label="關閉影片"><X size={23} /></button></div><div className={`lk-dialog-player ${selectedVideo.portrait ? 'is-portrait' : ''}`}><video ref={videoRef} key={selectedVideo.id} controls autoPlay playsInline preload="metadata" poster={`/showcase/${selectedVideo.id}.jpg`} onError={() => setVideoError(true)}><source src={`/showcase/${selectedVideo.id}.mp4`} type="video/mp4" />你的瀏覽器不支援影片播放。</video></div>{videoError && <p role="alert">影片暫時無法載入。請重開播放器，或使用下方連結直接開啟。</p>}<div className="lk-dialog-footer"><span>展示作品 · 含 AI 生成內容 · 影片內含中文字幕</span><a href={`/showcase/${selectedVideo.id}.mp4`} target="_blank" rel="noreferrer">直接開啟影片 <ArrowUpRight size={14} /></a></div></div>}
       </dialog>
