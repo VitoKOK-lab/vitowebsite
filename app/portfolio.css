@@ -556,3 +556,7 @@
 .lk-example-copy .lk-text-link{margin-top:10px;font-size:12px!important;}
 @media(max-width:959px){.lk-example-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:699px){.lk-visual-examples{margin-top:42px;padding-top:30px;}.lk-visual-examples-heading{display:block;}.lk-visual-examples-heading h3{font-size:25px;}.lk-visual-examples-heading p{margin-top:12px;font-size:12px;}.lk-example-grid{grid-template-columns:1fr;gap:30px;}.lk-example-photo{aspect-ratio:4/5;}.lk-software-visual>img{object-position:73% center;}}
+
+/* Keep the expanded software headline legible beside the desktop image. */
+.lk-software-image-copy h2 { font-size: clamp(36px,4vw,58px); }
+@media(max-width:699px) { .lk-software-image-copy h2 { font-size: clamp(28px,8.2vw,40px); } }
