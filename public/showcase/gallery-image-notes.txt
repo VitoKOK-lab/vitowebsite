@@ -1,0 +1,25 @@
+Mode: built-in image_gen, six new generated images.
+
+coffee
+Prompt: Generate an original photorealistic portrait 4:5 campaign image for a Taiwanese B2B AI production website. Sunshine, optimistic, high quality natural photography, pale sky blue and ivory palette, real human scale, clear immediately understandable subject. No readable text, no logos, no watermark, no play button, no UI overlays. A delicious iced latte beside a fresh croissant on an ivory cafe table, a smiling Taiwanese barista softly in background, sunshine and green plants. Close product hero, believable condensation, inviting small cafe marketing.
+Final asset: /Users/vito/Documents/Codex/2026-10-06/x20-github-plugin-github-openai-curated/work/vitowebsite/public/showcase/coffee-concept.webp
+
+skincare
+Prompt: Generate an original photorealistic portrait 4:5 campaign image for a Taiwanese B2B AI production website. Sunshine, optimistic, high quality natural photography, pale sky blue and ivory palette, real human scale, clear immediately understandable subject. No readable text, no logos, no watermark, no play button, no UI overlays. A beautiful frosted pale blue skincare bottle and cream jar on a pale stone bathroom counter, water droplets, linen towel, soft green leaves, bright morning sunlight. Premium but approachable product advertisement, no people.
+Final asset: /Users/vito/Documents/Codex/2026-10-06/x20-github-plugin-github-openai-curated/work/vitowebsite/public/showcase/skincare-concept.webp
+
+retail
+Prompt: Generate an original photorealistic portrait 4:5 campaign image for a Taiwanese B2B AI production website. Sunshine, optimistic, high quality natural photography, pale sky blue and ivory palette, real human scale, clear immediately understandable subject. No readable text, no logos, no watermark, no play button, no UI overlays. A cheerful East Asian female boutique owner presenting a light blue linen shirt on a hanger in a bright small clothing shop, ivory shelves, natural friendly expression. Medium shot, clear product, sunny lifestyle campaign.
+Final asset: /Users/vito/Documents/Codex/2026-10-06/x20-github-plugin-github-openai-curated/work/vitowebsite/public/showcase/retail-concept.webp
+
+factory
+Prompt: Generate an original photorealistic portrait 4:5 campaign image for a Taiwanese B2B AI production website. Sunshine, optimistic, high quality natural photography, pale sky blue and ivory palette, real human scale, clear immediately understandable subject. No readable text, no logos, no watermark, no play button, no UI overlays. A friendly Taiwanese manufacturing engineer in a clean pale blue work shirt explaining a compact precision metal component held in one hand beside a tidy workbench, bright modern modest workshop softly behind. Medium portrait, tangible B2B product explainer, no heavy machinery danger.
+Final asset: /Users/vito/Documents/Codex/2026-10-06/x20-github-plugin-github-openai-curated/work/vitowebsite/public/showcase/factory-concept.webp
+
+course
+Prompt: Generate an original photorealistic portrait 4:5 campaign image for a Taiwanese B2B AI production website. Sunshine, optimistic, high quality natural photography, pale sky blue and ivory palette, real human scale, clear immediately understandable subject. No readable text, no logos, no watermark, no play button, no UI overlays. A warm friendly East Asian female professional teacher about 40 explaining a simple business chart on a tablet in a bright home-office studio, books and green plant, open notebook, ivory and sky blue colors. Professional knowledge course cover, approachable hopeful expression.
+Final asset: /Users/vito/Documents/Codex/2026-10-06/x20-github-plugin-github-openai-curated/work/vitowebsite/public/showcase/course-concept.webp
+
+desktop-software
+Prompt: Generate an original photorealistic wide 2:1 website hero photograph. A large premium silver Apple iMac desktop computer with slim stand sits prominently on the RIGHT HALF of a real ivory desk in a sunny Taiwanese business office. Show the entire recognizable desktop monitor, keyboard and mouse, not a laptop. Screen is on and clearly displays a polished practical business management software: left blue navigation sidebar, top row of three summary cards, central clean orders table with rows and blue/green status pills, a small bar chart and task list. UI labels can be minimal short English such as Orders, Projects, Revenue, no gibberish Chinese text. Screen is front-facing at slight 10-degree angle, readable interface hierarchy, no fake huge growth claims. A potted plant and tidy notebook, warm morning sunlight through windows, hopeful clean pale sky blue/ivory style. LEFT 40% open pale wall and uncluttered desk for DARK HTML heading. Medium-wide camera, desktop computer fills right side and looks realistically large. No people, no futuristic holograms, no floating devices, no overlaid text or watermark.
+Final asset: /Users/vito/Documents/Codex/2026-10-06/x20-github-plugin-github-openai-curated/work/vitowebsite/public/heroes/desktop-software-{900,1774}.webp

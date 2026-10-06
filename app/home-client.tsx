@@ -15,6 +15,13 @@ const videos = [
   { id: 'ai-course', title: '把專業，變成可以播放的課。', label: 'AI 知識內容', duration: '01:42', source: 'lesson-05-16x9', description: '將知識拆成清楚的段落，搭配旁白、字幕與畫面，製作課程與教學內容。', tags: ['課程製作', '圖文解說', '知識產品'], portrait: false },
 ] as const;
 type Video = typeof videos[number];
+const visualExamples = [
+  { id: 'coffee', title: '讓人想走進店裡的一杯。', label: '餐飲新品宣傳', copy: '咖啡、甜點、季節新品，先用畫面勾起想吃、想喝的心情。' },
+  { id: 'skincare', title: '把產品質感，拍進第一眼。', label: '美妝產品廣告', copy: '用材質、光線與生活情境，呈現產品的品牌風格。' },
+  { id: 'retail', title: '讓新品，像店長親自介紹。', label: '服飾社群內容', copy: '從商品介紹到穿搭主題，規劃可以持續更新的內容系列。' },
+  { id: 'factory', title: '專業產品，也能說得好懂。', label: 'B2B 產品解說', copy: '把製程、零件與應用場景，整理成客戶理解的產品故事。' },
+  { id: 'course', title: '把你的經驗，變成一堂課。', label: '知識課程企劃', copy: '從課程主題、講師畫面到教學腳本，讓專業更容易傳達。' },
+];
 const demos = [
   { key: 'content', label: '雲端 AI 小編', icon: MessageCircle, title: '下週的內容，先幫你準備好了。', subtitle: '一個新品主題，延伸成整週的社群內容。', input: '下週推出夏季冷萃，想讓附近的上班族來試喝。', output: '把「上班很累」變成品牌能接住的日常。', steps: ['整理產品與客群', '安排一週主題', '產出文案與腳本', '等你確認再排程'], rows: [['MON', '新品亮相', '週一的清醒，交給這一杯。'], ['WED', '情境短片', '下午三點，把狀態找回來。'], ['FRI', '到店邀請', '這週辛苦了，來喝一杯。']], result: '3 則社群企劃 + 1 支短影音腳本', action: '把這套小編帶進公司' },
   { key: 'video', label: '自動剪輯師', icon: Clapperboard, title: '拍一次，讓內容多用幾次。', subtitle: '把原始素材拆成不同目的與平台的版本。', input: '我有一支產品介紹長片，想做成 IG、Reels 和 YouTube 內容。', output: '先找出最吸引人的一句，再安排畫面。', steps: ['辨識重點段落', '整理開場鉤子', '字幕與版型套用', '預覽後再輸出'], rows: [['9:16', '社群短版', '先用一個痛點，抓住注意力。'], ['1:1', '動態貼文', '放大產品亮點，保留清楚字幕。'], ['16:9', '完整介紹', '把故事說完整，帶到行動邀請。']], result: '一份素材 → 多比例、不同訴求的版本', action: '聊聊我的影片需求' },
@@ -114,9 +121,9 @@ export default function HomePage() {
 
         <section className="lk-software" id="software" aria-labelledby="software-title">
           <div className="lk-software-visual">
-            <img src="/heroes/sunny-event-1774.webp" srcSet="/heroes/sunny-event-900.webp 900w, /heroes/sunny-event-1774.webp 1774w" sizes="100vw" alt="AI 生成情境：活動人員使用平板確認報名，來賓出示手機報到" width="1774" height="887" loading="lazy" />
-            <div className="lk-container lk-software-image-copy"><div className="lk-eyebrow">BUILT FOR THE PROJECT.</div><h2 id="software-title">大型軟體，<br />也能<span>用完就退場。</span></h2><p>一場活動，就做一套報名、報到工具。<br />專案結束，資料帶走、系統退場。</p><div className="lk-scene-labels"><span><Check size={14} /> 線上報名</span><span><Check size={14} /> 現場報到</span><span><Check size={14} /> 名單匯出</span></div></div>
-            <small className="lk-image-caption">AI 生成情境示意</small>
+            <img src="/heroes/desktop-software-1774.webp" srcSet="/heroes/desktop-software-900.webp 900w, /heroes/desktop-software-1774.webp 1774w" sizes="100vw" alt="AI 生成示意：桌上的大型 iMac 電腦展示訂單、專案與報表管理系統" width="1774" height="887" loading="lazy" />
+            <div className="lk-container lk-software-image-copy"><div className="lk-eyebrow">BUILT FOR THE PROJECT.</div><h2 id="software-title">大型軟體，<br />也能<span>用完就退場。</span></h2><p>訂單、專案、報表，放進同一個工作畫面。<br />為本案打造，結案後可匯出資料、停用系統。</p><div className="lk-scene-labels"><span><Check size={14} /> 訂單管理</span><span><Check size={14} /> 專案進度</span><span><Check size={14} /> 報表匯出</span></div></div>
+            <small className="lk-image-caption">AI 生成介面示意 · 非實際產品畫面</small>
           </div>
           <div className="lk-container lk-software-details">
             <div className="lk-software-pitch"><div className="lk-eyebrow"><span>PROJECT SOFTWARE /</span> 專案型軟體</div><h3>你以為要 200 萬，<br />我們先談 15 萬怎麼做。</h3><p>活動報名、專案管理、資料整合、報價工具。把大型系統的需求，拆成這個專案真正會用到的功能；快速做出能操作、能驗收的版本。</p><button className="lk-button lk-button-primary" onClick={() => chooseService('software')}>評估我的 15 萬專案 <ArrowUpRight size={18} /></button></div>
@@ -140,6 +147,7 @@ export default function HomePage() {
         <section className="lk-work-section lk-section lk-container" id="work">
           <SectionHeading number="03" label="MADE WITH AI. READY FOR BUSINESS." description="廣告、品牌角色、知識內容。不只聊可能，直接播放，看交付。">能力，不用想像。<br /><em>成品在這裡。</em></SectionHeading>
           <div className="lk-showcase-grid">{videos.slice(0, 3).map((video, index) => <article className="lk-showcase" key={video.id}><button className="lk-showcase-poster" onClick={() => openVideo(video)} aria-label={`播放${video.label}：${video.title}`}><img src={`/showcase/${video.id}.jpg`} alt={video.title} width="720" height="1280" loading="lazy" /><span className="lk-showcase-no">0{index + 1} / {video.label}</span><span className="lk-showcase-play"><Play size={20} fill="currentColor" /></span><span className="lk-showcase-duration">{video.duration}</span></button><div className="lk-showcase-copy"><h3>{video.title}</h3><p>{video.description}</p><div className="lk-tags">{video.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div></article>)}</div>
+          <div className="lk-visual-examples"><div className="lk-visual-examples-heading"><div><span className="lk-eyebrow">MORE POSSIBILITIES / 更多產業情境</span><h3>你的生意，也能有這樣的畫面。</h3></div><p>五種 AI 影音企劃方向，先看視覺示意。</p></div><div className="lk-example-grid">{visualExamples.map(item => <article key={item.id}><div className="lk-example-photo"><img src={`/showcase/${item.id}-concept.webp`} alt={`${item.label}：${item.title}，AI 生成圖片`} width="720" height="900" loading="lazy" /><span>AI 圖片示意</span></div><div className="lk-example-copy"><small>{item.label}</small><h4>{item.title}</h4><p>{item.copy}</p><button className="lk-text-link" onClick={() => { setDetails(`想製作「${item.label}」方向的內容，請協助評估素材、影片規格與報價。`); chooseService('video'); }}>我也想做這種內容 <ArrowUpRight size={16} /></button></div></article>)}</div><p className="lk-shop-note">以上為新製作的 AI 視覺概念，並非可播放影片或客戶實績；實際商品外觀、人物與影片規格需另行確認。</p></div>
           <div className="lk-course-row"><button onClick={() => openVideo(videos[3])} className="lk-course-poster" aria-label="播放 AI 知識內容：安命宮與身宮"><img src="/showcase/ai-course.jpg" alt="紫微斗數課程：安命宮與身宮" width="720" height="405" loading="lazy" /><span className="lk-showcase-play"><Play size={18} fill="currentColor" /></span></button><div><span className="lk-eyebrow">04 / KNOWLEDGE TO PRODUCT</span><h3>你的專業，也可以是一門好生意。</h3><p>把教學、顧問經驗與專業知識，做成能重複銷售的課程與數位內容。</p><button className="lk-text-link" onClick={() => openVideo(videos[3])}>播放課程示範 <ArrowUpRight size={17} /></button></div><span className="lk-course-number">01:42<small>課程影片示範</small></span></div>
           <p className="lk-section-footnote">影片為作品展示，含 AI 生成人物與情境演出；片中情境、數字與產品訴求不代表客戶實績或成效保證。</p>
           <div className="lk-product-links"><div><span className="lk-eyebrow">BEYOND CONTENT</span><h3>也能把工作，做成一套系統。</h3></div><Link href="/decisions/"><LayoutDashboard size={20} /><span>老闆決策工作台<small>互動產品示範 · 使用模擬資料</small></span><ArrowUpRight size={20} /></Link><Link href="/quote/"><FileText size={20} /><span>智慧報價工具<small>互動產品示範 · 使用模擬資料</small></span><ArrowUpRight size={20} /></Link></div>

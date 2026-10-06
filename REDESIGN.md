@@ -54,3 +54,9 @@ The second homepage section is now a four-offer shop with original service image
 New prices are proposed, untaxed reference prices, not verified operating margins: monthly marketing NT$29,800, four short videos NT$12,800, one automation NT$38,000+, project software NT$150,000+. The comparison illustrates employment versus scoped service delivery without inventing salary figures or promising all technical services in the monthly package.
 
 Original hero photos were edited with bright morning sunlight; video and operations service photos newly generated. Prompts in `public/heroes/sunny-asset-notes.txt`. Verified all four offer switches and contact handoff, desktop/mobile layouts, 30 tests and production static export.
+
+## Five concept images and desktop software hero
+
+Added five original portrait images for cafe, skincare, fashion retail, manufacturing and course concepts. These are explicitly labeled static AI concept images, not playable videos or client results. Each inquiry pre-fills the relevant industry direction; existing four playable videos remain unchanged.
+
+Replaced project-software hero and offer-card image with a large desk-mounted iMac showing a generated order/project/report interface. Interface is labeled conceptual. Images are optimized WebP and lazy-loaded. Built static export and checked desktop/mobile layout and inquiry prefill.
