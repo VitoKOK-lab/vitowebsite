@@ -540,3 +540,19 @@
  .lk-comparison{padding-block:50px;}.lk-compare-head{gap:10px;}.lk-compare-head>div{padding:18px 12px;}.lk-compare-head strong{font-size:23px;}.lk-compare-head strong small{display:block;font-size:10px;}.lk-compare-head p{font-size:11px;}.lk-compare-head span{font-size:10px;}
  .lk-compare-table>[role=row]{grid-template-columns:1fr 1fr;}.lk-compare-table>[role=row]>strong{grid-column:1/-1;padding:15px 10px 5px;}.lk-compare-table>[role=row]>*{font-size:11px;padding:12px 10px;}.lk-compare-labels>span:first-child{display:none;}.lk-compare-table svg{width:13px;}
 }
+
+.lk-visual-examples{margin-top:65px;padding-top:42px;border-top:1px solid var(--line);}
+.lk-visual-examples-heading{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:26px;}
+.lk-visual-examples-heading h3{font-family:'Noto Serif TC','Songti TC',serif;font-size:30px;margin-top:14px;}
+.lk-visual-examples-heading p{font-size:13px;color:var(--muted);}
+.lk-example-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:35px 24px;}
+.lk-example-photo{aspect-ratio:4/5;position:relative;overflow:hidden;background:#eef2f3;}
+.lk-example-photo img{width:100%;height:100%;object-fit:cover;}
+.lk-example-photo>span{position:absolute;left:16px;bottom:16px;background:#fffffff0;color:#28596d;font-size:10px;padding:5px 9px;}
+.lk-example-copy{padding-top:17px;}
+.lk-example-copy>small{color:#28627a;font-size:11px;}
+.lk-example-copy h4{font-size:19px;margin:8px 0 10px;}
+.lk-example-copy p{color:var(--muted);font-size:13px;line-height:1.8;}
+.lk-example-copy .lk-text-link{margin-top:10px;font-size:12px!important;}
+@media(max-width:959px){.lk-example-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:699px){.lk-visual-examples{margin-top:42px;padding-top:30px;}.lk-visual-examples-heading{display:block;}.lk-visual-examples-heading h3{font-size:25px;}.lk-visual-examples-heading p{margin-top:12px;font-size:12px;}.lk-example-grid{grid-template-columns:1fr;gap:30px;}.lk-example-photo{aspect-ratio:4/5;}.lk-software-visual>img{object-position:73% center;}}
