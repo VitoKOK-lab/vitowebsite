@@ -38,3 +38,11 @@ A PR validation workflow runs tests and build. Production continues to use the e
 - Project software section explains scoped NT$150,000 starting proposal versus a hypothetical NT$2m full-system budget; 10x is an improvement target, not a guarantee. Export and retirement are explicit.
 - Dedicated software selection and contact brief separate project pricing from monthly collaboration.
 - Verified production static export, all 30 tests, desktop hero and software images, mobile hero and software images, 320/375/768/1440 layout checks, software CTA selection and email brief, no browser errors.
+
+## Approachable blue visual direction
+
+User reference `11_45_15.png` supersedes the previous campaign palette: mist blue, ivory, blue-grey and charcoal. LUXKEY wordmark geometry and vermillion dot remain unchanged. Campaign accents use dark blue for readable text and light blue with dark text for primary actions.
+
+Replaced both architectural hero scenes with generated, relatable business scenarios: reviewing marketing content and editing product video; checking guests in at an event with a tablet. Chinese labels explain the tasks and generated-scene captions avoid implying real staff or client photography. Prompts are saved in `public/heroes/blue-asset-notes.txt`. Social preview colors match.
+
+Validation: full production build passed; desktop and mobile visual review, responsive overflow checks, image loading and CTA review.

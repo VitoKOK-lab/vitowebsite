@@ -104,7 +104,7 @@ export default function HomePage() {
       </header>
       <main id="main">
         <section className="lk-cinema" aria-labelledby="hero-title">
-          <img className="lk-cinema-image" src="/heroes/ai-team-1860.webp" srcSet="/heroes/ai-team-900.webp 900w, /heroes/ai-team-1860.webp 1860w" sizes="100vw" alt="AI 工作室概念視覺：多個工作站在朱紅圓形建築中協同運作" width="1860" height="845" fetchPriority="high" />
+          <img className="lk-cinema-image" src="/heroes/marketing-team-1774.webp" srcSet="/heroes/marketing-team-900.webp 900w, /heroes/marketing-team-1774.webp 1774w" sizes="100vw" alt="AI 生成情境：老闆與團隊確認社群配圖，桌上展示產品拍攝與影片剪輯" width="1774" height="887" fetchPriority="high" />
           <div className="lk-cinema-shade" />
           <div className="lk-container lk-cinema-content">
             <div className="lk-eyebrow"><span className="lk-dot" /> YOUR NEXT BUSINESS TEAM</div>
@@ -113,7 +113,7 @@ export default function HomePage() {
             <p className="lk-cinema-body">主動排企劃、做內容、剪影片、追進度。<br />你決定生意的方向，讓 AI 把下一步準備好。</p>
             <div className="lk-hero-actions"><a className="lk-button lk-button-primary" href="#start">組建我的 AI 團隊 <ArrowUpRight size={19} /></a><a className="lk-text-link" href="#software">看看專案軟體 <ArrowDown size={18} /></a></div>
           </div>
-          <div className="lk-cinema-bottom lk-container"><span>STRATEGY / CONTENT / AUTOMATION</span><a href="#work"><CirclePlay size={19} /> 看 AI 交付作品</a><small>AI 生成概念視覺</small></div>
+          <div className="lk-cinema-bottom lk-container"><span>貼文企劃 ／ 產品拍攝 ／ 影片剪輯</span><a href="#work"><CirclePlay size={19} /> 看 AI 交付作品</a><small>AI 生成情境示意</small></div>
         </section>
 
         <section className="lk-momentum lk-container" aria-labelledby="momentum-title">
@@ -133,9 +133,9 @@ export default function HomePage() {
 
         <section className="lk-software" id="software" aria-labelledby="software-title">
           <div className="lk-software-visual">
-            <img src="/heroes/project-software-1860.webp" srcSet="/heroes/project-software-900.webp 900w, /heroes/project-software-1860.webp 1860w" sizes="100vw" alt="模組化軟體概念視覺：朱紅模組從銀色系統中獨立取出" width="1774" height="887" loading="lazy" />
-            <div className="lk-container lk-software-image-copy"><div className="lk-eyebrow">BUILT FOR THE PROJECT.</div><h2 id="software-title">大型軟體，<br />也能<span>用完就退場。</span></h2><p>為這一案而生。<br />不必為了用一次，養一套系統。</p></div>
-            <small className="lk-image-caption">AI 生成概念視覺</small>
+            <img src="/heroes/event-checkin-1774.webp" srcSet="/heroes/event-checkin-900.webp 900w, /heroes/event-checkin-1774.webp 1774w" sizes="100vw" alt="AI 生成情境：活動人員使用平板確認報名，來賓出示手機報到" width="1774" height="887" loading="lazy" />
+            <div className="lk-container lk-software-image-copy"><div className="lk-eyebrow">BUILT FOR THE PROJECT.</div><h2 id="software-title">大型軟體，<br />也能<span>用完就退場。</span></h2><p>一場活動，就做一套報名、報到工具。<br />專案結束，資料帶走、系統退場。</p><div className="lk-scene-labels"><span><Check size={14} /> 線上報名</span><span><Check size={14} /> 現場報到</span><span><Check size={14} /> 名單匯出</span></div></div>
+            <small className="lk-image-caption">AI 生成情境示意</small>
           </div>
           <div className="lk-container lk-software-details">
             <div className="lk-software-pitch"><div className="lk-eyebrow"><span>PROJECT SOFTWARE /</span> 專案型軟體</div><h3>你以為要 200 萬，<br />我們先談 15 萬怎麼做。</h3><p>活動報名、專案管理、資料整合、報價工具。把大型系統的需求，拆成這個專案真正會用到的功能；快速做出能操作、能驗收的版本。</p><button className="lk-button lk-button-primary" onClick={() => chooseService('software')}>評估我的 15 萬專案 <ArrowUpRight size={18} /></button></div>
