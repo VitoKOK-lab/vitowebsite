@@ -46,3 +46,11 @@ User reference `11_45_15.png` supersedes the previous campaign palette: mist blu
 Replaced both architectural hero scenes with generated, relatable business scenarios: reviewing marketing content and editing product video; checking guests in at an event with a tablet. Chinese labels explain the tasks and generated-scene captions avoid implying real staff or client photography. Prompts are saved in `public/heroes/blue-asset-notes.txt`. Social preview colors match.
 
 Validation: full production build passed; desktop and mobile visual review, responsive overflow checks, image loading and CTA review.
+
+## Sunny service shop
+
+The second homepage section is now a four-offer shop with original service imagery. Selecting a card reveals its reference price, deliverables, target timing, revisions, client inputs, suggested payment terms and exclusions. Contact actions preserve selected offer and reference price in the visitor brief.
+
+New prices are proposed, untaxed reference prices, not verified operating margins: monthly marketing NT$29,800, four short videos NT$12,800, one automation NT$38,000+, project software NT$150,000+. The comparison illustrates employment versus scoped service delivery without inventing salary figures or promising all technical services in the monthly package.
+
+Original hero photos were edited with bright morning sunlight; video and operations service photos newly generated. Prompts in `public/heroes/sunny-asset-notes.txt`. Verified all four offer switches and contact handoff, desktop/mobile layouts, 30 tests and production static export.
