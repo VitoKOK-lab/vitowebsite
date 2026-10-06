@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, ArrowDown, Check, CheckCheck, ChevronDown, ChevronRight, CirclePlay, Clapperboard, Copy, FileText, LayoutDashboard, Mail, Menu, MessageCircle, Play, Plus, Send, ShieldCheck, Sparkles, Workflow, X, WandSparkles, Lightbulb, Handshake, CalendarDays, Bot, Clock3, Layers3 } from 'lucide-react';
 import { buildBrief, estimateCapacity, industries, servicePlans, type ServiceKey } from '@/lib/marketing';
 import './portfolio.css';
+import ServiceShop, { TeamComparison } from './service-shop';
 
 const videos = [
   { id: 'ai-product-ad', title: '讓產品，走進真實情境。', label: 'AI 情境廣告', duration: '00:28', source: 'MC-001', description: '人物情境、產品訴求、字幕與動態資訊，整合成一支直式廣告。', tags: ['情境腳本', 'AI 人物', '動態字幕'], portrait: true },
@@ -14,14 +15,6 @@ const videos = [
   { id: 'ai-course', title: '把專業，變成可以播放的課。', label: 'AI 知識內容', duration: '01:42', source: 'lesson-05-16x9', description: '將知識拆成清楚的段落，搭配旁白、字幕與畫面，製作課程與教學內容。', tags: ['課程製作', '圖文解說', '知識產品'], portrait: false },
 ] as const;
 type Video = typeof videos[number];
-const services: { key: ServiceKey; icon: typeof MessageCircle; outcome: string; title: string; copy: string; tags: string[] }[] = [
-  { key: 'content', icon: MessageCircle, outcome: '讓內容持續上線', title: '雲端 AI 小編', copy: '企劃、文案、配圖、排程接起來。你掌握品牌方向，AI 處理日常產出。', tags: ['社群經營', '內容日曆', '品牌語氣'] },
-  { key: 'video', icon: Clapperboard, outcome: '讓一份素材多次發揮', title: '自動剪輯師', copy: '長片找重點、短片加字幕、調整比例。一份素材，變成多平台內容。', tags: ['短影音', '自動字幕', 'AI 配音'] },
-  { key: 'operations', icon: Workflow, outcome: '讓例行工作自己往前', title: 'AI 營運助理', copy: '整理訂單、追進度、做報表。每天最重要的事，打開畫面就看得到。', tags: ['流程自動化', '管理看板', '資料整理'] },
-  { key: 'sales', icon: Bot, outcome: '讓商機有人接住', title: 'AI 業務與客服', copy: '常見問題先回覆、詢問先分類、跟進先提醒。把真人留給關鍵成交。', tags: ['客服知識庫', '智慧報價', '商機跟進'] },
-  { key: 'business', icon: Lightbulb, outcome: '讓專業變成新收入', title: 'AI 商業模式', copy: '把你會的事做成網站、工具、課程或訂閱服務，先做首版，再測市場。', tags: ['數位產品', '網站／App', '市場驗證'] },
-  { key: 'partner', icon: Handshake, outcome: '讓你的客戶也用上 AI', title: 'AI 代理合作', copy: '你熟悉客戶，我們負責技術與製作。從共同提案到交付，一起擴大服務。', tags: ['通路合作', '共同提案', '技術交付'] },
-];
 const demos = [
   { key: 'content', label: '雲端 AI 小編', icon: MessageCircle, title: '下週的內容，先幫你準備好了。', subtitle: '一個新品主題，延伸成整週的社群內容。', input: '下週推出夏季冷萃，想讓附近的上班族來試喝。', output: '把「上班很累」變成品牌能接住的日常。', steps: ['整理產品與客群', '安排一週主題', '產出文案與腳本', '等你確認再排程'], rows: [['MON', '新品亮相', '週一的清醒，交給這一杯。'], ['WED', '情境短片', '下午三點，把狀態找回來。'], ['FRI', '到店邀請', '這週辛苦了，來喝一杯。']], result: '3 則社群企劃 + 1 支短影音腳本', action: '把這套小編帶進公司' },
   { key: 'video', label: '自動剪輯師', icon: Clapperboard, title: '拍一次，讓內容多用幾次。', subtitle: '把原始素材拆成不同目的與平台的版本。', input: '我有一支產品介紹長片，想做成 IG、Reels 和 YouTube 內容。', output: '先找出最吸引人的一句，再安排畫面。', steps: ['辨識重點段落', '整理開場鉤子', '字幕與版型套用', '預覽後再輸出'], rows: [['9:16', '社群短版', '先用一個痛點，抓住注意力。'], ['1:1', '動態貼文', '放大產品亮點，保留清楚字幕。'], ['16:9', '完整介紹', '把故事說完整，帶到行動邀請。']], result: '一份素材 → 多比例、不同訴求的版本', action: '聊聊我的影片需求' },
@@ -96,7 +89,7 @@ export default function HomePage() {
       <header className="lk-header">
         <a href="#top" className="lk-logo-link" aria-label="LUXKEY 首頁"><Wordmark /></a>
         <nav className={menuOpen ? 'lk-nav is-open' : 'lk-nav'} id="main-navigation" aria-label="主選單">
-          {[['AI 能做什麼', '#services'], ['看交付作品', '#work'], ['專案軟體', '#software'], ['合作方式', '#process']].map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
+          {[['服務與收費', '#services'], ['看交付作品', '#work'], ['專案軟體', '#software'], ['合作方式', '#process']].map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
           <a href="#start" className="lk-nav-mobile-cta" onClick={() => setMenuOpen(false)}>聊聊你的需求 <ArrowUpRight size={16} /></a>
         </nav>
         <a className="lk-header-cta" href="#start">讓 AI 開始上工 <ArrowUpRight size={16} /></a>
@@ -104,36 +97,24 @@ export default function HomePage() {
       </header>
       <main id="main">
         <section className="lk-cinema" aria-labelledby="hero-title">
-          <img className="lk-cinema-image" src="/heroes/marketing-team-1774.webp" srcSet="/heroes/marketing-team-900.webp 900w, /heroes/marketing-team-1774.webp 1774w" sizes="100vw" alt="AI 生成情境：老闆與團隊確認社群配圖，桌上展示產品拍攝與影片剪輯" width="1774" height="887" fetchPriority="high" />
+          <img className="lk-cinema-image" src="/heroes/sunny-team-1774.webp" srcSet="/heroes/sunny-team-900.webp 900w, /heroes/sunny-team-1774.webp 1774w" sizes="100vw" alt="AI 生成情境：老闆與團隊確認社群配圖，桌上展示產品拍攝與影片剪輯" width="1774" height="887" fetchPriority="high" />
           <div className="lk-cinema-shade" />
           <div className="lk-container lk-cinema-content">
             <div className="lk-eyebrow"><span className="lk-dot" /> YOUR NEXT BUSINESS TEAM</div>
             <h1 id="hero-title">比你更積極的，<br /><em>AI 商業團隊。</em></h1>
             <p className="lk-cinema-lead">每月一位行銷小編的預算，<br />請一整隊 AI 商業顧問替你工作。</p>
             <p className="lk-cinema-body">主動排企劃、做內容、剪影片、追進度。<br />你決定生意的方向，讓 AI 把下一步準備好。</p>
-            <div className="lk-hero-actions"><a className="lk-button lk-button-primary" href="#start">組建我的 AI 團隊 <ArrowUpRight size={19} /></a><a className="lk-text-link" href="#software">看看專案軟體 <ArrowDown size={18} /></a></div>
+            <div className="lk-hero-actions"><a className="lk-button lk-button-primary" href="#services">選擇我的 AI 方案 <ArrowUpRight size={19} /></a><a className="lk-text-link" href="#software">看看專案軟體 <ArrowDown size={18} /></a></div>
           </div>
           <div className="lk-cinema-bottom lk-container"><span>貼文企劃 ／ 產品拍攝 ／ 影片剪輯</span><a href="#work"><CirclePlay size={19} /> 看 AI 交付作品</a><small>AI 生成情境示意</small></div>
         </section>
 
-        <section className="lk-momentum lk-container" aria-labelledby="momentum-title">
-          <div><div className="lk-eyebrow"><span>THE NEW PACE /</span> 讓工作主動往前</div><h2 id="momentum-title">把排了一年的待辦，<br />變成<span>這個月的行動。</span></h2></div>
-          <div className="lk-momentum-copy"><p>不用每件事都等老闆催。從目標拆解、提案到製作，讓多種 AI 專長同時接力，把卡住的想法一件件做出來。</p><div><span><CalendarDays size={18} /> 先排好優先順序</span><span><Workflow size={18} /> 多項工作同步推進</span><span><CheckCheck size={18} /> 定期交付給你確認</span></div><small>每月依確認的工作量與交付清單執行。</small></div>
-        </section>
-
-        <section className="lk-value-strip" aria-label="合作優勢"><div className="lk-container lk-value-grid">
-          <div><span>01</span><p><strong>一份月度預算。</strong><small>從你最需要的 AI 專長開始。</small></p></div><div><span>02</span><p><strong>一整隊專長上場。</strong><small>企劃、內容、影音、策略一起接力。</small></p></div><div><span>03</span><p><strong>每月，持續有交付。</strong><small>按目標安排工作，定期看成果、調方向。</small></p></div>
-        </div></section>
-
-        <section className="lk-section lk-container" id="services">
-          <SectionHeading number="01" label="YOUR AI TEAM" description="不用自己找工具、湊團隊。依每月的生意目標，組合企劃、內容、影音與自動化，把預算用在最需要的地方。">你需要的專長，<br /><span className="lk-muted-heading">這一隊，都能接力。</span></SectionHeading>
-          <div className="lk-services-grid">{services.map((item, index) => { const Icon = item.icon; return <button key={item.key} className="lk-service-card" onClick={() => chooseService(item.key)}><div className="lk-service-top"><Icon size={27} strokeWidth={1.4} /><span>0{index + 1}</span></div><small>{item.outcome}</small><h3>{item.title}</h3><p>{item.copy}</p><div className="lk-service-bottom"><span>{item.tags.join(' · ')}</span><ArrowUpRight size={22} /></div></button>; })}</div>
-          <p className="lk-section-footnote"><ShieldCheck size={16} /> 每月先確認工作優先順序與交付清單；月費、內容數量、工具費與串接範圍，提案裡說清楚。</p>
-        </section>
+        <ServiceShop onChoose={(key, summary) => { setDetails(summary); chooseService(key); }} />
+        <TeamComparison />
 
         <section className="lk-software" id="software" aria-labelledby="software-title">
           <div className="lk-software-visual">
-            <img src="/heroes/event-checkin-1774.webp" srcSet="/heroes/event-checkin-900.webp 900w, /heroes/event-checkin-1774.webp 1774w" sizes="100vw" alt="AI 生成情境：活動人員使用平板確認報名，來賓出示手機報到" width="1774" height="887" loading="lazy" />
+            <img src="/heroes/sunny-event-1774.webp" srcSet="/heroes/sunny-event-900.webp 900w, /heroes/sunny-event-1774.webp 1774w" sizes="100vw" alt="AI 生成情境：活動人員使用平板確認報名，來賓出示手機報到" width="1774" height="887" loading="lazy" />
             <div className="lk-container lk-software-image-copy"><div className="lk-eyebrow">BUILT FOR THE PROJECT.</div><h2 id="software-title">大型軟體，<br />也能<span>用完就退場。</span></h2><p>一場活動，就做一套報名、報到工具。<br />專案結束，資料帶走、系統退場。</p><div className="lk-scene-labels"><span><Check size={14} /> 線上報名</span><span><Check size={14} /> 現場報到</span><span><Check size={14} /> 名單匯出</span></div></div>
             <small className="lk-image-caption">AI 生成情境示意</small>
           </div>
