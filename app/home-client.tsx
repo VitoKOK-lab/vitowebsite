@@ -117,7 +117,7 @@ export default function HomePage() {
           <div className="lk-cinema-bottom lk-container"><span>內容 × 影音 × 廣告 × 網站 × 自動化</span><a href="#work"><CirclePlay size={19} /> 看 AI 交付作品</a><small>AI 生成情境示意</small></div>
         </section>
 
-        <ServiceShop onChoose={(key, summary) => { setDetails(summary); chooseService(key); }} />
+        <ServiceShop outcomeVisuals onChoose={(key, summary) => { setDetails(summary); chooseService(key); }} />
         <TeamComparison />
         <section className="lk-growth lk-container" id="growth" aria-labelledby="growth-title">
           <div className="lk-eyebrow">ONE TEAM / 從曝光到訂單，一個窗口接起來</div>
@@ -135,9 +135,9 @@ export default function HomePage() {
 
         <section className="lk-software" id="software" aria-labelledby="software-title">
           <div className="lk-software-visual">
-            <img src="/heroes/desktop-software-1774.webp" srcSet="/heroes/desktop-software-900.webp 900w, /heroes/desktop-software-1774.webp 1774w" sizes="100vw" alt="AI 生成示意：桌上的大型 iMac 電腦展示訂單、專案與報表管理系統" width="1774" height="887" loading="lazy" />
-            <div className="lk-container lk-software-image-copy"><div className="lk-eyebrow">BUILT FOR THE PROJECT.</div><h2 id="software-title">200萬的大型軟體，<br /><span>你也能快速擁有</span></h2><p>拋棄式的訂製軟體？專案結束就送人，<br />快速上線、快速去賺錢</p><div className="lk-scene-labels"><span><Check size={14} /> 訂單管理</span><span><Check size={14} /> 專案進度</span><span><Check size={14} /> 報表匯出</span></div></div>
-            <small className="lk-image-caption">AI 生成介面示意 · 非實際產品畫面</small>
+            <img src="/heroes/enterprise-command-1774.webp" srcSet="/heroes/enterprise-command-900.webp 900w, /heroes/enterprise-command-1774.webp 1774w" sizes="100vw" alt="AI 概念示意：大型桌機展示跨據點營運、營收預測、庫存、專案甘特圖與 AI 異常提醒" width="1774" height="887" loading="lazy" />
+            <div className="lk-container lk-software-image-copy"><div className="lk-eyebrow">BUILT FOR THE PROJECT.</div><h2 id="software-title">200萬的大型軟體，<br /><span>你也能快速擁有</span></h2><p>拋棄式的訂製軟體？專案結束就送人，<br />快速上線、快速去賺錢</p><div className="lk-scene-labels"><span><Check size={14} /> 跨據點營運</span><span><Check size={14} /> 庫存與專案整合</span><span><Check size={14} /> AI 異常提醒</span></div></div>
+            <small className="lk-image-caption">企業系統概念示意 · 模擬資料 · 功能依專案範圍規劃</small>
           </div>
           <div className="lk-container lk-software-details">
             <div className="lk-software-pitch"><div className="lk-eyebrow"><span>PROJECT SOFTWARE /</span> 專案型軟體</div><h3>你以為要 200 萬，<br />我們先談 15 萬怎麼做。</h3><p>活動報名、專案管理、資料整合、報價工具。把大型系統的需求，拆成這個專案真正會用到的功能；快速做出能操作、能驗收的版本。</p><button className="lk-button lk-button-primary" onClick={() => chooseService('software')}>評估我的 15 萬專案 <ArrowUpRight size={18} /></button></div>
