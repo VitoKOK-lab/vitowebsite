@@ -1,0 +1,22 @@
+name: Validate website
+on:
+  pull_request:
+    branches:
+      - claude/system-design-confirmation-342l3q
+permissions:
+  contents: read
+concurrency:
+  group: validate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+      - run: npm run build
