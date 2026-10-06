@@ -11,11 +11,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://luxkey.com.tw"),
-  title: "LUXKEY｜企業 AI 導入與商業應用",
+  title: "LUXKEY｜中小企業的五倍行銷部",
   description:
-    "雲端 AI 小編、自動剪輯師、企業流程自動化與 AI 商業模式。低成本起步，快速看見首版。",
-  openGraph: { images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "LUXKEY 一位小編的預算，一整隊 AI 商業顧問" }], type: "website", locale: "zh_TW", siteName: "LUXKEY", title: "LUXKEY｜一位小編的預算，一整隊 AI 商業顧問", description: "每月一位行銷小編的預算，讓 AI 商業團隊替你工作。企劃、小編、剪輯、營運與策略，按月合作、持續交付。" },
-  twitter: { images: ["/og-image.png"], card: "summary_large_image", title: "LUXKEY｜一位小編的預算，一整隊 AI 商業顧問" },
+    "中小企業的五倍行銷部。一個人的成本，五個人的產能。企劃、文案、設計、影片、數位人、社群、廣告、網站與流程自動化，一個窗口整合，從曝光到客戶與訂單。",
+  openGraph: { images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "LUXKEY 中小企業的五倍行銷部" }], type: "website", locale: "zh_TW", siteName: "LUXKEY", title: "LUXKEY｜中小企業的五倍行銷部", description: "中小企業的五倍行銷部。一個人的成本，五個人的產能。企劃、文案、設計、影片、數位人、社群、廣告、網站與流程自動化，一個窗口整合，從曝光到客戶與訂單。" },
+  twitter: { images: ["/og-image.png"], card: "summary_large_image", title: "LUXKEY｜中小企業的五倍行銷部" },
 };
 
 export const viewport: Viewport = {
