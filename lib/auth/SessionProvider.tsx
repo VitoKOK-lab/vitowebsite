@@ -27,10 +27,12 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
 
   // 掛載後從 localStorage 還原(避免 SSR/CSR 不一致)
   React.useEffect(() => {
-    const r = localStorage.getItem(ROLE_KEY) as Role | null;
-    const i = localStorage.getItem(INDUSTRY_KEY) as IndustryKey | null;
-    if (r && VALID_ROLES.includes(r)) setRoleState(r);
-    if (i && VALID_INDUSTRIES.includes(i)) setIndustryState(i);
+    try {
+      const r = localStorage.getItem(ROLE_KEY) as Role | null;
+      const i = localStorage.getItem(INDUSTRY_KEY) as IndustryKey | null;
+      if (r && VALID_ROLES.includes(r)) setRoleState(r);
+      if (i && VALID_INDUSTRIES.includes(i)) setIndustryState(i);
+    } catch { /* Restricted storage: keep the usable in-memory defaults. */ }
   }, []);
 
   // 依產業切換主題色(CSS 變數掛在 <html> 的 data-industry)
@@ -40,11 +42,11 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
 
   const setRole = React.useCallback((r: Role) => {
     setRoleState(r);
-    localStorage.setItem(ROLE_KEY, r);
+    try { localStorage.setItem(ROLE_KEY, r); } catch { /* In-memory session still works. */ }
   }, []);
   const setIndustry = React.useCallback((i: IndustryKey) => {
     setIndustryState(i);
-    localStorage.setItem(INDUSTRY_KEY, i);
+    try { localStorage.setItem(INDUSTRY_KEY, i); } catch { /* In-memory session still works. */ }
   }, []);
   const bump = React.useCallback(() => setVersion((v) => v + 1), []);
 
