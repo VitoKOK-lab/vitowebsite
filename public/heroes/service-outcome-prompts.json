@@ -1,0 +1,30 @@
+[
+  {
+    "key": "marketing",
+    "prompt": "Use case: ads-marketing. Generate a premium service-card image for a Taiwanese B2B AI agency. Landscape 3:2. Bright sunlit ivory background, mist blue #8bc8df and deep blue #28627a, hopeful warm daylight, beautifully crafted photoreal 3D product visualization. Strong instantly understandable visual metaphor at thumbnail size, large foreground objects, minimal clean composition. No office workers, no stock office scene, no tiny dashboards, no robots, no neon, no logos, no written words or typography. Leave upper left corner calm for website badge. One central pale-blue marketing command hub fanning out into FIVE large tangible output objects in a semicircle: an editorial calendar sheet, a beautiful product advertising poster featuring a citrus drink, a tall smartphone showing the same drink social video with play symbol, a megaphone, and a miniature website window featuring that same drink. These five clearly distinct deliverables feel like a cohesive complete marketing department. The product images are vivid orange contrasted with blue. Strong 5-part composition, not a busy pile.",
+    "source": "exec-c5f7d1a9-b314-4565-a31a-ef89ee3c1b7d.png",
+    "mode": "Built-in image_gen — new image",
+    "asset": "public/heroes/service-marketing-900.webp"
+  },
+  {
+    "key": "video",
+    "prompt": "Use case: ads-marketing. Generate a premium service-card image for a Taiwanese B2B AI agency. Landscape 3:2. Bright sunlit ivory background, mist blue #8bc8df and deep blue #28627a, hopeful warm daylight, beautifully crafted photoreal 3D product visualization. Strong instantly understandable visual metaphor at thumbnail size, large foreground objects, minimal clean composition. No office workers, no stock office scene, no tiny dashboards, no robots, no neon, no logos, no written words or typography. Leave upper left corner calm for website badge. One landscape raw-video frame on the left showing an orange drink being poured, a large clear branching arrow in the center, FOUR distinct upright smartphone video cards fanned on the right showing different closeups of that same drink, each with a clear play triangle. An editing timeline and a silver scissor in foreground emphasize cutting ONE footage into FOUR short videos. Phones and footage dominate frame. Easy visual before-to-after transformation.",
+    "source": "exec-f281a96c-d031-497f-a612-d636938cfccd.png",
+    "mode": "Built-in image_gen — new image",
+    "asset": "public/heroes/service-video-900.webp"
+  },
+  {
+    "key": "automation",
+    "prompt": "Use case: ads-marketing. Generate a premium service-card image for a Taiwanese B2B AI agency. Landscape 3:2. Bright sunlit ivory background, mist blue #8bc8df and deep blue #28627a, hopeful warm daylight, beautifully crafted photoreal 3D product visualization. Strong instantly understandable visual metaphor at thumbnail size, large foreground objects, minimal clean composition. No office workers, no stock office scene, no tiny dashboards, no robots, no neon, no logos, no written words or typography. Leave upper left corner calm for website badge. An unmistakable physical AUTOMATED WORKFLOW: four large white-and-blue rounded tiles on a flowing blue conveyor path, left to right: incoming order paper, spreadsheet grid, parcel with checkmark, final report bar chart. Clearly visible blue arrows connect the steps in sequence. A small tasteful gear mechanism under the center moves the whole conveyor automatically, no human hands. One input becomes finished work. Close-up polished dimensional diagram with realistic materials, not a warehouse.",
+    "source": "exec-b8e0fea6-66cb-477a-81d4-19dac275c5cd.png",
+    "mode": "Built-in image_gen — new image",
+    "asset": "public/heroes/service-automation-900.webp"
+  },
+  {
+    "key": "software",
+    "prompt": "Use case: ads-marketing. Generate a premium service-card image for a Taiwanese B2B AI agency. Landscape 3:2. Bright sunlit ivory background, mist blue #8bc8df and deep blue #28627a, hopeful warm daylight, beautifully crafted photoreal 3D product visualization. Strong instantly understandable visual metaphor at thumbnail size, large foreground objects, minimal clean composition. No office workers, no stock office scene, no tiny dashboards, no robots, no neon, no logos, no written words or typography. Leave upper left corner calm for website badge. A large elegant silver desktop Mac-style computer centered on an ivory desk, with a bold simple event-management software interface: big calendar, registration cards, attendee checkmarks. On its LEFT three chunky blue modular puzzle-block app panels with calendar, registration, report icons visibly slot INTO the screen like a custom software kit, joined by one clear arrow. On right a finished tablet showing a QR check-in ticket. Emphasize made-to-order software assembled for one project; screen and modular construction fill frame, no small dashboard numbers, no brands.",
+    "source": "exec-a70561fb-8ad7-4a7f-b7e0-904bcb4502f3.png",
+    "mode": "Built-in image_gen — new image",
+    "asset": "public/heroes/service-software-900.webp"
+  }
+]

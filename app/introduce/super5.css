@@ -3,3 +3,6 @@
 .s5-brand-name b { color: #28627a; font-weight: 900; }
 .s5-brand-tagline { font-size: 9px; line-height: 1.4; font-weight: 500; letter-spacing: .045em; }
 @media (max-width: 600px) { .s5-brand-name { font-size: 29px; } .s5-brand-tagline { font-size: 8px; } }
+
+.s5-outcome-caption { background: #e8f2f6; color: #28596d; padding: 10px 12px; font-size: 12px; font-weight: 600; text-align: center; line-height: 1.5; }
+@media(max-width:600px) { .s5-outcome-caption {font-size: 10px; padding: 8px 5px;} }

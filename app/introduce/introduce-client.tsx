@@ -102,7 +102,7 @@ export default function IntroducePage() {
           <div className="lk-cinema-bottom lk-container"><span>內容 × 影音 × 廣告 × 網站 × 自動化</span><a href="#work"><CirclePlay size={19} /> 看 AI 交付作品</a><small>AI 生成情境示意</small></div>
         </section>
 
-        <ServiceShop />
+        <ServiceShop outcomeVisuals />
         <TeamComparison brandName="super 5" />
         <section className="lk-growth lk-container" id="growth" aria-labelledby="growth-title">
           <div className="lk-eyebrow">ONE TEAM / 從曝光到訂單，一個窗口接起來</div>
