@@ -21,6 +21,8 @@ export type DealerService = {
   intro: string;
   image: string;
   imageAlt: string;
+  heroImage?: string;
+  heroImageAlt?: string;
   demoIntro?: string;
   priceLine: string;
   priceNote: string;
@@ -98,6 +100,8 @@ export const dealerServices: DealerService[] = [
     intro: '不用先拍一堆影片。我們超 AI 技術把少量照片做成完整短片：白板手繪、簡報口播、品牌動態、黑底科技字卡，挑適合你的形式。',
     image: '/dealer/ai-video.webp',
     imageAlt: '五種 AI 製片畫面並列：白板手繪、平面口播、品牌動態、科技字卡與產品簡報',
+    heroImage: '/dealer/ai-video-hero.webp',
+    heroImageAlt: '工程師剪貼少量紙片、貼紙與積木，組成有趣的直式簡報影片',
     demoIntro: '白板、口播簡報、品牌動態、科技字卡都能做；看五種不同的製片方向。',
     priceLine: '4 支 NT$12,800 起',
     priceNote: '少量客供照片即可啟動・未稅參考價',
