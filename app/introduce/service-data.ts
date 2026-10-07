@@ -37,7 +37,7 @@ export const dealerServices: DealerService[] = [
     headline: '不用天天拍，品牌天天有人開口賣。',
     intro: '建立固定的虛擬品牌角色，持續介紹產品、回答常見問題、更新活動。老闆給重點，我們交付能發布的直式影片。',
     image: '/dealer/digital-human.webp',
-    imageAlt: '手機顯示虛擬品牌角色與多支直式產品影片',
+    imageAlt: '品牌數字人介紹產品，製作團隊正在拍攝現場工作',
     priceLine: '4 支 NT$19,800 起',
     priceNote: '15–30 秒／支・未稅參考價',
     options: [{
@@ -53,7 +53,11 @@ export const dealerServices: DealerService[] = [
       {title: '拿到就能發布', body: '交付完整直式成片，不只是一個數字人檔案。'},
     ],
     steps: ['給產品資料與角色方向', '確認腳本和示範畫面', '製作、審稿、交付影片'],
-    cases: [{src: '/dealer/simulated/digital-human-vertical.webp', title: '數字人商品介紹情境', description: 'AI 生成模擬圖，9:16 完整展示。'}],
+    cases: [
+      {src: '/dealer/simulated/digital-human-vertical.webp', title: '保養品介紹', description: '固定角色，介紹商品特色。'},
+      {src: '/dealer/simulated/digital-human-2.webp', title: '咖啡新品介紹', description: '換一個商品，延續同一種口播形式。'},
+      {src: '/dealer/simulated/digital-human-3.webp', title: '工具操作介紹', description: '把功能說清楚，直接給客戶看。'},
+    ],
   },
   {
     slug: 'real-video',
@@ -62,7 +66,7 @@ export const dealerServices: DealerService[] = [
     headline: '一次拍夠，一個月都有影片可發。',
     intro: '產品、店面、服務流程真的拍給客戶看。從題目、拍攝到剪輯同一團隊完成，省掉老闆分頭找人。',
     image: '/dealer/real-video.webp',
-    imageAlt: '攝影機在店內實際拍攝商品與場景',
+    imageAlt: '攝影團隊在烘焙店拍攝店主製作與介紹商品的工作現場',
     priceLine: '4 支 NT$29,800 起',
     priceNote: '單一地點半天拍攝・未稅參考價',
     options: [{
@@ -78,7 +82,11 @@ export const dealerServices: DealerService[] = [
       {title: '拍完就接著剪', body: '從腳本到成片一個窗口負責。'},
     ],
     steps: ['確認產品與拍攝地點', '一次集中拍攝', '剪輯、審稿、交付 4 支'],
-    cases: [{src: '/dealer/simulated/real-video-vertical.webp', title: '店內商品實拍情境', description: 'AI 生成模擬圖，9:16 完整展示。'}],
+    cases: [
+      {src: '/dealer/simulated/real-video-vertical.webp', title: '店內商品鏡頭', description: '讓客戶看見真實環境與商品。'},
+      {src: '/dealer/simulated/real-video-2.webp', title: '烘焙現場拍攝', description: '把製作過程拍成短影音。'},
+      {src: '/dealer/simulated/real-video-3.webp', title: '花店職人介紹', description: '店主入鏡，呈現服務與專業。'},
+    ],
   },
   {
     slug: 'ai-video',
@@ -87,7 +95,7 @@ export const dealerServices: DealerService[] = [
     headline: '素材丟過來，快速變成會賣的影片。',
     intro: '現有照片和影片可以重新剪成社群短影音；素材不夠，還能用 AI 補出產品情境畫面。',
     image: '/dealer/ai-video.webp',
-    imageAlt: '電腦剪輯時間軸把產品素材轉成多支直式影片',
+    imageAlt: '製作團隊在片場規劃商品影片的畫面與拍攝',
     priceLine: '4 支 NT$12,800 起',
     priceNote: '客供素材剪輯・未稅參考價',
     options: [
@@ -100,7 +108,11 @@ export const dealerServices: DealerService[] = [
       {title: '一案多支分批發', body: '一次拿到多個直式主題，提高內容使用率。'},
     ],
     steps: ['提供素材與產品重點', '選剪輯或 AI 生片方向', '審稿後交付直式成片'],
-    cases: [{src: '/dealer/simulated/ai-video-vertical.webp', title: 'AI 商品影片情境', description: 'AI 生成模擬圖，9:16 完整展示。'}],
+    cases: [
+      {src: '/dealer/simulated/ai-video-vertical.webp', title: '商品情境片', description: '用新畫面呈現產品賣點。'},
+      {src: '/dealer/simulated/ai-video-2.webp', title: '飲品動態廣告', description: '用光線和水花凸顯清爽感。'},
+      {src: '/dealer/simulated/ai-video-3.webp', title: '包款形象影片', description: '把商品做成更有記憶點的視覺。'},
+    ],
   },
   {
     slug: 'social-posts',
@@ -109,7 +121,7 @@ export const dealerServices: DealerService[] = [
     headline: '每週都有內容，不用老闆每天想題目。',
     intro: '從產品賣點、貼文主題到文案和圖片，整月排好、分批交件。讓社群持續更新，不再靠靈感硬撐。',
     image: '/dealer/social-posts.webp',
-    imageAlt: '螢幕與手機展示一整月已製作的商品圖文貼文',
+    imageAlt: '社群小編在工作牆上編排 Canva 風格的 FB 與 IG 貼文',
     priceLine: '8 則 NT$16,800／月',
     priceNote: '圖文製作・未稅參考價',
     options: [{
@@ -125,7 +137,11 @@ export const dealerServices: DealerService[] = [
       {title: '一個月看得見', body: '固定數量、固定交付節奏。'},
     ],
     steps: ['給品牌和產品資料', '確認月度題目', '分兩批交付圖文'],
-    cases: [{src: '/dealer/simulated/social-posts-vertical.webp', title: '烘焙品牌圖文情境', description: 'AI 生成模擬圖，9:16 完整展示。'}],
+    cases: [
+      {src: '/dealer/simulated/social-posts-vertical.webp', title: '烘焙品牌貼文', description: '商品照片搭配可發布的主視覺。'},
+      {src: '/dealer/simulated/social-posts-2.webp', title: '咖啡新品貼文', description: '適合 FB／IG 的促銷圖文。'},
+      {src: '/dealer/simulated/social-posts-3.webp', title: '香氛商品貼文', description: '同一品牌可延伸不同主題。'},
+    ],
   },
   {
     slug: 'web-system',
@@ -147,7 +163,11 @@ export const dealerServices: DealerService[] = [
       {title: '先做能賺錢的首版', body: '從一個核心任務開始，不必先買整套大系統。'},
     ],
     steps: ['確認最重要的一件事', '定頁面或系統範圍', '製作、驗收、上線'],
-    cases: [{src: '/dealer/simulated/web-system-vertical.webp', title: '銷售網站與管理系統情境', description: 'AI 生成模擬圖，9:16 完整展示。'}],
+    cases: [
+      {src: '/dealer/simulated/web-system-vertical.webp', title: '商品銷售網站', description: '讓客戶看懂產品並留下詢問。'},
+      {src: '/dealer/simulated/web-system-2.webp', title: '活動報名系統', description: '從報名到報到，一個流程管理。'},
+      {src: '/dealer/simulated/web-system-3.webp', title: '訂單管理系統', description: '訂單、庫存與交付進度集中看。'},
+    ],
   },
   {
     slug: 'creator-campaign',
@@ -156,7 +176,7 @@ export const dealerServices: DealerService[] = [
     headline: '一個產品，讓更多人幫你說。',
     intro: 'KOC 帶來使用者視角與內容素材；KOL 幫品牌打開新受眾。從人選、題目、合作到交付，一個窗口管理。',
     image: '/dealer/creator-campaign.webp',
-    imageAlt: '同一產品出現在多支不同創作者的直式內容中',
+    imageAlt: '多位創作者在拍攝現場開箱、示範並介紹商品',
     priceLine: 'KOC 5 位 NT$30,000 起',
     priceNote: 'KOL 5 位 NT$100,000 起・未稅',
     accent: 'orange',
@@ -170,7 +190,11 @@ export const dealerServices: DealerService[] = [
       {title: '口碑與曝光分開買', body: 'KOC 與 KOL 的用途、預算和期待不混在一起。'},
     ],
     steps: ['說明產品與目標受眾', '確認人選、授權及正式報價', '發布、驗收與成果彙整'],
-    cases: [{src: '/dealer/simulated/creator-campaign-vertical.webp', title: 'KOC 商品開箱情境', description: 'AI 生成模擬圖，9:16 完整展示。'}],
+    cases: [
+      {src: '/dealer/simulated/creator-campaign-vertical.webp', title: 'KOC 開箱視角', description: '用日常分享方式讓商品被看見。'},
+      {src: '/dealer/simulated/creator-campaign-2.webp', title: '創作者居家開箱', description: '人物入鏡，展現使用情境。'},
+      {src: '/dealer/simulated/creator-campaign-3.webp', title: 'KOL 商品介紹', description: '由創作者示範商品細節。'},
+    ],
   },
 ];
 

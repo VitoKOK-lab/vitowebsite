@@ -6,9 +6,9 @@ import './super5.css';
 import './dealer.css';
 
 const proof = [
-  {src: '/dealer/simulated/digital-human-vertical.webp', title: '數字人介紹產品', type: 'AI 情境示意'},
-  {src: '/dealer/simulated/ai-video-vertical.webp', title: 'AI 商品影片', type: 'AI 情境示意'},
-  {src: '/dealer/simulated/web-system-vertical.webp', title: '網站與管理系統', type: 'AI 情境示意'},
+  {src: '/dealer/simulated/digital-human-2.webp', title: '數字人介紹產品', type: '固定角色開口介紹'},
+  {src: '/dealer/simulated/real-video-2.webp', title: '到場拍短影音', type: '店主與商品入鏡'},
+  {src: '/dealer/simulated/social-posts-2.webp', title: 'FB／IG 圖文小編', type: '主題、文案與主圖'},
 ];
 
 export default function IntroducePage() {
@@ -41,7 +41,7 @@ export default function IntroducePage() {
         <p className="ds-price-disclaimer">價格為新臺幣未稅參考價；人選、拍攝地點、授權、系統串接和需求擴充依正式報價。主題大圖為 AI 生成示意。</p>
       </section>
       <section className="ds-bundle"><div className="ds-wrap ds-bundle-inner"><div><span className="ds-kicker">想交給一個團隊持續做？</span><h2>五倍行銷月包</h2><p>每月 8 則圖文＋4 支短影音＋內容月曆。從題目到成品，一個窗口接住。</p></div><div><strong>NT$35,000–50,000 <small>／月</small></strong><Link href="/introduce/social-posts/" className="ds-primary">先看圖文與內容服務 <ArrowRight size={18}/></Link></div></div></section>
-      <section className="ds-wrap ds-proof" id="examples"><div className="ds-section-intro"><span className="ds-kicker">服務畫面 / AI 模擬</span><h2>不看說明，<em>也知道在賣什麼。</em></h2><p>以下為 AI 生成情境示意，不是真實客戶作品；直式畫面依 9:16 完整呈現。</p></div><div className="ds-proof-grid">{proof.map(item=><figure key={item.title}><img src={item.src} alt={`${item.title}：${item.type}`} loading="lazy"/><figcaption><strong>{item.title}</strong><span>{item.type}</span></figcaption></figure>)}</div></section>
+      <section className="ds-wrap ds-proof" id="examples"><div className="ds-section-intro"><span className="ds-kicker">先看 3 個 Demo</span><h2>不看說明，<em>也知道在賣什麼。</em></h2><p>先看畫面；每個服務頁還有三個不同主題的直式 Demo。</p></div><div className="ds-proof-grid">{proof.map(item=><figure key={item.title}><img src={item.src} alt={`${item.title}：${item.type}`} loading="lazy"/><figcaption><strong>{item.title}</strong><span>{item.type}</span></figcaption></figure>)}</div><p className="ds-demo-note">示範畫面由 AI 製作，未使用客戶素材。</p></section>
       <section className="ds-final-cta"><div className="ds-wrap"><span className="ds-kicker">選一件最急的，先做出來。</span><h2>看完方案，再決定買哪一項。</h2><a href="#services" className="ds-primary">返回服務選單 <ArrowRight size={20}/></a></div></section>
     </main>
     <DealerFooter/>
