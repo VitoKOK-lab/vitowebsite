@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import IntroducePage from './introduce-client';
 const title = 'super 5｜ai market automatic system';
-const description = 'super 5，中小企業的五倍行銷部。完整服務、方案收費、AI 作品與合作流程介紹。';
+const description = 'super 5 經銷服務選單：數字人、實拍短影音、AI 影片、圖文小編、網站系統與 KOC／KOL。各項服務分頁展示作品、交付內容與參考價格。';
 export const metadata: Metadata = {
   title, description,
   alternates: { canonical: '/introduce/' },
