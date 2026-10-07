@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {ArrowRight} from 'lucide-react';
 import {DealerFooter, DealerHeader} from './dealer-components';
 import {dealerServices} from './service-data';
-import {portfolioBrands, portfolioCases, portfolioProof} from '../portfolio-data';
+import {portfolioCases, portfolioProof} from '../portfolio-data';
 import './super5.css';
 import './dealer.css';
 
@@ -46,9 +46,9 @@ export default function IntroducePage() {
       <section className="ds-portfolio" id="cases"><div className="ds-wrap">
         <div className="ds-portfolio-heading"><div><span className="ds-kicker">合作客戶與實績</span><h2>做過哪些客戶？<br/>交出什麼成果？</h2></div><p>不只看示意圖。合作名稱、案例與交付數量，直接依提供的作品集整理。</p></div>
         <div className="ds-portfolio-stats" aria-label="作品集可核對的合作實績">{portfolioProof.map(item=><div key={item.label}><strong>{item.value}</strong><b>{item.label}</b><span>{item.detail}</span></div>)}</div>
-        <div className="ds-portfolio-brands"><span>合作客戶／品牌・作品集收錄</span>{portfolioBrands.map(brand=><strong key={brand}>{brand}</strong>)}</div>
-        <div className="ds-portfolio-grid">{portfolioCases.map((item,index)=><article className={`ds-portfolio-card ds-portfolio-${item.tone}`} key={item.brand}><div className="ds-portfolio-art" aria-hidden="true"><small>0{index+1}</small><b>{item.mark}</b><span>{item.kind}</span></div><div className="ds-portfolio-copy"><small>{item.kind}</small><h3>{item.brand}</h3><p>{item.detail}</p><span>{item.files}</span></div></article>)}</div>
-        <p className="ds-portfolio-note">以上為作品集可核對的合作名稱、案型及交付數量；未列未經核實的營收或流量數字。客戶照片、影片與識別圖像取得授權後才會公開展示。</p>
+        <div className="ds-portfolio-gallery-head"><h3>合作客戶 × 實際作品</h3><p>每張圖都來自提供的作品集。點圖可看完整設計。</p></div>
+        <div className="ds-portfolio-grid">{portfolioCases.map((item,index)=><article className="ds-portfolio-card" key={item.brand}><a className="ds-portfolio-art" href={item.image} target="_blank" rel="noopener noreferrer" aria-label={`查看${item.brand}實際作品：${item.kind}`}><img src={item.image} alt={item.imageAlt} style={{objectPosition:item.imagePosition}} loading="lazy"/><small>0{index+1}</small><b>{item.brand}</b><span>查看作品 ↗</span></a><div className="ds-portfolio-copy"><small>{item.kind}</small><h3>{item.brand}</h3><p>{item.detail}</p><span>{item.files}</span></div></article>)}</div>
+        <p className="ds-portfolio-note">作品圖取自您提供的作品集；未使用客戶人物照或原始影片。數量是可核對的作品紀錄，未列未經核實的營收或流量數字。</p>
       </div></section>
       <section className="ds-final-cta"><div className="ds-wrap"><span className="ds-kicker">選一件最急的，先做出來。</span><h2>看完方案，再決定買哪一項。</h2><a href="#services" className="ds-primary">返回服務選單 <ArrowRight size={20}/></a></div></section>
     </main>

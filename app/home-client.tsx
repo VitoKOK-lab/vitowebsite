@@ -7,7 +7,7 @@ import { ArrowRight, ArrowUpRight, ArrowDown, Check, CheckCheck, ChevronDown, Ch
 import { buildBrief, estimateCapacity, industries, servicePlans, type ServiceKey } from '@/lib/marketing';
 import './portfolio.css';
 import ServiceShop, { TeamComparison } from './service-shop';
-import {portfolioBrands, portfolioCases, portfolioProof} from './portfolio-data';
+import {portfolioCases, portfolioProof} from './portfolio-data';
 
 const videos = [
   { id: 'ai-product-ad', title: '讓產品，走進真實情境。', label: 'AI 情境廣告', duration: '00:28', source: 'MC-001', description: '人物情境、產品訴求、字幕與動態資訊，整合成一支直式廣告。', tags: ['情境腳本', 'AI 人物', '動態字幕'], portrait: true },
@@ -123,9 +123,9 @@ export default function HomePage() {
         <section className="lk-portfolio-proof" id="cases" aria-labelledby="lk-cases-title"><div className="lk-container">
           <div className="lk-portfolio-proof-head"><div><span className="lk-eyebrow">CLIENTS & PROOF / 合作客戶與實績</span><h2 id="lk-cases-title">客戶做過哪些，<br/><em>成果交出什麼？</em></h2></div><p>從品牌識別、網站、包裝，到系列影音與實體通路。下面的客戶、件數與交付項目，都能在提供的作品集核對。</p></div>
           <div className="lk-portfolio-stats" aria-label="作品集可核對的合作實績">{portfolioProof.map(item=><div key={item.label}><strong>{item.value}</strong><b>{item.label}</b><span>{item.detail}</span></div>)}</div>
-          <div className="lk-brand-list" aria-label="作品集收錄合作客戶"><span>合作客戶／品牌・作品集收錄</span>{portfolioBrands.map(brand=><strong key={brand}>{brand}</strong>)}</div>
-          <div className="lk-portfolio-case-grid">{portfolioCases.map((item,index)=><article className={`lk-portfolio-case lk-portfolio-${item.tone}`} key={item.brand}><div className="lk-portfolio-case-art" aria-hidden="true"><span>0{index+1}</span><b>{item.mark}</b><i>{item.kind}</i></div><div className="lk-portfolio-case-copy"><small>{item.kind}</small><h3>{item.brand}</h3><p>{item.detail}</p><span>{item.files}</span></div></article>)}</div>
-          <p className="lk-portfolio-proof-note">以上為作品集可核對的合作名稱、案型及交付數量；未列未經核實的營收或流量數字。客戶照片、影片與識別圖像取得授權後才會公開展示。</p>
+          <div className="lk-portfolio-gallery-head"><h3>合作客戶 × 實際作品</h3><p>每張圖都來自提供的作品集。點圖可看完整設計。</p></div>
+          <div className="lk-portfolio-case-grid">{portfolioCases.map((item,index)=><article className="lk-portfolio-case" key={item.brand}><a className="lk-portfolio-case-art" href={item.image} target="_blank" rel="noopener noreferrer" aria-label={`查看${item.brand}實際作品：${item.kind}`}><img src={item.image} alt={item.imageAlt} style={{objectPosition:item.imagePosition}} loading="lazy"/><span>0{index+1}</span><b>{item.brand}</b><i>查看作品 ↗</i></a><div className="lk-portfolio-case-copy"><small>{item.kind}</small><h3>{item.brand}</h3><p>{item.detail}</p><span>{item.files}</span></div></article>)}</div>
+          <p className="lk-portfolio-proof-note">作品圖取自您提供的作品集；未使用客戶人物照或原始影片。數量是可核對的作品紀錄，未列未經核實的營收或流量數字。</p>
         </div></section>
         <section className="lk-growth lk-container" id="growth" aria-labelledby="growth-title">
           <div className="lk-eyebrow">ONE TEAM / 從曝光到訂單，一個窗口接起來</div>
