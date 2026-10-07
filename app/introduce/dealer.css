@@ -34,8 +34,10 @@
 @media(max-width:650px){.ds-portfolio-stats>div{padding:18px 14px}.ds-portfolio-stats strong{font-size:34px}}
 .ds-portfolio{padding:64px 0}
 .ds-portfolio-gallery-head{margin:0 0 20px}.ds-portfolio-gallery-head h2{color:#fff;font-size:clamp(26px,3vw,38px);margin:0}
-.ds-portfolio-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-.ds-portfolio-art{display:block;height:158px;overflow:hidden;background:#e8f1f3}.ds-portfolio-art img{display:block;width:100%;height:100%;object-fit:cover}.ds-portfolio-art:after{content:none}
-.ds-portfolio-copy{padding:12px 13px 14px}.ds-portfolio-copy h3{font-size:17px;margin:0 0 4px;line-height:1.25}.ds-portfolio-copy small{font-size:11px}
-@media(max-width:950px){.ds-portfolio-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:650px){.ds-portfolio{padding:48px 0}.ds-portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.ds-portfolio-art{height:130px}.ds-portfolio-copy{padding:10px}.ds-portfolio-copy h3{font-size:15px}}
+.ds-portfolio-grid{grid-template-columns:repeat(7,minmax(0,1fr));gap:26px 14px}
+.ds-portfolio-card{min-width:0;text-align:center;background:transparent;color:#fff;overflow:visible;border-radius:0}
+.ds-portfolio-art{display:block;width:min(100%,128px);height:auto;aspect-ratio:1;margin-inline:auto;overflow:hidden;border-radius:50%;background:#e8f1f3;border:3px solid #ffffffbd;box-shadow:0 6px 20px #061c2873}
+.ds-portfolio-art img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.16)}.ds-portfolio-art:after{content:none}
+.ds-portfolio-copy{padding:10px 2px 0}.ds-portfolio-copy h3{font-size:15px;margin:0 0 3px;line-height:1.3;color:#fff}.ds-portfolio-copy small{font-size:10px;color:#a9deea;font-weight:700}
+@media(max-width:950px){.ds-portfolio-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:650px){.ds-portfolio{padding:48px 0}.ds-portfolio-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 10px}.ds-portfolio-art{width:min(100%,96px)}.ds-portfolio-copy h3{font-size:13px}.ds-portfolio-copy small{font-size:9px}}
