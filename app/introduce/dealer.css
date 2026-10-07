@@ -5,3 +5,22 @@
 @media(prefers-reduced-motion:reduce){.dealer-page *{scroll-behavior:auto!important;transition:none!important}}
 /* Simulated vertical examples remain complete at every viewport. */
 .ds-proof-grid{max-width:1040px;margin-inline:auto}.ds-proof-grid img{height:auto;aspect-ratio:9/16;object-fit:contain}.ds-case-simulated{width:min(380px,100%)}.ds-case-simulated img{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain;background:#f5f9fa}
+
+/* Each service has its own visual identity while keeping the Super 5 type and layout. */
+.ds-theme-digital-human{--ds-blue:#087da7;--ds-cyan:#a8dce9;--ds-pale:#e9f7fb;--ds-dark:#103651;--ds-hero-start:#eaf9fe;--ds-hero-end:#d3eff7}
+.ds-theme-real-video{--ds-blue:#477b43;--ds-cyan:#d6e8b3;--ds-pale:#f0f7e6;--ds-dark:#254e35;--ds-hero-start:#f7f8e9;--ds-hero-end:#e0efcf}
+.ds-theme-ai-video{--ds-blue:#7451b4;--ds-cyan:#dcc9f7;--ds-pale:#f3edfc;--ds-dark:#39285c;--ds-hero-start:#f7f1ff;--ds-hero-end:#e5d7fa}
+.ds-theme-social-posts{--ds-blue:#cb5540;--ds-cyan:#ffcfbd;--ds-pale:#fff1e9;--ds-dark:#813c38;--ds-hero-start:#fff3eb;--ds-hero-end:#ffdccb}
+.ds-theme-web-system{--ds-blue:#2753a0;--ds-cyan:#b7d7ff;--ds-pale:#edf4ff;--ds-dark:#1c345f;--ds-hero-start:#edf4ff;--ds-hero-end:#d6e5fb}
+.ds-theme-creator-campaign{--ds-blue:#dd5b12;--ds-cyan:#ffd6a7;--ds-pale:#fff1e4;--ds-dark:#783d1e;--ds-hero-start:#fff0dc;--ds-hero-end:#ffcf9c}
+.ds-service-page .ds-detail-hero{background:linear-gradient(110deg,var(--ds-hero-start),var(--ds-hero-end))}
+.ds-service-page .ds-primary{background:var(--ds-blue);box-shadow:0 8px 20px color-mix(in srgb,var(--ds-blue) 22%,transparent)}
+.ds-service-page .ds-primary:hover{background:var(--ds-dark)}
+.ds-service-page .ds-option-price,.ds-service-page .ds-reasons{background:var(--ds-pale)}
+.ds-service-page .ds-process{background:var(--ds-dark)}
+.ds-service-page .ds-case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.ds-service-page .ds-case{width:100%;background:var(--ds-pale)}
+.ds-service-page .ds-case img{background:var(--ds-pale)}
+.ds-demo-note{font-size:13px;color:#637783;margin:19px 0 0}
+@media(max-width:800px){.ds-service-page .ds-case-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.ds-service-page .ds-case-grid{grid-template-columns:1fr}.ds-service-page .ds-case{max-width:420px;margin-inline:auto}}
