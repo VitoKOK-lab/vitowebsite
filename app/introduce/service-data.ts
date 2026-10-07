@@ -10,6 +10,7 @@ export type DealerCase = {
   src: string;
   title: string;
   description: string;
+  overlay?: string;
 };
 
 export type DealerService = {
@@ -35,8 +36,8 @@ export const dealerServices: DealerService[] = [
     slug: 'digital-human',
     nav: '數字人',
     eyebrow: '01 / AI 數字人短影音',
-    headline: '不用天天拍，品牌天天有人開口賣。',
-    intro: '建立固定的虛擬品牌角色，持續介紹產品、回答常見問題、更新活動。老闆給重點，我們交付能發布的直式影片。',
+    headline: '超級名模來幫你賣貨',
+    intro: '打造專屬 AI 虛擬名模，持續介紹產品、回答常見問題、更新活動。老闆給重點，我們交付能發布的直式影片。',
     image: '/dealer/digital-human.webp',
     imageAlt: '品牌數字人介紹產品，製作團隊正在拍攝現場工作',
     priceLine: '4 支 NT$19,800 起',
@@ -91,29 +92,31 @@ export const dealerServices: DealerService[] = [
   },
   {
     slug: 'ai-video',
-    nav: 'AI 剪片／生片',
-    eyebrow: '03 / 照片變 AI 短片',
-    headline: '只有幾張照片，也能做出有人物的動態短片。',
-    intro: '不用先拍一堆影片。我們用 Codex／Claude Code 把少量產品照片做動畫、補場景、合成品牌人物，再剪成可以發布的短影音。',
+    nav: 'AI 製片',
+    eyebrow: '03 / 一個製片 × 一組 AI 專員',
+    headline: '一個製片，帶一整組 AI 專員。',
+    intro: '不用先拍一堆影片。我們超 AI 技術把少量照片做成完整短片：白板手繪、簡報口播、品牌動態、黑底科技字卡，挑適合你的形式。',
     image: '/dealer/ai-video.webp',
-    imageAlt: '兩張產品照片經 AI 動畫與人物合成，變成有人介紹商品的直式影片',
-    demoIntro: '每張圖上方是少量原始照片，下方是加入人物、場景與動態後的成片畫面。',
+    imageAlt: '五種 AI 製片畫面並列：白板手繪、平面口播、品牌動態、科技字卡與產品簡報',
+    demoIntro: '白板、口播簡報、品牌動態、科技字卡都能做；看五種不同的製片方向。',
     priceLine: '4 支 NT$12,800 起',
     priceNote: '少量客供照片即可啟動・未稅參考價',
     options: [
-      {name: '照片動態快剪', price: 'NT$12,800', unit: '／4 支', detail: '幾張產品照片，變成有節奏、有動態的短片。', includes: ['4 支 9:16、15–30 秒成片', '客供照片動態化、轉場、字幕、配樂與封面', '開場文案與必要的 AI 補畫面', '每支 1 次集中修改']},
-      {name: 'AI 人物合成片', price: 'NT$19,800 起', unit: '／4 支', detail: '照片裡沒有代言人？合成新人物幫你介紹。', includes: ['4 支 9:16、15–30 秒人物與商品情境短片', '產品照片動畫、AI 人物／場景生成與合成', '腳本、剪輯、字幕與配樂', '每支 1 次集中修改；指定角色與特殊授權另估']},
+      {name: 'AI 動態短片', price: 'NT$12,800', unit: '／4 支', detail: '用少量素材，做成有節奏的白板、簡報或科技字卡。', includes: ['4 支 9:16、15–30 秒成片', '客供照片動態化、重點圖卡、轉場、字幕與配樂', '開場文案、封面與必要的 AI 補畫面', '每支 1 次集中修改']},
+      {name: 'AI 口播製片', price: 'NT$19,800 起', unit: '／4 支', detail: '平面卡通人物口播，帶客戶看完一個完整主題。', includes: ['4 支 9:16、15–30 秒簡報式口播短片', '產品照片動畫、平面卡通角色與口播合成', '腳本、圖卡、剪輯、字幕與配樂', '每支 1 次集中修改；指定角色與特殊授權另估']},
     ],
     reasons: [
       {title: '兩張照片也能開始', body: '先用現有商品照片，不必為了做影片重拍整套素材。'},
-      {title: '人物與場景都能補', body: '用 AI 動畫與合成，做出原本沒有拍到的介紹畫面。'},
+      {title: '影片形式由主題決定', body: '白板手繪、簡報口播、品牌動態或科技字卡，挑適合內容的形式。'},
       {title: '一次交付四支', body: '同一批素材拆出多個角度，能連續發布。'},
     ],
-    steps: ['給少量照片與產品重點', '確認動畫與人物合成方向', '審稿後交付直式成片'],
+    steps: ['給少量素材與產品重點', '確認腳本、製片形式與看板', '審稿後交付直式成片'],
     cases: [
-      {src: '/dealer/simulated/ai-video-vertical.webp', title: '2 張照片 → 人物介紹片', description: '產品照加角色參考，合成口播情境。'},
-      {src: '/dealer/simulated/ai-video-2.webp', title: '咖啡照片 → 店員介紹片', description: '平面素材變成有人物與動態的短片。'},
-      {src: '/dealer/simulated/ai-video-3.webp', title: '背包照片 → 戶外情境片', description: '不出外景，也能先做出故事畫面。'},
+      {src: '/dealer/simulated/ai-video-vertical.webp', title: '白板手繪', description: '線條跟著口播一步步畫出重點。'},
+      {src: '/dealer/simulated/ai-video-2.webp', title: '品牌主軸動態', description: '用顏色、動線與圖形做出品牌記憶點。'},
+      {src: '/dealer/simulated/ai-video-3.webp', title: '黑底科技字卡', description: '強烈對比與節奏，讓一句話撐起整支片。', overlay: '一個製片，\n帶一整組 AI 專員'},
+      {src: '/dealer/simulated/ai-video-4.webp', title: '平面人物口播', description: '卡通角色配簡報圖卡，把產品說清楚。'},
+      {src: '/dealer/simulated/ai-video-5.webp', title: '服務簡報動畫', description: '用口播角色、圖表與轉場說明流程。'},
     ],
   },
   {
@@ -177,7 +180,7 @@ export const dealerServices: DealerService[] = [
     slug: 'creator-campaign',
     nav: 'KOC／KOL',
     eyebrow: '06 / KOC × KOL 專案合作',
-    headline: '一個產品，讓更多人幫你說。',
+    headline: '讓更多人分享你的商品',
     intro: 'KOC 帶來使用者視角與內容素材；KOL 幫品牌打開新受眾。從人選、題目、合作到交付，一個窗口管理。',
     image: '/dealer/creator-campaign.webp',
     imageAlt: '多位創作者在拍攝現場開箱、示範並介紹商品',
