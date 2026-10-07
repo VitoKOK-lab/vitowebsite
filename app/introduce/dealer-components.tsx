@@ -11,7 +11,7 @@ export function DealerHeader() {
     <Link href="/introduce/" className="ds-header-logo" aria-label="super 5 經銷服務首頁"><DealerBrand/></Link>
     <nav className="ds-header-nav" aria-label="服務導覽">
       <Link href="/introduce/#services">全部服務</Link>
-      <Link href="/introduce/#cases">合作案例</Link>
+      <Link href="/introduce/#cases">合作實績</Link>
       <details className="ds-menu">
         <summary>服務選單 <ChevronDown size={16}/></summary>
         <div className="ds-menu-list">{dealerServices.map(service =>
