@@ -2,6 +2,7 @@ import Link from 'next/link';
 import {ArrowRight} from 'lucide-react';
 import {DealerFooter, DealerHeader} from './dealer-components';
 import {dealerServices} from './service-data';
+import {portfolioBrands, portfolioCases} from '../portfolio-data';
 import './super5.css';
 import './dealer.css';
 
@@ -27,21 +28,27 @@ export default function IntroducePage() {
           <div className="ds-home-mosaic" aria-label="六種服務的視覺預覽">
             <img src="/dealer/digital-human.webp" alt="數字人影片" fetchPriority="high"/>
             <img src="/dealer/real-video.webp" alt="真實拍攝"/>
-            <img src="/dealer/ai-video.webp" alt="AI 影片剪輯"/>
+            <img src="/dealer/ai-video.webp" alt="AI 製片"/>
             <img src="/dealer/web-system.webp" alt="網站與系統"/>
           </div>
         </div>
       </section>
       <section className="ds-wrap ds-home-services" id="services">
-        <div className="ds-section-intro"><span className="ds-kicker">服務選單 / 直接看價格</span><h2>要做什麼？<br/><em>點進去看成品、內容、收費。</em></h2><p>每項服務都有自己的頁面，交付數量寫清楚，讓老闆快速決定。</p></div>
+        <div className="ds-section-intro"><span className="ds-kicker">服務選單 / 直接看價格</span><h2>我們的服務</h2><p>點進去看成品、內容、收費。每項服務都有自己的頁面，交付數量寫清楚，讓老闆快速決定。</p></div>
         <div className="ds-service-grid">{dealerServices.map((service,index)=><Link href={`/introduce/${service.slug}/`} className={`ds-service-card ${service.accent ? 'ds-orange' : ''}`} key={service.slug}>
           <div className="ds-service-card-image"><img src={service.image} alt={service.imageAlt} loading={index<2?'eager':'lazy'}/><span>0{index+1}</span></div>
           <div className="ds-service-card-copy"><span>{service.eyebrow}</span><h3>{service.nav}</h3><p>{service.headline}</p><div className="ds-service-card-bottom"><strong>{service.priceLine}</strong><ArrowRight size={22}/></div></div>
         </Link>)}</div>
         <p className="ds-price-disclaimer">價格為新臺幣未稅參考價；人選、拍攝地點、授權、系統串接和需求擴充依正式報價。主題大圖為 AI 生成示意。</p>
       </section>
-      <section className="ds-bundle"><div className="ds-wrap ds-bundle-inner"><div><span className="ds-kicker">想交給一個團隊持續做？</span><h2>五倍行銷月包</h2><p>每月 8 則圖文＋4 支短影音＋內容月曆。從題目到成品，一個窗口接住。</p></div><div><strong>NT$35,000–50,000 <small>／月</small></strong><Link href="/introduce/social-posts/" className="ds-primary">先看圖文與內容服務 <ArrowRight size={18}/></Link></div></div></section>
-      <section className="ds-wrap ds-proof" id="examples"><div className="ds-section-intro"><span className="ds-kicker">先看 3 個 Demo</span><h2>不看說明，<em>也知道在賣什麼。</em></h2><p>先看畫面；每個服務頁還有三個不同主題的直式 Demo。</p></div><div className="ds-proof-grid">{proof.map(item=><figure key={item.title}><img src={item.src} alt={`${item.title}：${item.type}`} loading="lazy"/><figcaption><strong>{item.title}</strong><span>{item.type}</span></figcaption></figure>)}</div><p className="ds-demo-note">示範畫面由 AI 製作，未使用客戶素材。</p></section>
+      <section className="ds-bundle"><div className="ds-wrap ds-bundle-inner"><div><span className="ds-kicker">想交給一個團隊持續做？</span><h2>包月行銷服務</h2><p>每月 8 則圖文＋4 支短影音＋內容月曆。從題目到成品，一個窗口接住。</p></div><div><strong>NT$35,000–50,000 <small>／月</small></strong><Link href="/introduce/social-posts/" className="ds-primary">先看圖文與內容服務 <ArrowRight size={18}/></Link></div></div></section>
+      <section className="ds-wrap ds-proof" id="examples"><div className="ds-section-intro"><span className="ds-kicker">先看 3 個 Demo</span><h2>不看說明，<em>也知道在賣什麼。</em></h2><p>先看畫面；每個服務頁還有至少三個不同主題的直式 Demo。</p></div><div className="ds-proof-grid">{proof.map(item=><figure key={item.title}><img src={item.src} alt={`${item.title}：${item.type}`} loading="lazy"/><figcaption><strong>{item.title}</strong><span>{item.type}</span></figcaption></figure>)}</div><p className="ds-demo-note">示範畫面由 AI 製作，未使用客戶素材。</p></section>
+      <section className="ds-portfolio" id="cases"><div className="ds-wrap">
+        <div className="ds-portfolio-heading"><div><span className="ds-kicker">合作品牌與案例</span><h2>我們接過的案子，<br/>直接攤開看。</h2></div><p>餐飲、電子產品、品牌設計到系列影音。這些案型來自既有作品集，讓客戶清楚知道我們做過什麼。</p></div>
+        <div className="ds-portfolio-brands"><span>作品集收錄品牌</span>{portfolioBrands.map(brand=><strong key={brand}>{brand}</strong>)}</div>
+        <div className="ds-portfolio-grid">{portfolioCases.map((item,index)=><article className={`ds-portfolio-card ds-portfolio-${item.tone}`} key={item.brand}><div className="ds-portfolio-art" aria-hidden="true"><small>0{index+1}</small><b>{item.mark}</b><span>{item.kind}</span></div><div className="ds-portfolio-copy"><small>{item.kind}</small><h3>{item.brand}</h3><p>{item.detail}</p><span>{item.files}</span></div></article>)}</div>
+        <p className="ds-portfolio-note">案型與交付項目依既有作品集整理，不代表流量或營收成效；客戶照片、影片與識別圖像取得授權後才會公開展示。</p>
+      </div></section>
       <section className="ds-final-cta"><div className="ds-wrap"><span className="ds-kicker">選一件最急的，先做出來。</span><h2>看完方案，再決定買哪一項。</h2><a href="#services" className="ds-primary">返回服務選單 <ArrowRight size={20}/></a></div></section>
     </main>
     <DealerFooter/>

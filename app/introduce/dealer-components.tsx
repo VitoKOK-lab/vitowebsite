@@ -11,6 +11,7 @@ export function DealerHeader() {
     <Link href="/introduce/" className="ds-header-logo" aria-label="super 5 經銷服務首頁"><DealerBrand/></Link>
     <nav className="ds-header-nav" aria-label="服務導覽">
       <Link href="/introduce/#services">全部服務</Link>
+      <Link href="/introduce/#cases">合作案例</Link>
       <details className="ds-menu">
         <summary>服務選單 <ChevronDown size={16}/></summary>
         <div className="ds-menu-list">{dealerServices.map(service =>
@@ -27,7 +28,7 @@ export function DealerFooter() {
 
 export function DealerCaseMedia({item}: {item: DealerCase}) {
   return <figure className="ds-case ds-case-simulated">
-    <img src={item.src} alt={item.title} loading="lazy"/>
+    <div className="ds-case-visual"><img src={item.src} alt={item.title} loading="lazy"/>{item.overlay && <span className="ds-case-overlay">{item.overlay}</span>}</div>
     <figcaption><strong>{item.title}</strong><span>{item.description}</span></figcaption>
   </figure>;
 }
