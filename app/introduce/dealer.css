@@ -41,3 +41,13 @@
 .ds-portfolio-copy{padding:10px 2px 0}.ds-portfolio-copy h3{font-size:15px;margin:0 0 3px;line-height:1.3;color:#fff}.ds-portfolio-copy small{font-size:10px;color:#a9deea;font-weight:700}
 @media(max-width:950px){.ds-portfolio-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
 @media(max-width:650px){.ds-portfolio{padding:48px 0}.ds-portfolio-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 10px}.ds-portfolio-art{width:min(100%,96px)}.ds-portfolio-copy h3{font-size:13px}.ds-portfolio-copy small{font-size:9px}}
+
+/* Dealer landing hero: oversized promise and four-panel work montage. */
+.ds-home-hero{background:linear-gradient(112deg,#fff 0%,#fff 43%,#edf8fc 100%)}
+.ds-home-hero-inner{width:min(1920px,calc(100% - 96px));grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:34px;min-height:clamp(740px,55vw,980px);padding-block:70px}
+.ds-home-copy .ds-kicker{font-size:clamp(17px,1.2vw,24px);letter-spacing:.06em}
+.ds-home-copy h1{font-size:clamp(62px,5.8vw,126px);line-height:1.11;letter-spacing:-.06em;margin:30px 0 36px}
+.ds-home-copy>p{font-size:clamp(20px,1.55vw,32px);line-height:1.6;margin-bottom:42px}
+.ds-home-mosaic{transform:rotate(-3deg);border-width:12px;border-radius:28px;gap:12px;box-shadow:0 32px 80px #0d3e5d24}
+@media(max-width:1050px){.ds-home-hero-inner{width:calc(100% - 64px);min-height:690px;gap:22px}.ds-home-copy h1{font-size:clamp(54px,6vw,70px);margin:23px 0 26px}.ds-home-copy>p{font-size:20px;margin-bottom:30px}}
+@media(max-width:700px){.ds-home-hero-inner{width:calc(100% - 36px);min-height:0;padding-block:34px;gap:28px}.ds-home-copy .ds-kicker{font-size:15px}.ds-home-copy h1{font-size:clamp(43px,10vw,64px);line-height:1.13;margin:18px 0 20px}.ds-home-copy>p{font-size:17px;margin-bottom:25px}.ds-home-mosaic{transform:none;border-width:7px;border-radius:17px;gap:7px}}
